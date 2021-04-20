@@ -2,8 +2,41 @@ grammar org.xtext.RegistrationDSL with org.eclipse.xtext.common.Terminals
 
 generate registrationDSL "http://www.xtext.org/RegistrationDSL"
 
-Model:
-	greetings+=Greeting*;
-	
-Greeting:
-	'Hello' name=ID '!';
+Registationsystem: //car rentarl version
+	'system' name =ID '{' declarations +=Declaration* '}'
+;
+Declaration:
+	Entity | Workflow
+;
+
+Entity:
+	'entity' name=ID (':' base=[Entity])? '{' fields += Field* '}'
+;
+
+Field:
+	Attribute | Relation
+;
+
+Attribute:
+	'attribute' name=ID ':' type=ID
+;
+
+Relation:
+	'relation' name=ID ':' target=[Entity]
+;
+
+Workflow:
+	'workflow' name=ID '{' statments+=Statement* '}'
+;
+
+Statement:
+	Select | Add //| Set
+;
+
+Select:
+	'select' 
+;
+
+Add:
+	'add'
+;
