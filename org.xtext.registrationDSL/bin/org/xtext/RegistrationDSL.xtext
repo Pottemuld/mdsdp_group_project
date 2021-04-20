@@ -1,0 +1,9 @@
+grammar org.xtext.RegistrationDSL with org.eclipse.xtext.common.Terminals
+
+generate registrationDSL "http://www.xtext.org/RegistrationDSL"
+
+Model:
+	greetings+=Greeting*;
+	
+Greeting:
+	'Hello' name=ID '!';
