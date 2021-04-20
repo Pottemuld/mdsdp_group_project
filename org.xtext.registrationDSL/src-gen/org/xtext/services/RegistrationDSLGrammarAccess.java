@@ -247,17 +247,161 @@ public class RegistrationDSLGrammarAccess extends AbstractElementFinder.Abstract
 		private final Keyword cWorkflowKeyword_0 = (Keyword)cGroup.eContents().get(0);
 		private final Assignment cNameAssignment_1 = (Assignment)cGroup.eContents().get(1);
 		private final RuleCall cNameIDTerminalRuleCall_1_0 = (RuleCall)cNameAssignment_1.eContents().get(0);
+		private final Keyword cLeftCurlyBracketKeyword_2 = (Keyword)cGroup.eContents().get(2);
+		private final Assignment cStatmentsAssignment_3 = (Assignment)cGroup.eContents().get(3);
+		private final RuleCall cStatmentsStatementParserRuleCall_3_0 = (RuleCall)cStatmentsAssignment_3.eContents().get(0);
+		private final Keyword cRightCurlyBracketKeyword_4 = (Keyword)cGroup.eContents().get(4);
 		
 		//Workflow:
-		//    'workflow' name=ID
+		//    'workflow' name=ID '{' statments+=Statement* '}'
 		//;
 		@Override public ParserRule getRule() { return rule; }
 		
-		//'workflow' name=ID
+		//'workflow' name=ID '{' statments+=Statement* '}'
 		public Group getGroup() { return cGroup; }
 		
 		//'workflow'
 		public Keyword getWorkflowKeyword_0() { return cWorkflowKeyword_0; }
+		
+		//name=ID
+		public Assignment getNameAssignment_1() { return cNameAssignment_1; }
+		
+		//ID
+		public RuleCall getNameIDTerminalRuleCall_1_0() { return cNameIDTerminalRuleCall_1_0; }
+		
+		//'{'
+		public Keyword getLeftCurlyBracketKeyword_2() { return cLeftCurlyBracketKeyword_2; }
+		
+		//statments+=Statement*
+		public Assignment getStatmentsAssignment_3() { return cStatmentsAssignment_3; }
+		
+		//Statement
+		public RuleCall getStatmentsStatementParserRuleCall_3_0() { return cStatmentsStatementParserRuleCall_3_0; }
+		
+		//'}'
+		public Keyword getRightCurlyBracketKeyword_4() { return cRightCurlyBracketKeyword_4; }
+	}
+	public class StatementElements extends AbstractParserRuleElementFinder {
+		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "org.xtext.RegistrationDSL.Statement");
+		private final Alternatives cAlternatives = (Alternatives)rule.eContents().get(1);
+		private final RuleCall cSelectParserRuleCall_0 = (RuleCall)cAlternatives.eContents().get(0);
+		private final RuleCall cAddParserRuleCall_1 = (RuleCall)cAlternatives.eContents().get(1);
+		private final RuleCall cSetParserRuleCall_2 = (RuleCall)cAlternatives.eContents().get(2);
+		
+		//Statement:
+		//    Select | Add | Set
+		//;
+		@Override public ParserRule getRule() { return rule; }
+		
+		//Select | Add | Set
+		public Alternatives getAlternatives() { return cAlternatives; }
+		
+		//Select
+		public RuleCall getSelectParserRuleCall_0() { return cSelectParserRuleCall_0; }
+		
+		//Add
+		public RuleCall getAddParserRuleCall_1() { return cAddParserRuleCall_1; }
+		
+		//Set
+		public RuleCall getSetParserRuleCall_2() { return cSetParserRuleCall_2; }
+	}
+	public class SelectElements extends AbstractParserRuleElementFinder {
+		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "org.xtext.RegistrationDSL.Select");
+		private final Group cGroup = (Group)rule.eContents().get(1);
+		private final Keyword cSelectKeyword_0 = (Keyword)cGroup.eContents().get(0);
+		private final Assignment cSelecttypeAssignment_1 = (Assignment)cGroup.eContents().get(1);
+		private final CrossReference cSelecttypeEntityCrossReference_1_0 = (CrossReference)cSelecttypeAssignment_1.eContents().get(0);
+		private final RuleCall cSelecttypeEntityIDTerminalRuleCall_1_0_1 = (RuleCall)cSelecttypeEntityCrossReference_1_0.eContents().get(1);
+		private final Assignment cEntityNameAssignment_2 = (Assignment)cGroup.eContents().get(2);
+		private final RuleCall cEntityNameIDTerminalRuleCall_2_0 = (RuleCall)cEntityNameAssignment_2.eContents().get(0);
+		
+		//Select:// this is wrong
+		//    'select' selecttype=[Entity] entityName=ID //('where' '{'  '}' )?
+		//;
+		@Override public ParserRule getRule() { return rule; }
+		
+		//// this is wrong
+		//    'select' selecttype=[Entity] entityName=ID
+		public Group getGroup() { return cGroup; }
+		
+		//// this is wrong
+		//    'select'
+		public Keyword getSelectKeyword_0() { return cSelectKeyword_0; }
+		
+		//selecttype=[Entity]
+		public Assignment getSelecttypeAssignment_1() { return cSelecttypeAssignment_1; }
+		
+		//[Entity]
+		public CrossReference getSelecttypeEntityCrossReference_1_0() { return cSelecttypeEntityCrossReference_1_0; }
+		
+		//ID
+		public RuleCall getSelecttypeEntityIDTerminalRuleCall_1_0_1() { return cSelecttypeEntityIDTerminalRuleCall_1_0_1; }
+		
+		//entityName=ID
+		public Assignment getEntityNameAssignment_2() { return cEntityNameAssignment_2; }
+		
+		//ID
+		public RuleCall getEntityNameIDTerminalRuleCall_2_0() { return cEntityNameIDTerminalRuleCall_2_0; }
+	}
+	public class AddElements extends AbstractParserRuleElementFinder {
+		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "org.xtext.RegistrationDSL.Add");
+		private final Group cGroup = (Group)rule.eContents().get(1);
+		private final Keyword cAddKeyword_0 = (Keyword)cGroup.eContents().get(0);
+		private final Assignment cSelectedEntityNameAssignment_1 = (Assignment)cGroup.eContents().get(1);
+		private final RuleCall cSelectedEntityNameIDTerminalRuleCall_1_0 = (RuleCall)cSelectedEntityNameAssignment_1.eContents().get(0);
+		private final Keyword cToKeyword_2 = (Keyword)cGroup.eContents().get(2);
+		private final Assignment cToEntityRelationAssignment_3 = (Assignment)cGroup.eContents().get(3);
+		private final CrossReference cToEntityRelationRelationCrossReference_3_0 = (CrossReference)cToEntityRelationAssignment_3.eContents().get(0);
+		private final RuleCall cToEntityRelationRelationIDTerminalRuleCall_3_0_1 = (RuleCall)cToEntityRelationRelationCrossReference_3_0.eContents().get(1);
+		
+		//Add: //this is wrong
+		//    'add' selectedEntityName=ID 'to' toEntityRelation=[Relation] // chec if its rigth later
+		//;
+		@Override public ParserRule getRule() { return rule; }
+		
+		////this is wrong
+		//   'add' selectedEntityName=ID 'to' toEntityRelation=[Relation]
+		public Group getGroup() { return cGroup; }
+		
+		////this is wrong
+		//   'add'
+		public Keyword getAddKeyword_0() { return cAddKeyword_0; }
+		
+		//selectedEntityName=ID
+		public Assignment getSelectedEntityNameAssignment_1() { return cSelectedEntityNameAssignment_1; }
+		
+		//ID
+		public RuleCall getSelectedEntityNameIDTerminalRuleCall_1_0() { return cSelectedEntityNameIDTerminalRuleCall_1_0; }
+		
+		//'to'
+		public Keyword getToKeyword_2() { return cToKeyword_2; }
+		
+		//toEntityRelation=[Relation]
+		public Assignment getToEntityRelationAssignment_3() { return cToEntityRelationAssignment_3; }
+		
+		//[Relation]
+		public CrossReference getToEntityRelationRelationCrossReference_3_0() { return cToEntityRelationRelationCrossReference_3_0; }
+		
+		//ID
+		public RuleCall getToEntityRelationRelationIDTerminalRuleCall_3_0_1() { return cToEntityRelationRelationIDTerminalRuleCall_3_0_1; }
+	}
+	public class SetElements extends AbstractParserRuleElementFinder {
+		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "org.xtext.RegistrationDSL.Set");
+		private final Group cGroup = (Group)rule.eContents().get(1);
+		private final Keyword cSetKeyword_0 = (Keyword)cGroup.eContents().get(0);
+		private final Assignment cNameAssignment_1 = (Assignment)cGroup.eContents().get(1);
+		private final RuleCall cNameIDTerminalRuleCall_1_0 = (RuleCall)cNameAssignment_1.eContents().get(0);
+		
+		//Set:
+		//    "set" name=ID
+		//;
+		@Override public ParserRule getRule() { return rule; }
+		
+		//"set" name=ID
+		public Group getGroup() { return cGroup; }
+		
+		//"set"
+		public Keyword getSetKeyword_0() { return cSetKeyword_0; }
 		
 		//name=ID
 		public Assignment getNameAssignment_1() { return cNameAssignment_1; }
@@ -274,6 +418,10 @@ public class RegistrationDSLGrammarAccess extends AbstractElementFinder.Abstract
 	private final AttributeElements pAttribute;
 	private final RelationElements pRelation;
 	private final WorkflowElements pWorkflow;
+	private final StatementElements pStatement;
+	private final SelectElements pSelect;
+	private final AddElements pAdd;
+	private final SetElements pSet;
 	
 	private final Grammar grammar;
 	
@@ -291,6 +439,10 @@ public class RegistrationDSLGrammarAccess extends AbstractElementFinder.Abstract
 		this.pAttribute = new AttributeElements();
 		this.pRelation = new RelationElements();
 		this.pWorkflow = new WorkflowElements();
+		this.pStatement = new StatementElements();
+		this.pSelect = new SelectElements();
+		this.pAdd = new AddElements();
+		this.pSet = new SetElements();
 	}
 	
 	protected Grammar internalFindGrammar(GrammarProvider grammarProvider) {
@@ -387,7 +539,7 @@ public class RegistrationDSLGrammarAccess extends AbstractElementFinder.Abstract
 	}
 	
 	//Workflow:
-	//    'workflow' name=ID
+	//    'workflow' name=ID '{' statments+=Statement* '}'
 	//;
 	public WorkflowElements getWorkflowAccess() {
 		return pWorkflow;
@@ -395,6 +547,50 @@ public class RegistrationDSLGrammarAccess extends AbstractElementFinder.Abstract
 	
 	public ParserRule getWorkflowRule() {
 		return getWorkflowAccess().getRule();
+	}
+	
+	//Statement:
+	//    Select | Add | Set
+	//;
+	public StatementElements getStatementAccess() {
+		return pStatement;
+	}
+	
+	public ParserRule getStatementRule() {
+		return getStatementAccess().getRule();
+	}
+	
+	//Select:// this is wrong
+	//    'select' selecttype=[Entity] entityName=ID //('where' '{'  '}' )?
+	//;
+	public SelectElements getSelectAccess() {
+		return pSelect;
+	}
+	
+	public ParserRule getSelectRule() {
+		return getSelectAccess().getRule();
+	}
+	
+	//Add: //this is wrong
+	//    'add' selectedEntityName=ID 'to' toEntityRelation=[Relation] // chec if its rigth later
+	//;
+	public AddElements getAddAccess() {
+		return pAdd;
+	}
+	
+	public ParserRule getAddRule() {
+		return getAddAccess().getRule();
+	}
+	
+	//Set:
+	//    "set" name=ID
+	//;
+	public SetElements getSetAccess() {
+		return pSet;
+	}
+	
+	public ParserRule getSetRule() {
+		return getSetAccess().getRule();
 	}
 	
 	//terminal ID: '^'?('a'..'z'|'A'..'Z'|'_') ('a'..'z'|'A'..'Z'|'_'|'0'..'9')*;

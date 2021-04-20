@@ -10,6 +10,7 @@ import org.eclipse.emf.ecore.EReference;
 
 import org.eclipse.emf.ecore.impl.EPackageImpl;
 
+import org.xtext.registrationDSL.Add;
 import org.xtext.registrationDSL.Attribute;
 import org.xtext.registrationDSL.Declaration;
 import org.xtext.registrationDSL.Entity;
@@ -18,6 +19,9 @@ import org.xtext.registrationDSL.Registationsystem;
 import org.xtext.registrationDSL.RegistrationDSLFactory;
 import org.xtext.registrationDSL.RegistrationDSLPackage;
 import org.xtext.registrationDSL.Relation;
+import org.xtext.registrationDSL.Select;
+import org.xtext.registrationDSL.Set;
+import org.xtext.registrationDSL.Statement;
 import org.xtext.registrationDSL.Workflow;
 
 /**
@@ -76,6 +80,34 @@ public class RegistrationDSLPackageImpl extends EPackageImpl implements Registra
    * @generated
    */
   private EClass workflowEClass = null;
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  private EClass statementEClass = null;
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  private EClass selectEClass = null;
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  private EClass addEClass = null;
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  private EClass setEClass = null;
 
   /**
    * Creates an instance of the model <b>Package</b>, registered with
@@ -311,6 +343,116 @@ public class RegistrationDSLPackageImpl extends EPackageImpl implements Registra
    * @generated
    */
   @Override
+  public EReference getWorkflow_Statments()
+  {
+    return (EReference)workflowEClass.getEStructuralFeatures().get(0);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public EClass getStatement()
+  {
+    return statementEClass;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public EClass getSelect()
+  {
+    return selectEClass;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public EReference getSelect_Selecttype()
+  {
+    return (EReference)selectEClass.getEStructuralFeatures().get(0);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public EAttribute getSelect_EntityName()
+  {
+    return (EAttribute)selectEClass.getEStructuralFeatures().get(1);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public EClass getAdd()
+  {
+    return addEClass;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public EAttribute getAdd_SelectedEntityName()
+  {
+    return (EAttribute)addEClass.getEStructuralFeatures().get(0);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public EReference getAdd_ToEntityRelation()
+  {
+    return (EReference)addEClass.getEStructuralFeatures().get(1);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public EClass getSet()
+  {
+    return setEClass;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public EAttribute getSet_Name()
+  {
+    return (EAttribute)setEClass.getEStructuralFeatures().get(0);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
   public RegistrationDSLFactory getRegistrationDSLFactory()
   {
     return (RegistrationDSLFactory)getEFactoryInstance();
@@ -357,6 +499,20 @@ public class RegistrationDSLPackageImpl extends EPackageImpl implements Registra
     createEReference(relationEClass, RELATION__TARGET);
 
     workflowEClass = createEClass(WORKFLOW);
+    createEReference(workflowEClass, WORKFLOW__STATMENTS);
+
+    statementEClass = createEClass(STATEMENT);
+
+    selectEClass = createEClass(SELECT);
+    createEReference(selectEClass, SELECT__SELECTTYPE);
+    createEAttribute(selectEClass, SELECT__ENTITY_NAME);
+
+    addEClass = createEClass(ADD);
+    createEAttribute(addEClass, ADD__SELECTED_ENTITY_NAME);
+    createEReference(addEClass, ADD__TO_ENTITY_RELATION);
+
+    setEClass = createEClass(SET);
+    createEAttribute(setEClass, SET__NAME);
   }
 
   /**
@@ -392,6 +548,9 @@ public class RegistrationDSLPackageImpl extends EPackageImpl implements Registra
     attributeEClass.getESuperTypes().add(this.getField());
     relationEClass.getESuperTypes().add(this.getField());
     workflowEClass.getESuperTypes().add(this.getDeclaration());
+    selectEClass.getESuperTypes().add(this.getStatement());
+    addEClass.getESuperTypes().add(this.getStatement());
+    setEClass.getESuperTypes().add(this.getStatement());
 
     // Initialize classes and features; add operations and parameters
     initEClass(registationsystemEClass, Registationsystem.class, "Registationsystem", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
@@ -415,6 +574,20 @@ public class RegistrationDSLPackageImpl extends EPackageImpl implements Registra
     initEReference(getRelation_Target(), this.getEntity(), null, "target", null, 0, 1, Relation.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
     initEClass(workflowEClass, Workflow.class, "Workflow", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+    initEReference(getWorkflow_Statments(), this.getStatement(), null, "statments", null, 0, -1, Workflow.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+    initEClass(statementEClass, Statement.class, "Statement", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+
+    initEClass(selectEClass, Select.class, "Select", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+    initEReference(getSelect_Selecttype(), this.getEntity(), null, "selecttype", null, 0, 1, Select.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEAttribute(getSelect_EntityName(), ecorePackage.getEString(), "entityName", null, 0, 1, Select.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+    initEClass(addEClass, Add.class, "Add", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+    initEAttribute(getAdd_SelectedEntityName(), ecorePackage.getEString(), "selectedEntityName", null, 0, 1, Add.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEReference(getAdd_ToEntityRelation(), this.getRelation(), null, "toEntityRelation", null, 0, 1, Add.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+    initEClass(setEClass, Set.class, "Set", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+    initEAttribute(getSet_Name(), ecorePackage.getEString(), "name", null, 0, 1, Set.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
     // Create resource
     createResource(eNS_URI);

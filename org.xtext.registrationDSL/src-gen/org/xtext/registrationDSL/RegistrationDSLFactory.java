@@ -87,6 +87,42 @@ public interface RegistrationDSLFactory extends EFactory
   Workflow createWorkflow();
 
   /**
+   * Returns a new object of class '<em>Statement</em>'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return a new object of class '<em>Statement</em>'.
+   * @generated
+   */
+  Statement createStatement();
+
+  /**
+   * Returns a new object of class '<em>Select</em>'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return a new object of class '<em>Select</em>'.
+   * @generated
+   */
+  Select createSelect();
+
+  /**
+   * Returns a new object of class '<em>Add</em>'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return a new object of class '<em>Add</em>'.
+   * @generated
+   */
+  Add createAdd();
+
+  /**
+   * Returns a new object of class '<em>Set</em>'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return a new object of class '<em>Set</em>'.
+   * @generated
+   */
+  Set createSet();
+
+  /**
    * Returns the package supported by this factory.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->

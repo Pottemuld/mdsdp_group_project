@@ -14,11 +14,13 @@ import org.eclipse.xtext.serializer.ISerializationContext;
 import org.eclipse.xtext.serializer.acceptor.SequenceFeeder;
 import org.eclipse.xtext.serializer.sequencer.AbstractDelegatingSemanticSequencer;
 import org.eclipse.xtext.serializer.sequencer.ITransientValueService.ValueTransient;
+import org.xtext.registrationDSL.Add;
 import org.xtext.registrationDSL.Attribute;
 import org.xtext.registrationDSL.Entity;
 import org.xtext.registrationDSL.Registationsystem;
 import org.xtext.registrationDSL.RegistrationDSLPackage;
 import org.xtext.registrationDSL.Relation;
+import org.xtext.registrationDSL.Select;
 import org.xtext.registrationDSL.Workflow;
 import org.xtext.services.RegistrationDSLGrammarAccess;
 
@@ -36,6 +38,9 @@ public class RegistrationDSLSemanticSequencer extends AbstractDelegatingSemantic
 		Set<Parameter> parameters = context.getEnabledBooleanParameters();
 		if (epackage == RegistrationDSLPackage.eINSTANCE)
 			switch (semanticObject.eClass().getClassifierID()) {
+			case RegistrationDSLPackage.ADD:
+				sequence_Add(context, (Add) semanticObject); 
+				return; 
 			case RegistrationDSLPackage.ATTRIBUTE:
 				sequence_Attribute(context, (Attribute) semanticObject); 
 				return; 
@@ -48,6 +53,12 @@ public class RegistrationDSLSemanticSequencer extends AbstractDelegatingSemantic
 			case RegistrationDSLPackage.RELATION:
 				sequence_Relation(context, (Relation) semanticObject); 
 				return; 
+			case RegistrationDSLPackage.SELECT:
+				sequence_Select(context, (Select) semanticObject); 
+				return; 
+			case RegistrationDSLPackage.SET:
+				sequence_Set(context, (org.xtext.registrationDSL.Set) semanticObject); 
+				return; 
 			case RegistrationDSLPackage.WORKFLOW:
 				sequence_Workflow(context, (Workflow) semanticObject); 
 				return; 
@@ -55,6 +66,28 @@ public class RegistrationDSLSemanticSequencer extends AbstractDelegatingSemantic
 		if (errorAcceptor != null)
 			errorAcceptor.accept(diagnosticProvider.createInvalidContextOrTypeDiagnostic(semanticObject, context));
 	}
+	
+	/**
+	 * Contexts:
+	 *     Statement returns Add
+	 *     Add returns Add
+	 *
+	 * Constraint:
+	 *     (selectedEntityName=ID toEntityRelation=[Relation|ID])
+	 */
+	protected void sequence_Add(ISerializationContext context, Add semanticObject) {
+		if (errorAcceptor != null) {
+			if (transientValues.isValueTransient(semanticObject, RegistrationDSLPackage.Literals.ADD__SELECTED_ENTITY_NAME) == ValueTransient.YES)
+				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, RegistrationDSLPackage.Literals.ADD__SELECTED_ENTITY_NAME));
+			if (transientValues.isValueTransient(semanticObject, RegistrationDSLPackage.Literals.ADD__TO_ENTITY_RELATION) == ValueTransient.YES)
+				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, RegistrationDSLPackage.Literals.ADD__TO_ENTITY_RELATION));
+		}
+		SequenceFeeder feeder = createSequencerFeeder(context, semanticObject);
+		feeder.accept(grammarAccess.getAddAccess().getSelectedEntityNameIDTerminalRuleCall_1_0(), semanticObject.getSelectedEntityName());
+		feeder.accept(grammarAccess.getAddAccess().getToEntityRelationRelationIDTerminalRuleCall_3_0_1(), semanticObject.eGet(RegistrationDSLPackage.Literals.ADD__TO_ENTITY_RELATION, false));
+		feeder.finish();
+	}
+	
 	
 	/**
 	 * Contexts:
@@ -127,20 +160,55 @@ public class RegistrationDSLSemanticSequencer extends AbstractDelegatingSemantic
 	
 	/**
 	 * Contexts:
-	 *     Declaration returns Workflow
-	 *     Workflow returns Workflow
+	 *     Statement returns Select
+	 *     Select returns Select
+	 *
+	 * Constraint:
+	 *     (selecttype=[Entity|ID] entityName=ID)
+	 */
+	protected void sequence_Select(ISerializationContext context, Select semanticObject) {
+		if (errorAcceptor != null) {
+			if (transientValues.isValueTransient(semanticObject, RegistrationDSLPackage.Literals.SELECT__SELECTTYPE) == ValueTransient.YES)
+				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, RegistrationDSLPackage.Literals.SELECT__SELECTTYPE));
+			if (transientValues.isValueTransient(semanticObject, RegistrationDSLPackage.Literals.SELECT__ENTITY_NAME) == ValueTransient.YES)
+				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, RegistrationDSLPackage.Literals.SELECT__ENTITY_NAME));
+		}
+		SequenceFeeder feeder = createSequencerFeeder(context, semanticObject);
+		feeder.accept(grammarAccess.getSelectAccess().getSelecttypeEntityIDTerminalRuleCall_1_0_1(), semanticObject.eGet(RegistrationDSLPackage.Literals.SELECT__SELECTTYPE, false));
+		feeder.accept(grammarAccess.getSelectAccess().getEntityNameIDTerminalRuleCall_2_0(), semanticObject.getEntityName());
+		feeder.finish();
+	}
+	
+	
+	/**
+	 * Contexts:
+	 *     Statement returns Set
+	 *     Set returns Set
 	 *
 	 * Constraint:
 	 *     name=ID
 	 */
-	protected void sequence_Workflow(ISerializationContext context, Workflow semanticObject) {
+	protected void sequence_Set(ISerializationContext context, org.xtext.registrationDSL.Set semanticObject) {
 		if (errorAcceptor != null) {
-			if (transientValues.isValueTransient(semanticObject, RegistrationDSLPackage.Literals.DECLARATION__NAME) == ValueTransient.YES)
-				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, RegistrationDSLPackage.Literals.DECLARATION__NAME));
+			if (transientValues.isValueTransient(semanticObject, RegistrationDSLPackage.Literals.SET__NAME) == ValueTransient.YES)
+				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, RegistrationDSLPackage.Literals.SET__NAME));
 		}
 		SequenceFeeder feeder = createSequencerFeeder(context, semanticObject);
-		feeder.accept(grammarAccess.getWorkflowAccess().getNameIDTerminalRuleCall_1_0(), semanticObject.getName());
+		feeder.accept(grammarAccess.getSetAccess().getNameIDTerminalRuleCall_1_0(), semanticObject.getName());
 		feeder.finish();
+	}
+	
+	
+	/**
+	 * Contexts:
+	 *     Declaration returns Workflow
+	 *     Workflow returns Workflow
+	 *
+	 * Constraint:
+	 *     (name=ID statments+=Statement*)
+	 */
+	protected void sequence_Workflow(ISerializationContext context, Workflow semanticObject) {
+		genericSequencer.createSequence(context, semanticObject);
 	}
 	
 	

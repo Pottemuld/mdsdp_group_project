@@ -33,12 +33,16 @@ public class RegistrationDSLParser extends AbstractContentAssistParser {
 		private static void init(ImmutableMap.Builder<AbstractElement, String> builder, RegistrationDSLGrammarAccess grammarAccess) {
 			builder.put(grammarAccess.getDeclarationAccess().getAlternatives(), "rule__Declaration__Alternatives");
 			builder.put(grammarAccess.getFieldAccess().getAlternatives(), "rule__Field__Alternatives");
+			builder.put(grammarAccess.getStatementAccess().getAlternatives(), "rule__Statement__Alternatives");
 			builder.put(grammarAccess.getRegistationsystemAccess().getGroup(), "rule__Registationsystem__Group__0");
 			builder.put(grammarAccess.getEntityAccess().getGroup(), "rule__Entity__Group__0");
 			builder.put(grammarAccess.getEntityAccess().getGroup_2(), "rule__Entity__Group_2__0");
 			builder.put(grammarAccess.getAttributeAccess().getGroup(), "rule__Attribute__Group__0");
 			builder.put(grammarAccess.getRelationAccess().getGroup(), "rule__Relation__Group__0");
 			builder.put(grammarAccess.getWorkflowAccess().getGroup(), "rule__Workflow__Group__0");
+			builder.put(grammarAccess.getSelectAccess().getGroup(), "rule__Select__Group__0");
+			builder.put(grammarAccess.getAddAccess().getGroup(), "rule__Add__Group__0");
+			builder.put(grammarAccess.getSetAccess().getGroup(), "rule__Set__Group__0");
 			builder.put(grammarAccess.getRegistationsystemAccess().getNameAssignment_1(), "rule__Registationsystem__NameAssignment_1");
 			builder.put(grammarAccess.getRegistationsystemAccess().getDeclarationsAssignment_3(), "rule__Registationsystem__DeclarationsAssignment_3");
 			builder.put(grammarAccess.getEntityAccess().getNameAssignment_1(), "rule__Entity__NameAssignment_1");
@@ -49,6 +53,12 @@ public class RegistrationDSLParser extends AbstractContentAssistParser {
 			builder.put(grammarAccess.getRelationAccess().getNameAssignment_1(), "rule__Relation__NameAssignment_1");
 			builder.put(grammarAccess.getRelationAccess().getTargetAssignment_3(), "rule__Relation__TargetAssignment_3");
 			builder.put(grammarAccess.getWorkflowAccess().getNameAssignment_1(), "rule__Workflow__NameAssignment_1");
+			builder.put(grammarAccess.getWorkflowAccess().getStatmentsAssignment_3(), "rule__Workflow__StatmentsAssignment_3");
+			builder.put(grammarAccess.getSelectAccess().getSelecttypeAssignment_1(), "rule__Select__SelecttypeAssignment_1");
+			builder.put(grammarAccess.getSelectAccess().getEntityNameAssignment_2(), "rule__Select__EntityNameAssignment_2");
+			builder.put(grammarAccess.getAddAccess().getSelectedEntityNameAssignment_1(), "rule__Add__SelectedEntityNameAssignment_1");
+			builder.put(grammarAccess.getAddAccess().getToEntityRelationAssignment_3(), "rule__Add__ToEntityRelationAssignment_3");
+			builder.put(grammarAccess.getSetAccess().getNameAssignment_1(), "rule__Set__NameAssignment_1");
 		}
 	}
 	

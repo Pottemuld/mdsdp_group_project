@@ -72,6 +72,10 @@ public class RegistrationDSLFactoryImpl extends EFactoryImpl implements Registra
       case RegistrationDSLPackage.ATTRIBUTE: return createAttribute();
       case RegistrationDSLPackage.RELATION: return createRelation();
       case RegistrationDSLPackage.WORKFLOW: return createWorkflow();
+      case RegistrationDSLPackage.STATEMENT: return createStatement();
+      case RegistrationDSLPackage.SELECT: return createSelect();
+      case RegistrationDSLPackage.ADD: return createAdd();
+      case RegistrationDSLPackage.SET: return createSet();
       default:
         throw new IllegalArgumentException("The class '" + eClass.getName() + "' is not a valid classifier");
     }
@@ -159,6 +163,54 @@ public class RegistrationDSLFactoryImpl extends EFactoryImpl implements Registra
   {
     WorkflowImpl workflow = new WorkflowImpl();
     return workflow;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public Statement createStatement()
+  {
+    StatementImpl statement = new StatementImpl();
+    return statement;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public Select createSelect()
+  {
+    SelectImpl select = new SelectImpl();
+    return select;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public Add createAdd()
+  {
+    AddImpl add = new AddImpl();
+    return add;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public Set createSet()
+  {
+    SetImpl set = new SetImpl();
+    return set;
   }
 
   /**

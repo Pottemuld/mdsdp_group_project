@@ -24,5 +24,20 @@
   <eClassifiers xsi:type="ecore:EClass" name="Relation" eSuperTypes="#//Field">
     <eStructuralFeatures xsi:type="ecore:EReference" name="target" eType="#//Entity"/>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="Workflow" eSuperTypes="#//Declaration"/>
+  <eClassifiers xsi:type="ecore:EClass" name="Workflow" eSuperTypes="#//Declaration">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="statments" upperBound="-1"
+        eType="#//Statement" containment="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Statement"/>
+  <eClassifiers xsi:type="ecore:EClass" name="Select" eSuperTypes="#//Statement">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="selecttype" eType="#//Entity"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="entityName" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Add" eSuperTypes="#//Statement">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="selectedEntityName" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="toEntityRelation" eType="#//Relation"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Set" eSuperTypes="#//Statement">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+  </eClassifiers>
 </ecore:EPackage>

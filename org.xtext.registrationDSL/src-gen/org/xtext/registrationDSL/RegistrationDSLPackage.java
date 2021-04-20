@@ -290,13 +290,143 @@ public interface RegistrationDSLPackage extends EPackage
   int WORKFLOW__NAME = DECLARATION__NAME;
 
   /**
+   * The feature id for the '<em><b>Statments</b></em>' containment reference list.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int WORKFLOW__STATMENTS = DECLARATION_FEATURE_COUNT + 0;
+
+  /**
    * The number of structural features of the '<em>Workflow</em>' class.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    * @ordered
    */
-  int WORKFLOW_FEATURE_COUNT = DECLARATION_FEATURE_COUNT + 0;
+  int WORKFLOW_FEATURE_COUNT = DECLARATION_FEATURE_COUNT + 1;
+
+  /**
+   * The meta object id for the '{@link org.xtext.registrationDSL.impl.StatementImpl <em>Statement</em>}' class.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see org.xtext.registrationDSL.impl.StatementImpl
+   * @see org.xtext.registrationDSL.impl.RegistrationDSLPackageImpl#getStatement()
+   * @generated
+   */
+  int STATEMENT = 7;
+
+  /**
+   * The number of structural features of the '<em>Statement</em>' class.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int STATEMENT_FEATURE_COUNT = 0;
+
+  /**
+   * The meta object id for the '{@link org.xtext.registrationDSL.impl.SelectImpl <em>Select</em>}' class.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see org.xtext.registrationDSL.impl.SelectImpl
+   * @see org.xtext.registrationDSL.impl.RegistrationDSLPackageImpl#getSelect()
+   * @generated
+   */
+  int SELECT = 8;
+
+  /**
+   * The feature id for the '<em><b>Selecttype</b></em>' reference.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int SELECT__SELECTTYPE = STATEMENT_FEATURE_COUNT + 0;
+
+  /**
+   * The feature id for the '<em><b>Entity Name</b></em>' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int SELECT__ENTITY_NAME = STATEMENT_FEATURE_COUNT + 1;
+
+  /**
+   * The number of structural features of the '<em>Select</em>' class.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int SELECT_FEATURE_COUNT = STATEMENT_FEATURE_COUNT + 2;
+
+  /**
+   * The meta object id for the '{@link org.xtext.registrationDSL.impl.AddImpl <em>Add</em>}' class.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see org.xtext.registrationDSL.impl.AddImpl
+   * @see org.xtext.registrationDSL.impl.RegistrationDSLPackageImpl#getAdd()
+   * @generated
+   */
+  int ADD = 9;
+
+  /**
+   * The feature id for the '<em><b>Selected Entity Name</b></em>' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int ADD__SELECTED_ENTITY_NAME = STATEMENT_FEATURE_COUNT + 0;
+
+  /**
+   * The feature id for the '<em><b>To Entity Relation</b></em>' reference.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int ADD__TO_ENTITY_RELATION = STATEMENT_FEATURE_COUNT + 1;
+
+  /**
+   * The number of structural features of the '<em>Add</em>' class.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int ADD_FEATURE_COUNT = STATEMENT_FEATURE_COUNT + 2;
+
+  /**
+   * The meta object id for the '{@link org.xtext.registrationDSL.impl.SetImpl <em>Set</em>}' class.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see org.xtext.registrationDSL.impl.SetImpl
+   * @see org.xtext.registrationDSL.impl.RegistrationDSLPackageImpl#getSet()
+   * @generated
+   */
+  int SET = 10;
+
+  /**
+   * The feature id for the '<em><b>Name</b></em>' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int SET__NAME = STATEMENT_FEATURE_COUNT + 0;
+
+  /**
+   * The number of structural features of the '<em>Set</em>' class.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int SET_FEATURE_COUNT = STATEMENT_FEATURE_COUNT + 1;
 
 
   /**
@@ -458,6 +588,112 @@ public interface RegistrationDSLPackage extends EPackage
   EClass getWorkflow();
 
   /**
+   * Returns the meta object for the containment reference list '{@link org.xtext.registrationDSL.Workflow#getStatments <em>Statments</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the containment reference list '<em>Statments</em>'.
+   * @see org.xtext.registrationDSL.Workflow#getStatments()
+   * @see #getWorkflow()
+   * @generated
+   */
+  EReference getWorkflow_Statments();
+
+  /**
+   * Returns the meta object for class '{@link org.xtext.registrationDSL.Statement <em>Statement</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for class '<em>Statement</em>'.
+   * @see org.xtext.registrationDSL.Statement
+   * @generated
+   */
+  EClass getStatement();
+
+  /**
+   * Returns the meta object for class '{@link org.xtext.registrationDSL.Select <em>Select</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for class '<em>Select</em>'.
+   * @see org.xtext.registrationDSL.Select
+   * @generated
+   */
+  EClass getSelect();
+
+  /**
+   * Returns the meta object for the reference '{@link org.xtext.registrationDSL.Select#getSelecttype <em>Selecttype</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the reference '<em>Selecttype</em>'.
+   * @see org.xtext.registrationDSL.Select#getSelecttype()
+   * @see #getSelect()
+   * @generated
+   */
+  EReference getSelect_Selecttype();
+
+  /**
+   * Returns the meta object for the attribute '{@link org.xtext.registrationDSL.Select#getEntityName <em>Entity Name</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the attribute '<em>Entity Name</em>'.
+   * @see org.xtext.registrationDSL.Select#getEntityName()
+   * @see #getSelect()
+   * @generated
+   */
+  EAttribute getSelect_EntityName();
+
+  /**
+   * Returns the meta object for class '{@link org.xtext.registrationDSL.Add <em>Add</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for class '<em>Add</em>'.
+   * @see org.xtext.registrationDSL.Add
+   * @generated
+   */
+  EClass getAdd();
+
+  /**
+   * Returns the meta object for the attribute '{@link org.xtext.registrationDSL.Add#getSelectedEntityName <em>Selected Entity Name</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the attribute '<em>Selected Entity Name</em>'.
+   * @see org.xtext.registrationDSL.Add#getSelectedEntityName()
+   * @see #getAdd()
+   * @generated
+   */
+  EAttribute getAdd_SelectedEntityName();
+
+  /**
+   * Returns the meta object for the reference '{@link org.xtext.registrationDSL.Add#getToEntityRelation <em>To Entity Relation</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the reference '<em>To Entity Relation</em>'.
+   * @see org.xtext.registrationDSL.Add#getToEntityRelation()
+   * @see #getAdd()
+   * @generated
+   */
+  EReference getAdd_ToEntityRelation();
+
+  /**
+   * Returns the meta object for class '{@link org.xtext.registrationDSL.Set <em>Set</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for class '<em>Set</em>'.
+   * @see org.xtext.registrationDSL.Set
+   * @generated
+   */
+  EClass getSet();
+
+  /**
+   * Returns the meta object for the attribute '{@link org.xtext.registrationDSL.Set#getName <em>Name</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the attribute '<em>Name</em>'.
+   * @see org.xtext.registrationDSL.Set#getName()
+   * @see #getSet()
+   * @generated
+   */
+  EAttribute getSet_Name();
+
+  /**
    * Returns the factory that creates the instances of the model.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
@@ -613,6 +849,94 @@ public interface RegistrationDSLPackage extends EPackage
      * @generated
      */
     EClass WORKFLOW = eINSTANCE.getWorkflow();
+
+    /**
+     * The meta object literal for the '<em><b>Statments</b></em>' containment reference list feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EReference WORKFLOW__STATMENTS = eINSTANCE.getWorkflow_Statments();
+
+    /**
+     * The meta object literal for the '{@link org.xtext.registrationDSL.impl.StatementImpl <em>Statement</em>}' class.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @see org.xtext.registrationDSL.impl.StatementImpl
+     * @see org.xtext.registrationDSL.impl.RegistrationDSLPackageImpl#getStatement()
+     * @generated
+     */
+    EClass STATEMENT = eINSTANCE.getStatement();
+
+    /**
+     * The meta object literal for the '{@link org.xtext.registrationDSL.impl.SelectImpl <em>Select</em>}' class.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @see org.xtext.registrationDSL.impl.SelectImpl
+     * @see org.xtext.registrationDSL.impl.RegistrationDSLPackageImpl#getSelect()
+     * @generated
+     */
+    EClass SELECT = eINSTANCE.getSelect();
+
+    /**
+     * The meta object literal for the '<em><b>Selecttype</b></em>' reference feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EReference SELECT__SELECTTYPE = eINSTANCE.getSelect_Selecttype();
+
+    /**
+     * The meta object literal for the '<em><b>Entity Name</b></em>' attribute feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EAttribute SELECT__ENTITY_NAME = eINSTANCE.getSelect_EntityName();
+
+    /**
+     * The meta object literal for the '{@link org.xtext.registrationDSL.impl.AddImpl <em>Add</em>}' class.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @see org.xtext.registrationDSL.impl.AddImpl
+     * @see org.xtext.registrationDSL.impl.RegistrationDSLPackageImpl#getAdd()
+     * @generated
+     */
+    EClass ADD = eINSTANCE.getAdd();
+
+    /**
+     * The meta object literal for the '<em><b>Selected Entity Name</b></em>' attribute feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EAttribute ADD__SELECTED_ENTITY_NAME = eINSTANCE.getAdd_SelectedEntityName();
+
+    /**
+     * The meta object literal for the '<em><b>To Entity Relation</b></em>' reference feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EReference ADD__TO_ENTITY_RELATION = eINSTANCE.getAdd_ToEntityRelation();
+
+    /**
+     * The meta object literal for the '{@link org.xtext.registrationDSL.impl.SetImpl <em>Set</em>}' class.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @see org.xtext.registrationDSL.impl.SetImpl
+     * @see org.xtext.registrationDSL.impl.RegistrationDSLPackageImpl#getSet()
+     * @generated
+     */
+    EClass SET = eINSTANCE.getSet();
+
+    /**
+     * The meta object literal for the '<em><b>Name</b></em>' attribute feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EAttribute SET__NAME = eINSTANCE.getSet_Name();
 
   }
 
