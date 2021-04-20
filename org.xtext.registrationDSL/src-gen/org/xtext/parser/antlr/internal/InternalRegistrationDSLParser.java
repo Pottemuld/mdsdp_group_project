@@ -1025,7 +1025,7 @@ public class InternalRegistrationDSLParser extends AbstractInternalAntlrParser {
 
 
     // $ANTLR start "ruleWorkflow"
-    // InternalRegistrationDSL.g:419:1: ruleWorkflow returns [EObject current=null] : (otherlv_0= 'workflow' ( (lv_name_1_0= RULE_ID ) ) otherlv_2= '{' ( (lv_statments_3_0= ruleStatement ) )* otherlv_4= '}' ) ;
+    // InternalRegistrationDSL.g:419:1: ruleWorkflow returns [EObject current=null] : (otherlv_0= 'workflow' ( (lv_name_1_0= RULE_ID ) ) otherlv_2= '{' ( (lv_statements_3_0= ruleStatement ) )* otherlv_4= '}' ) ;
     public final EObject ruleWorkflow() throws RecognitionException {
         EObject current = null;
 
@@ -1033,18 +1033,18 @@ public class InternalRegistrationDSLParser extends AbstractInternalAntlrParser {
         Token lv_name_1_0=null;
         Token otherlv_2=null;
         Token otherlv_4=null;
-        EObject lv_statments_3_0 = null;
+        EObject lv_statements_3_0 = null;
 
 
 
         	enterRule();
 
         try {
-            // InternalRegistrationDSL.g:425:2: ( (otherlv_0= 'workflow' ( (lv_name_1_0= RULE_ID ) ) otherlv_2= '{' ( (lv_statments_3_0= ruleStatement ) )* otherlv_4= '}' ) )
-            // InternalRegistrationDSL.g:426:2: (otherlv_0= 'workflow' ( (lv_name_1_0= RULE_ID ) ) otherlv_2= '{' ( (lv_statments_3_0= ruleStatement ) )* otherlv_4= '}' )
+            // InternalRegistrationDSL.g:425:2: ( (otherlv_0= 'workflow' ( (lv_name_1_0= RULE_ID ) ) otherlv_2= '{' ( (lv_statements_3_0= ruleStatement ) )* otherlv_4= '}' ) )
+            // InternalRegistrationDSL.g:426:2: (otherlv_0= 'workflow' ( (lv_name_1_0= RULE_ID ) ) otherlv_2= '{' ( (lv_statements_3_0= ruleStatement ) )* otherlv_4= '}' )
             {
-            // InternalRegistrationDSL.g:426:2: (otherlv_0= 'workflow' ( (lv_name_1_0= RULE_ID ) ) otherlv_2= '{' ( (lv_statments_3_0= ruleStatement ) )* otherlv_4= '}' )
-            // InternalRegistrationDSL.g:427:3: otherlv_0= 'workflow' ( (lv_name_1_0= RULE_ID ) ) otherlv_2= '{' ( (lv_statments_3_0= ruleStatement ) )* otherlv_4= '}'
+            // InternalRegistrationDSL.g:426:2: (otherlv_0= 'workflow' ( (lv_name_1_0= RULE_ID ) ) otherlv_2= '{' ( (lv_statements_3_0= ruleStatement ) )* otherlv_4= '}' )
+            // InternalRegistrationDSL.g:427:3: otherlv_0= 'workflow' ( (lv_name_1_0= RULE_ID ) ) otherlv_2= '{' ( (lv_statements_3_0= ruleStatement ) )* otherlv_4= '}'
             {
             otherlv_0=(Token)match(input,18,FOLLOW_3); 
 
@@ -1080,7 +1080,7 @@ public class InternalRegistrationDSLParser extends AbstractInternalAntlrParser {
 
             			newLeafNode(otherlv_2, grammarAccess.getWorkflowAccess().getLeftCurlyBracketKeyword_2());
             		
-            // InternalRegistrationDSL.g:453:3: ( (lv_statments_3_0= ruleStatement ) )*
+            // InternalRegistrationDSL.g:453:3: ( (lv_statements_3_0= ruleStatement ) )*
             loop6:
             do {
                 int alt6=2;
@@ -1093,16 +1093,16 @@ public class InternalRegistrationDSLParser extends AbstractInternalAntlrParser {
 
                 switch (alt6) {
             	case 1 :
-            	    // InternalRegistrationDSL.g:454:4: (lv_statments_3_0= ruleStatement )
+            	    // InternalRegistrationDSL.g:454:4: (lv_statements_3_0= ruleStatement )
             	    {
-            	    // InternalRegistrationDSL.g:454:4: (lv_statments_3_0= ruleStatement )
-            	    // InternalRegistrationDSL.g:455:5: lv_statments_3_0= ruleStatement
+            	    // InternalRegistrationDSL.g:454:4: (lv_statements_3_0= ruleStatement )
+            	    // InternalRegistrationDSL.g:455:5: lv_statements_3_0= ruleStatement
             	    {
 
-            	    					newCompositeNode(grammarAccess.getWorkflowAccess().getStatmentsStatementParserRuleCall_3_0());
+            	    					newCompositeNode(grammarAccess.getWorkflowAccess().getStatementsStatementParserRuleCall_3_0());
             	    				
             	    pushFollow(FOLLOW_9);
-            	    lv_statments_3_0=ruleStatement();
+            	    lv_statements_3_0=ruleStatement();
 
             	    state._fsp--;
 
@@ -1112,8 +1112,8 @@ public class InternalRegistrationDSLParser extends AbstractInternalAntlrParser {
             	    					}
             	    					add(
             	    						current,
-            	    						"statments",
-            	    						lv_statments_3_0,
+            	    						"statements",
+            	    						lv_statements_3_0,
             	    						"org.xtext.RegistrationDSL.Statement");
             	    					afterParserOrEnumRuleCall();
             	    				

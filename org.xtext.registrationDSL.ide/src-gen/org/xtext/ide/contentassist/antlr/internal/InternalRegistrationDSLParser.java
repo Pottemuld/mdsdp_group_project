@@ -3163,20 +3163,20 @@ public class InternalRegistrationDSLParser extends AbstractInternalContentAssist
 
 
     // $ANTLR start "rule__Workflow__Group__3__Impl"
-    // InternalRegistrationDSL.g:1056:1: rule__Workflow__Group__3__Impl : ( ( rule__Workflow__StatmentsAssignment_3 )* ) ;
+    // InternalRegistrationDSL.g:1056:1: rule__Workflow__Group__3__Impl : ( ( rule__Workflow__StatementsAssignment_3 )* ) ;
     public final void rule__Workflow__Group__3__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalRegistrationDSL.g:1060:1: ( ( ( rule__Workflow__StatmentsAssignment_3 )* ) )
-            // InternalRegistrationDSL.g:1061:1: ( ( rule__Workflow__StatmentsAssignment_3 )* )
+            // InternalRegistrationDSL.g:1060:1: ( ( ( rule__Workflow__StatementsAssignment_3 )* ) )
+            // InternalRegistrationDSL.g:1061:1: ( ( rule__Workflow__StatementsAssignment_3 )* )
             {
-            // InternalRegistrationDSL.g:1061:1: ( ( rule__Workflow__StatmentsAssignment_3 )* )
-            // InternalRegistrationDSL.g:1062:2: ( rule__Workflow__StatmentsAssignment_3 )*
+            // InternalRegistrationDSL.g:1061:1: ( ( rule__Workflow__StatementsAssignment_3 )* )
+            // InternalRegistrationDSL.g:1062:2: ( rule__Workflow__StatementsAssignment_3 )*
             {
-             before(grammarAccess.getWorkflowAccess().getStatmentsAssignment_3()); 
-            // InternalRegistrationDSL.g:1063:2: ( rule__Workflow__StatmentsAssignment_3 )*
+             before(grammarAccess.getWorkflowAccess().getStatementsAssignment_3()); 
+            // InternalRegistrationDSL.g:1063:2: ( rule__Workflow__StatementsAssignment_3 )*
             loop7:
             do {
                 int alt7=2;
@@ -3189,10 +3189,10 @@ public class InternalRegistrationDSLParser extends AbstractInternalContentAssist
 
                 switch (alt7) {
             	case 1 :
-            	    // InternalRegistrationDSL.g:1063:3: rule__Workflow__StatmentsAssignment_3
+            	    // InternalRegistrationDSL.g:1063:3: rule__Workflow__StatementsAssignment_3
             	    {
             	    pushFollow(FOLLOW_12);
-            	    rule__Workflow__StatmentsAssignment_3();
+            	    rule__Workflow__StatementsAssignment_3();
 
             	    state._fsp--;
 
@@ -3205,7 +3205,7 @@ public class InternalRegistrationDSLParser extends AbstractInternalContentAssist
                 }
             } while (true);
 
-             after(grammarAccess.getWorkflowAccess().getStatmentsAssignment_3()); 
+             after(grammarAccess.getWorkflowAccess().getStatementsAssignment_3()); 
 
             }
 
@@ -4401,9 +4401,9 @@ public class InternalRegistrationDSLParser extends AbstractInternalContentAssist
     // $ANTLR end "rule__Workflow__NameAssignment_1"
 
 
-    // $ANTLR start "rule__Workflow__StatmentsAssignment_3"
-    // InternalRegistrationDSL.g:1499:1: rule__Workflow__StatmentsAssignment_3 : ( ruleStatement ) ;
-    public final void rule__Workflow__StatmentsAssignment_3() throws RecognitionException {
+    // $ANTLR start "rule__Workflow__StatementsAssignment_3"
+    // InternalRegistrationDSL.g:1499:1: rule__Workflow__StatementsAssignment_3 : ( ruleStatement ) ;
+    public final void rule__Workflow__StatementsAssignment_3() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
@@ -4414,13 +4414,13 @@ public class InternalRegistrationDSLParser extends AbstractInternalContentAssist
             // InternalRegistrationDSL.g:1504:2: ( ruleStatement )
             // InternalRegistrationDSL.g:1505:3: ruleStatement
             {
-             before(grammarAccess.getWorkflowAccess().getStatmentsStatementParserRuleCall_3_0()); 
+             before(grammarAccess.getWorkflowAccess().getStatementsStatementParserRuleCall_3_0()); 
             pushFollow(FOLLOW_2);
             ruleStatement();
 
             state._fsp--;
 
-             after(grammarAccess.getWorkflowAccess().getStatmentsStatementParserRuleCall_3_0()); 
+             after(grammarAccess.getWorkflowAccess().getStatementsStatementParserRuleCall_3_0()); 
 
             }
 
@@ -4439,7 +4439,7 @@ public class InternalRegistrationDSLParser extends AbstractInternalContentAssist
         }
         return ;
     }
-    // $ANTLR end "rule__Workflow__StatmentsAssignment_3"
+    // $ANTLR end "rule__Workflow__StatementsAssignment_3"
 
 
     // $ANTLR start "rule__Select__SelecttypeAssignment_1"

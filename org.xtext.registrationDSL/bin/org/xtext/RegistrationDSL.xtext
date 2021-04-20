@@ -2,8 +2,8 @@ grammar org.xtext.RegistrationDSL with org.eclipse.xtext.common.Terminals
 
 generate registrationDSL "http://www.xtext.org/RegistrationDSL"
 
-Registationsystem: //car rentarl version
-	'system' name =ID '{' declarations +=Declaration* '}'
+Registationsystem: //car rental version
+	'system' name =ID '{' declarations += Declaration* '}'
 ;
 Declaration:
 	Entity | Workflow
@@ -26,7 +26,7 @@ Relation:
 ;
 
 Workflow:
-	'workflow' name=ID '{' statments+=Statement* '}'
+	'workflow' name=ID '{' statements += Statement* '}'
 ;
 
 Statement:
@@ -38,9 +38,9 @@ Select:// this is wrong
 ;
 
 Add: //this is wrong
-	'add' selectedEntityName=ID 'to' toEntityRelation=[Relation] // chec if its rigth later
+	'add' selectedEntityName=ID 'to' toEntityRelation=[Relation] // check if it's right later
 ;
 
-Set:
+Set: // Do we need this?
 	"set" name=ID
 ;

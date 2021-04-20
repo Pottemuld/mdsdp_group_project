@@ -34,16 +34,16 @@ public class RegistrationDSLGrammarAccess extends AbstractElementFinder.Abstract
 		private final RuleCall cDeclarationsDeclarationParserRuleCall_3_0 = (RuleCall)cDeclarationsAssignment_3.eContents().get(0);
 		private final Keyword cRightCurlyBracketKeyword_4 = (Keyword)cGroup.eContents().get(4);
 		
-		//Registationsystem: //car rentarl version
-		//    'system' name =ID '{' declarations +=Declaration* '}'
+		//Registationsystem: //car rental version
+		//    'system' name =ID '{' declarations += Declaration* '}'
 		//;
 		@Override public ParserRule getRule() { return rule; }
 		
-		////car rentarl version
-		//   'system' name =ID '{' declarations +=Declaration* '}'
+		////car rental version
+		//   'system' name =ID '{' declarations += Declaration* '}'
 		public Group getGroup() { return cGroup; }
 		
-		////car rentarl version
+		////car rental version
 		//   'system'
 		public Keyword getSystemKeyword_0() { return cSystemKeyword_0; }
 		
@@ -56,7 +56,7 @@ public class RegistrationDSLGrammarAccess extends AbstractElementFinder.Abstract
 		//'{'
 		public Keyword getLeftCurlyBracketKeyword_2() { return cLeftCurlyBracketKeyword_2; }
 		
-		//declarations +=Declaration*
+		//declarations += Declaration*
 		public Assignment getDeclarationsAssignment_3() { return cDeclarationsAssignment_3; }
 		
 		//Declaration
@@ -248,16 +248,16 @@ public class RegistrationDSLGrammarAccess extends AbstractElementFinder.Abstract
 		private final Assignment cNameAssignment_1 = (Assignment)cGroup.eContents().get(1);
 		private final RuleCall cNameIDTerminalRuleCall_1_0 = (RuleCall)cNameAssignment_1.eContents().get(0);
 		private final Keyword cLeftCurlyBracketKeyword_2 = (Keyword)cGroup.eContents().get(2);
-		private final Assignment cStatmentsAssignment_3 = (Assignment)cGroup.eContents().get(3);
-		private final RuleCall cStatmentsStatementParserRuleCall_3_0 = (RuleCall)cStatmentsAssignment_3.eContents().get(0);
+		private final Assignment cStatementsAssignment_3 = (Assignment)cGroup.eContents().get(3);
+		private final RuleCall cStatementsStatementParserRuleCall_3_0 = (RuleCall)cStatementsAssignment_3.eContents().get(0);
 		private final Keyword cRightCurlyBracketKeyword_4 = (Keyword)cGroup.eContents().get(4);
 		
 		//Workflow:
-		//    'workflow' name=ID '{' statments+=Statement* '}'
+		//    'workflow' name=ID '{' statements += Statement* '}'
 		//;
 		@Override public ParserRule getRule() { return rule; }
 		
-		//'workflow' name=ID '{' statments+=Statement* '}'
+		//'workflow' name=ID '{' statements += Statement* '}'
 		public Group getGroup() { return cGroup; }
 		
 		//'workflow'
@@ -272,11 +272,11 @@ public class RegistrationDSLGrammarAccess extends AbstractElementFinder.Abstract
 		//'{'
 		public Keyword getLeftCurlyBracketKeyword_2() { return cLeftCurlyBracketKeyword_2; }
 		
-		//statments+=Statement*
-		public Assignment getStatmentsAssignment_3() { return cStatmentsAssignment_3; }
+		//statements += Statement*
+		public Assignment getStatementsAssignment_3() { return cStatementsAssignment_3; }
 		
 		//Statement
-		public RuleCall getStatmentsStatementParserRuleCall_3_0() { return cStatmentsStatementParserRuleCall_3_0; }
+		public RuleCall getStatementsStatementParserRuleCall_3_0() { return cStatementsStatementParserRuleCall_3_0; }
 		
 		//'}'
 		public Keyword getRightCurlyBracketKeyword_4() { return cRightCurlyBracketKeyword_4; }
@@ -355,7 +355,7 @@ public class RegistrationDSLGrammarAccess extends AbstractElementFinder.Abstract
 		private final RuleCall cToEntityRelationRelationIDTerminalRuleCall_3_0_1 = (RuleCall)cToEntityRelationRelationCrossReference_3_0.eContents().get(1);
 		
 		//Add: //this is wrong
-		//    'add' selectedEntityName=ID 'to' toEntityRelation=[Relation] // chec if its rigth later
+		//    'add' selectedEntityName=ID 'to' toEntityRelation=[Relation] // check if it's right later
 		//;
 		@Override public ParserRule getRule() { return rule; }
 		
@@ -472,8 +472,8 @@ public class RegistrationDSLGrammarAccess extends AbstractElementFinder.Abstract
 	}
 
 	
-	//Registationsystem: //car rentarl version
-	//    'system' name =ID '{' declarations +=Declaration* '}'
+	//Registationsystem: //car rental version
+	//    'system' name =ID '{' declarations += Declaration* '}'
 	//;
 	public RegistationsystemElements getRegistationsystemAccess() {
 		return pRegistationsystem;
@@ -539,7 +539,7 @@ public class RegistrationDSLGrammarAccess extends AbstractElementFinder.Abstract
 	}
 	
 	//Workflow:
-	//    'workflow' name=ID '{' statments+=Statement* '}'
+	//    'workflow' name=ID '{' statements += Statement* '}'
 	//;
 	public WorkflowElements getWorkflowAccess() {
 		return pWorkflow;
@@ -572,7 +572,7 @@ public class RegistrationDSLGrammarAccess extends AbstractElementFinder.Abstract
 	}
 	
 	//Add: //this is wrong
-	//    'add' selectedEntityName=ID 'to' toEntityRelation=[Relation] // chec if its rigth later
+	//    'add' selectedEntityName=ID 'to' toEntityRelation=[Relation] // check if it's right later
 	//;
 	public AddElements getAddAccess() {
 		return pAdd;

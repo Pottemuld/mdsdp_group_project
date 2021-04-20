@@ -205,7 +205,7 @@ public class RegistrationDSLSemanticSequencer extends AbstractDelegatingSemantic
 	 *     Workflow returns Workflow
 	 *
 	 * Constraint:
-	 *     (name=ID statments+=Statement*)
+	 *     (name=ID statements+=Statement*)
 	 */
 	protected void sequence_Workflow(ISerializationContext context, Workflow semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);

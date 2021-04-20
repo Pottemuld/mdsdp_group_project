@@ -21,7 +21,7 @@ workflow book_car{
 customer.age >= vehicle.required_age}
 add vehicle to customer.rents
 add customer to vehicle.rented_to
-set vehicle.availability = periode
+//set vehicle.availability = periode
 }
 }
 

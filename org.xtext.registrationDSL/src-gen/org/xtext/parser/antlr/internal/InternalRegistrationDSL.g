@@ -453,17 +453,17 @@ ruleWorkflow returns [EObject current=null]
 		(
 			(
 				{
-					newCompositeNode(grammarAccess.getWorkflowAccess().getStatmentsStatementParserRuleCall_3_0());
+					newCompositeNode(grammarAccess.getWorkflowAccess().getStatementsStatementParserRuleCall_3_0());
 				}
-				lv_statments_3_0=ruleStatement
+				lv_statements_3_0=ruleStatement
 				{
 					if ($current==null) {
 						$current = createModelElementForParent(grammarAccess.getWorkflowRule());
 					}
 					add(
 						$current,
-						"statments",
-						lv_statments_3_0,
+						"statements",
+						lv_statements_3_0,
 						"org.xtext.RegistrationDSL.Statement");
 					afterParserOrEnumRuleCall();
 				}

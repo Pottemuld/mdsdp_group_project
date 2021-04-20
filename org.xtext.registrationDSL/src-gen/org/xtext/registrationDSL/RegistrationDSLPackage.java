@@ -290,13 +290,13 @@ public interface RegistrationDSLPackage extends EPackage
   int WORKFLOW__NAME = DECLARATION__NAME;
 
   /**
-   * The feature id for the '<em><b>Statments</b></em>' containment reference list.
+   * The feature id for the '<em><b>Statements</b></em>' containment reference list.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    * @ordered
    */
-  int WORKFLOW__STATMENTS = DECLARATION_FEATURE_COUNT + 0;
+  int WORKFLOW__STATEMENTS = DECLARATION_FEATURE_COUNT + 0;
 
   /**
    * The number of structural features of the '<em>Workflow</em>' class.
@@ -588,15 +588,15 @@ public interface RegistrationDSLPackage extends EPackage
   EClass getWorkflow();
 
   /**
-   * Returns the meta object for the containment reference list '{@link org.xtext.registrationDSL.Workflow#getStatments <em>Statments</em>}'.
+   * Returns the meta object for the containment reference list '{@link org.xtext.registrationDSL.Workflow#getStatements <em>Statements</em>}'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @return the meta object for the containment reference list '<em>Statments</em>'.
-   * @see org.xtext.registrationDSL.Workflow#getStatments()
+   * @return the meta object for the containment reference list '<em>Statements</em>'.
+   * @see org.xtext.registrationDSL.Workflow#getStatements()
    * @see #getWorkflow()
    * @generated
    */
-  EReference getWorkflow_Statments();
+  EReference getWorkflow_Statements();
 
   /**
    * Returns the meta object for class '{@link org.xtext.registrationDSL.Statement <em>Statement</em>}'.
@@ -851,12 +851,12 @@ public interface RegistrationDSLPackage extends EPackage
     EClass WORKFLOW = eINSTANCE.getWorkflow();
 
     /**
-     * The meta object literal for the '<em><b>Statments</b></em>' containment reference list feature.
+     * The meta object literal for the '<em><b>Statements</b></em>' containment reference list feature.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @generated
      */
-    EReference WORKFLOW__STATMENTS = eINSTANCE.getWorkflow_Statments();
+    EReference WORKFLOW__STATEMENTS = eINSTANCE.getWorkflow_Statements();
 
     /**
      * The meta object literal for the '{@link org.xtext.registrationDSL.impl.StatementImpl <em>Statement</em>}' class.

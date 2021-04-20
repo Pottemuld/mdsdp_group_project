@@ -343,7 +343,7 @@ public class RegistrationDSLPackageImpl extends EPackageImpl implements Registra
    * @generated
    */
   @Override
-  public EReference getWorkflow_Statments()
+  public EReference getWorkflow_Statements()
   {
     return (EReference)workflowEClass.getEStructuralFeatures().get(0);
   }
@@ -499,7 +499,7 @@ public class RegistrationDSLPackageImpl extends EPackageImpl implements Registra
     createEReference(relationEClass, RELATION__TARGET);
 
     workflowEClass = createEClass(WORKFLOW);
-    createEReference(workflowEClass, WORKFLOW__STATMENTS);
+    createEReference(workflowEClass, WORKFLOW__STATEMENTS);
 
     statementEClass = createEClass(STATEMENT);
 
@@ -574,7 +574,7 @@ public class RegistrationDSLPackageImpl extends EPackageImpl implements Registra
     initEReference(getRelation_Target(), this.getEntity(), null, "target", null, 0, 1, Relation.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
     initEClass(workflowEClass, Workflow.class, "Workflow", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-    initEReference(getWorkflow_Statments(), this.getStatement(), null, "statments", null, 0, -1, Workflow.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEReference(getWorkflow_Statements(), this.getStatement(), null, "statements", null, 0, -1, Workflow.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
     initEClass(statementEClass, Statement.class, "Statement", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 

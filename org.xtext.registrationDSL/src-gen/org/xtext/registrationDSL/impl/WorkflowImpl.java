@@ -27,7 +27,7 @@ import org.xtext.registrationDSL.Workflow;
  * The following features are implemented:
  * </p>
  * <ul>
- *   <li>{@link org.xtext.registrationDSL.impl.WorkflowImpl#getStatments <em>Statments</em>}</li>
+ *   <li>{@link org.xtext.registrationDSL.impl.WorkflowImpl#getStatements <em>Statements</em>}</li>
  * </ul>
  *
  * @generated
@@ -35,14 +35,14 @@ import org.xtext.registrationDSL.Workflow;
 public class WorkflowImpl extends DeclarationImpl implements Workflow
 {
   /**
-   * The cached value of the '{@link #getStatments() <em>Statments</em>}' containment reference list.
+   * The cached value of the '{@link #getStatements() <em>Statements</em>}' containment reference list.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @see #getStatments()
+   * @see #getStatements()
    * @generated
    * @ordered
    */
-  protected EList<Statement> statments;
+  protected EList<Statement> statements;
 
   /**
    * <!-- begin-user-doc -->
@@ -71,13 +71,13 @@ public class WorkflowImpl extends DeclarationImpl implements Workflow
    * @generated
    */
   @Override
-  public EList<Statement> getStatments()
+  public EList<Statement> getStatements()
   {
-    if (statments == null)
+    if (statements == null)
     {
-      statments = new EObjectContainmentEList<Statement>(Statement.class, this, RegistrationDSLPackage.WORKFLOW__STATMENTS);
+      statements = new EObjectContainmentEList<Statement>(Statement.class, this, RegistrationDSLPackage.WORKFLOW__STATEMENTS);
     }
-    return statments;
+    return statements;
   }
 
   /**
@@ -90,8 +90,8 @@ public class WorkflowImpl extends DeclarationImpl implements Workflow
   {
     switch (featureID)
     {
-      case RegistrationDSLPackage.WORKFLOW__STATMENTS:
-        return ((InternalEList<?>)getStatments()).basicRemove(otherEnd, msgs);
+      case RegistrationDSLPackage.WORKFLOW__STATEMENTS:
+        return ((InternalEList<?>)getStatements()).basicRemove(otherEnd, msgs);
     }
     return super.eInverseRemove(otherEnd, featureID, msgs);
   }
@@ -106,8 +106,8 @@ public class WorkflowImpl extends DeclarationImpl implements Workflow
   {
     switch (featureID)
     {
-      case RegistrationDSLPackage.WORKFLOW__STATMENTS:
-        return getStatments();
+      case RegistrationDSLPackage.WORKFLOW__STATEMENTS:
+        return getStatements();
     }
     return super.eGet(featureID, resolve, coreType);
   }
@@ -123,9 +123,9 @@ public class WorkflowImpl extends DeclarationImpl implements Workflow
   {
     switch (featureID)
     {
-      case RegistrationDSLPackage.WORKFLOW__STATMENTS:
-        getStatments().clear();
-        getStatments().addAll((Collection<? extends Statement>)newValue);
+      case RegistrationDSLPackage.WORKFLOW__STATEMENTS:
+        getStatements().clear();
+        getStatements().addAll((Collection<? extends Statement>)newValue);
         return;
     }
     super.eSet(featureID, newValue);
@@ -141,8 +141,8 @@ public class WorkflowImpl extends DeclarationImpl implements Workflow
   {
     switch (featureID)
     {
-      case RegistrationDSLPackage.WORKFLOW__STATMENTS:
-        getStatments().clear();
+      case RegistrationDSLPackage.WORKFLOW__STATEMENTS:
+        getStatements().clear();
         return;
     }
     super.eUnset(featureID);
@@ -158,8 +158,8 @@ public class WorkflowImpl extends DeclarationImpl implements Workflow
   {
     switch (featureID)
     {
-      case RegistrationDSLPackage.WORKFLOW__STATMENTS:
-        return statments != null && !statments.isEmpty();
+      case RegistrationDSLPackage.WORKFLOW__STATEMENTS:
+        return statements != null && !statements.isEmpty();
     }
     return super.eIsSet(featureID);
   }

@@ -1059,9 +1059,9 @@ rule__Workflow__Group__3__Impl
 	}
 :
 (
-	{ before(grammarAccess.getWorkflowAccess().getStatmentsAssignment_3()); }
-	(rule__Workflow__StatmentsAssignment_3)*
-	{ after(grammarAccess.getWorkflowAccess().getStatmentsAssignment_3()); }
+	{ before(grammarAccess.getWorkflowAccess().getStatementsAssignment_3()); }
+	(rule__Workflow__StatementsAssignment_3)*
+	{ after(grammarAccess.getWorkflowAccess().getStatementsAssignment_3()); }
 )
 ;
 finally {
@@ -1496,15 +1496,15 @@ finally {
 	restoreStackSize(stackSize);
 }
 
-rule__Workflow__StatmentsAssignment_3
+rule__Workflow__StatementsAssignment_3
 	@init {
 		int stackSize = keepStackSize();
 	}
 :
 	(
-		{ before(grammarAccess.getWorkflowAccess().getStatmentsStatementParserRuleCall_3_0()); }
+		{ before(grammarAccess.getWorkflowAccess().getStatementsStatementParserRuleCall_3_0()); }
 		ruleStatement
-		{ after(grammarAccess.getWorkflowAccess().getStatmentsStatementParserRuleCall_3_0()); }
+		{ after(grammarAccess.getWorkflowAccess().getStatementsStatementParserRuleCall_3_0()); }
 	)
 ;
 finally {

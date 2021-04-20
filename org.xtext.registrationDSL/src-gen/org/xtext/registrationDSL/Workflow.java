@@ -14,7 +14,7 @@ import org.eclipse.emf.common.util.EList;
  * The following features are supported:
  * </p>
  * <ul>
- *   <li>{@link org.xtext.registrationDSL.Workflow#getStatments <em>Statments</em>}</li>
+ *   <li>{@link org.xtext.registrationDSL.Workflow#getStatements <em>Statements</em>}</li>
  * </ul>
  *
  * @see org.xtext.registrationDSL.RegistrationDSLPackage#getWorkflow()
@@ -24,15 +24,15 @@ import org.eclipse.emf.common.util.EList;
 public interface Workflow extends Declaration
 {
   /**
-   * Returns the value of the '<em><b>Statments</b></em>' containment reference list.
+   * Returns the value of the '<em><b>Statements</b></em>' containment reference list.
    * The list contents are of type {@link org.xtext.registrationDSL.Statement}.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @return the value of the '<em>Statments</em>' containment reference list.
-   * @see org.xtext.registrationDSL.RegistrationDSLPackage#getWorkflow_Statments()
+   * @return the value of the '<em>Statements</em>' containment reference list.
+   * @see org.xtext.registrationDSL.RegistrationDSLPackage#getWorkflow_Statements()
    * @model containment="true"
    * @generated
    */
-  EList<Statement> getStatments();
+  EList<Statement> getStatements();
 
 } // Workflow
