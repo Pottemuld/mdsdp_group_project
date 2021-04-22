@@ -7,6 +7,10 @@ import org.eclipse.emf.ecore.resource.Resource
 import org.eclipse.xtext.generator.AbstractGenerator
 import org.eclipse.xtext.generator.IFileSystemAccess2
 import org.eclipse.xtext.generator.IGeneratorContext
+import org.xtext.registrationDSL.Registationsystem
+import org.eclipse.emf.ecore.EObject
+import org.eclipse.emf.ecore.xmi.impl.XMLResourceImpl
+import org.eclipse.emf.ecore.util.EcoreUtil
 
 /**
  * Generates code from your model files on save.
@@ -16,10 +20,25 @@ import org.eclipse.xtext.generator.IGeneratorContext
 class RegistrationDSLGenerator extends AbstractGenerator {
 
 	override void doGenerate(Resource resource, IFileSystemAccess2 fsa, IGeneratorContext context) {
-//		fsa.generateFile('greetings.txt', 'People to greet: ' + 
-//			resource.allContents
-//				.filter(Greeting)
-//				.map[name]
-//				.join(', '))
+		val Registationsystem modelInstance = resource.allContents.filter(Registationsystem).next
+		modelInstance.display
+		modelInstance.declarations.filter(Entity).forEach[generateEntityFile(modelInstance.name,fsa)]
+		modelInstance.declarations.filter(Workflow).forEach[generateWorkflowFile(modelInstance.name,fsa)]
+	}
+	
+	def generateEntityFile(String string, IFileSystemAccess2 access2) {
+		throw new UnsupportedOperationException("TODO: auto-generated method stub")
+	}
+	
+	def generateWorkflowFile(String string, IFileSystemAccess2 access2) {
+		throw new UnsupportedOperationException("TODO: auto-generated method stub")
+	}
+		
+	
+	def display(EObject model) {
+  		val res = new XMLResourceImpl
+  		res.contents.add(EcoreUtil::copy(model))
+  		System::out.println("Dump of model:")
+  		res.save(System.out, null);
 	}
 }

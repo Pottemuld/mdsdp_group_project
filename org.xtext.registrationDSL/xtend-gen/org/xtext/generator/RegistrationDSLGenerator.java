@@ -3,10 +3,14 @@
  */
 package org.xtext.generator;
 
+import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.resource.Resource;
+import org.eclipse.emf.ecore.util.EcoreUtil;
+import org.eclipse.emf.ecore.xmi.impl.XMLResourceImpl;
 import org.eclipse.xtext.generator.AbstractGenerator;
 import org.eclipse.xtext.generator.IFileSystemAccess2;
 import org.eclipse.xtext.generator.IGeneratorContext;
+import org.eclipse.xtext.xbase.lib.Exceptions;
 
 /**
  * Generates code from your model files on save.
@@ -17,5 +21,27 @@ import org.eclipse.xtext.generator.IGeneratorContext;
 public class RegistrationDSLGenerator extends AbstractGenerator {
   @Override
   public void doGenerate(final Resource resource, final IFileSystemAccess2 fsa, final IGeneratorContext context) {
+    throw new Error("Unresolved compilation problems:"
+      + "\nThe method or field Entity is undefined"
+      + "\nThe method or field Workflow is undefined");
+  }
+  
+  public void generateEntityFile(final String string, final IFileSystemAccess2 access2) {
+    throw new UnsupportedOperationException("TODO: auto-generated method stub");
+  }
+  
+  public void generateWorkflowFile(final String string, final IFileSystemAccess2 access2) {
+    throw new UnsupportedOperationException("TODO: auto-generated method stub");
+  }
+  
+  public void display(final EObject model) {
+    try {
+      final XMLResourceImpl res = new XMLResourceImpl();
+      res.getContents().add(EcoreUtil.<EObject>copy(model));
+      System.out.println("Dump of model:");
+      res.save(System.out, null);
+    } catch (Throwable _e) {
+      throw Exceptions.sneakyThrow(_e);
+    }
   }
 }
