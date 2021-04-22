@@ -12,6 +12,7 @@ import org.eclipse.emf.ecore.EObject
 import org.eclipse.emf.ecore.xmi.impl.XMLResourceImpl
 import org.eclipse.emf.ecore.util.EcoreUtil
 import java.util.ArrayList
+import java.util.List
 
 /**
  * Generates code from your model files on save.
@@ -24,7 +25,7 @@ class RegistrationDSLGenerator extends AbstractGenerator {
 		val Registationsystem modelInstance = resource.allContents.filter(Registationsystem).next
 		modelInstance.display
 		modelInstance.declarations.filter(Entity).forEach[generateEntityFile(modelInstance.name,fsa)]
-		modelInstance.declarations.filter(Workflow).forEach[generateWorkflowFile(modelInstance.name,fsa)]
+		modelInstance.declarations.filter(Workflow).generateWorkflowFile(modelInstance.name,fsa)
 	}
 	
 	def generateEntityFile(Entity entity, String systemName, IFileSystemAccess2 fsa) {
@@ -44,11 +45,11 @@ class RegistrationDSLGenerator extends AbstractGenerator {
 		
 		public «a.type» get«a.name.toFirstUpper»(){
 			return «a.name»;
-			}
+		}
 			
 		public void set«a.name.toFirstUpper»(«a.type» value){
 			this.«a.name» = value;
-			}
+		}
 			
 		«ENDFOR»
 		«FOR r:entity.fields.filter(Relation)»
@@ -56,11 +57,11 @@ class RegistrationDSLGenerator extends AbstractGenerator {
 		
 		public get«r.name.toFirstUpper»(){
 			return «r.name»;
-			}
+		}
 			
 		public add«r.name.toFirstUpper»(«r.target.name.toFirstUpper» target){
 			this.«r.name».add(target);
-			}
+		}
 			
 		«ENDFOR»
 		
@@ -87,10 +88,35 @@ class RegistrationDSLGenerator extends AbstractGenerator {
 		result
 	}
 	
-	def generateWorkflowFile(Workflow workflow, String systemName, IFileSystemAccess2 fsa) {
-		// generate java class for 
-	}
+	def generateWorkflowFile(Iterable<Workflow> workflows, String systemName, IFileSystemAccess2 fsa) { '''
+		package «systemName.toLowerCase»
+		import java.util.*;
+		public class WorkflowManager {
+			ArrayList<? extends Object> entityList = new Arraylist<>();
+			«FOR w : workflows»
+				public void «w.name.toFirstLower» () {
+					«FOR s : w.statements»
+						«handleStatement(s)»	
+					«ENDFOR»
+				}
+			«ENDFOR»
+			
+		}
+	
+	
+	'''
 		
+	}
+	
+	def dispatch handleStatement(Select statement) {'''
+		
+	'''
+	}	
+	
+	def dispatch handleStatement(Add statement) {'''
+			
+	'''
+	}	
 	
 	def display(EObject model) {
   		val res = new XMLResourceImpl

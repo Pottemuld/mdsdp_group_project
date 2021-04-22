@@ -6,6 +6,7 @@ package org.xtext.generator;
 import com.google.common.collect.Iterables;
 import com.google.common.collect.Iterators;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.function.Consumer;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EObject;
@@ -18,11 +19,14 @@ import org.eclipse.xtext.generator.IFileSystemAccess2;
 import org.eclipse.xtext.generator.IGeneratorContext;
 import org.eclipse.xtext.xbase.lib.Exceptions;
 import org.eclipse.xtext.xbase.lib.StringExtensions;
+import org.xtext.registrationDSL.Add;
 import org.xtext.registrationDSL.Attribute;
 import org.xtext.registrationDSL.Entity;
 import org.xtext.registrationDSL.Field;
 import org.xtext.registrationDSL.Registationsystem;
 import org.xtext.registrationDSL.Relation;
+import org.xtext.registrationDSL.Select;
+import org.xtext.registrationDSL.Statement;
 import org.xtext.registrationDSL.Workflow;
 
 /**
@@ -40,10 +44,7 @@ public class RegistrationDSLGenerator extends AbstractGenerator {
       this.generateEntityFile(it, modelInstance.getName(), fsa);
     };
     Iterables.<Entity>filter(modelInstance.getDeclarations(), Entity.class).forEach(_function);
-    final Consumer<Workflow> _function_1 = (Workflow it) -> {
-      this.generateWorkflowFile(it, modelInstance.getName(), fsa);
-    };
-    Iterables.<Workflow>filter(modelInstance.getDeclarations(), Workflow.class).forEach(_function_1);
+    this.generateWorkflowFile(Iterables.<Workflow>filter(modelInstance.getDeclarations(), Workflow.class), modelInstance.getName(), fsa);
   }
   
   public void generateEntityFile(final Entity entity, final String systemName, final IFileSystemAccess2 fsa) {
@@ -119,7 +120,6 @@ public class RegistrationDSLGenerator extends AbstractGenerator {
         _builder.append(";");
         _builder.newLineIfNotEmpty();
         _builder.append("\t");
-        _builder.append("\t");
         _builder.append("}");
         _builder.newLine();
         _builder.append("\t");
@@ -141,7 +141,6 @@ public class RegistrationDSLGenerator extends AbstractGenerator {
         _builder.append(_name_4, "\t\t");
         _builder.append(" = value;");
         _builder.newLineIfNotEmpty();
-        _builder.append("\t");
         _builder.append("\t");
         _builder.append("}");
         _builder.newLine();
@@ -175,7 +174,6 @@ public class RegistrationDSLGenerator extends AbstractGenerator {
         _builder.append(";");
         _builder.newLineIfNotEmpty();
         _builder.append("\t");
-        _builder.append("\t");
         _builder.append("}");
         _builder.newLine();
         _builder.append("\t");
@@ -197,7 +195,6 @@ public class RegistrationDSLGenerator extends AbstractGenerator {
         _builder.append(_name_7, "\t\t");
         _builder.append(".add(target);");
         _builder.newLineIfNotEmpty();
-        _builder.append("\t");
         _builder.append("\t");
         _builder.append("}");
         _builder.newLine();
@@ -295,8 +292,66 @@ public class RegistrationDSLGenerator extends AbstractGenerator {
     return _xblockexpression;
   }
   
-  public Object generateWorkflowFile(final Workflow workflow, final String systemName, final IFileSystemAccess2 fsa) {
-    return null;
+  public CharSequence generateWorkflowFile(final Iterable<Workflow> workflows, final String systemName, final IFileSystemAccess2 fsa) {
+    StringConcatenation _builder = new StringConcatenation();
+    _builder.append("package ");
+    String _lowerCase = systemName.toLowerCase();
+    _builder.append(_lowerCase);
+    _builder.newLineIfNotEmpty();
+    _builder.append("import java.util.*;");
+    _builder.newLine();
+    _builder.append("public class WorkflowManager {");
+    _builder.newLine();
+    _builder.append("\t");
+    _builder.append("ArrayList<? extends Object> entityList = new Arraylist<>();");
+    _builder.newLine();
+    {
+      for(final Workflow w : workflows) {
+        _builder.append("\t");
+        _builder.append("public void ");
+        String _firstLower = StringExtensions.toFirstLower(w.getName());
+        _builder.append(_firstLower, "\t");
+        _builder.append(" () {");
+        _builder.newLineIfNotEmpty();
+        {
+          EList<Statement> _statements = w.getStatements();
+          for(final Statement s : _statements) {
+            _builder.append("\t");
+            _builder.append("\t");
+            CharSequence _handleStatement = this.handleStatement(s);
+            _builder.append(_handleStatement, "\t\t");
+            _builder.append("\t");
+            _builder.newLineIfNotEmpty();
+          }
+        }
+        _builder.append("\t");
+        _builder.append("}");
+        _builder.newLine();
+      }
+    }
+    _builder.append("\t");
+    _builder.newLine();
+    _builder.append("}");
+    _builder.newLine();
+    _builder.append("\t");
+    _builder.newLine();
+    _builder.append("\t");
+    _builder.newLine();
+    return _builder;
+  }
+  
+  protected CharSequence _handleStatement(final Select statement) {
+    StringConcatenation _builder = new StringConcatenation();
+    _builder.append("\t\t");
+    _builder.newLine();
+    return _builder;
+  }
+  
+  protected CharSequence _handleStatement(final Add statement) {
+    StringConcatenation _builder = new StringConcatenation();
+    _builder.append("\t\t\t");
+    _builder.newLine();
+    return _builder;
   }
   
   public void display(final EObject model) {
@@ -307,6 +362,17 @@ public class RegistrationDSLGenerator extends AbstractGenerator {
       res.save(System.out, null);
     } catch (Throwable _e) {
       throw Exceptions.sneakyThrow(_e);
+    }
+  }
+  
+  public CharSequence handleStatement(final Statement statement) {
+    if (statement instanceof Add) {
+      return _handleStatement((Add)statement);
+    } else if (statement instanceof Select) {
+      return _handleStatement((Select)statement);
+    } else {
+      throw new IllegalArgumentException("Unhandled parameter types: " +
+        Arrays.<Object>asList(statement).toString());
     }
   }
 }

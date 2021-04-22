@@ -38,7 +38,7 @@ Select:// this is wrong
 ;
 
 Add: //this is wrong
-	'add' selectedEntityName=ID 'to' toEntity=ID '.' toEntityRelation=ID // check if it's right later
+	'add' selectedEntityName=ID 'to' toEntity=[Entity] '.' toEntityRelation=ID // check if it's right later
 ;
 
 /*Set: // Do we need this?
