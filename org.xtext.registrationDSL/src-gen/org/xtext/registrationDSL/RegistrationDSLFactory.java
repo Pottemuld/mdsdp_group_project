@@ -114,15 +114,6 @@ public interface RegistrationDSLFactory extends EFactory
   Add createAdd();
 
   /**
-   * Returns a new object of class '<em>Set</em>'.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @return a new object of class '<em>Set</em>'.
-   * @generated
-   */
-  Set createSet();
-
-  /**
    * Returns the package supported by this factory.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->

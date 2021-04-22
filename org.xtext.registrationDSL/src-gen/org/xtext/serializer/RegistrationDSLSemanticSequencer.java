@@ -56,9 +56,6 @@ public class RegistrationDSLSemanticSequencer extends AbstractDelegatingSemantic
 			case RegistrationDSLPackage.SELECT:
 				sequence_Select(context, (Select) semanticObject); 
 				return; 
-			case RegistrationDSLPackage.SET:
-				sequence_Set(context, (org.xtext.registrationDSL.Set) semanticObject); 
-				return; 
 			case RegistrationDSLPackage.WORKFLOW:
 				sequence_Workflow(context, (Workflow) semanticObject); 
 				return; 
@@ -73,18 +70,21 @@ public class RegistrationDSLSemanticSequencer extends AbstractDelegatingSemantic
 	 *     Add returns Add
 	 *
 	 * Constraint:
-	 *     (selectedEntityName=ID toEntityRelation=[Relation|ID])
+	 *     (selectedEntityName=ID toEntity=ID toEntityRelation=ID)
 	 */
 	protected void sequence_Add(ISerializationContext context, Add semanticObject) {
 		if (errorAcceptor != null) {
 			if (transientValues.isValueTransient(semanticObject, RegistrationDSLPackage.Literals.ADD__SELECTED_ENTITY_NAME) == ValueTransient.YES)
 				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, RegistrationDSLPackage.Literals.ADD__SELECTED_ENTITY_NAME));
+			if (transientValues.isValueTransient(semanticObject, RegistrationDSLPackage.Literals.ADD__TO_ENTITY) == ValueTransient.YES)
+				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, RegistrationDSLPackage.Literals.ADD__TO_ENTITY));
 			if (transientValues.isValueTransient(semanticObject, RegistrationDSLPackage.Literals.ADD__TO_ENTITY_RELATION) == ValueTransient.YES)
 				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, RegistrationDSLPackage.Literals.ADD__TO_ENTITY_RELATION));
 		}
 		SequenceFeeder feeder = createSequencerFeeder(context, semanticObject);
 		feeder.accept(grammarAccess.getAddAccess().getSelectedEntityNameIDTerminalRuleCall_1_0(), semanticObject.getSelectedEntityName());
-		feeder.accept(grammarAccess.getAddAccess().getToEntityRelationRelationIDTerminalRuleCall_3_0_1(), semanticObject.eGet(RegistrationDSLPackage.Literals.ADD__TO_ENTITY_RELATION, false));
+		feeder.accept(grammarAccess.getAddAccess().getToEntityIDTerminalRuleCall_3_0(), semanticObject.getToEntity());
+		feeder.accept(grammarAccess.getAddAccess().getToEntityRelationIDTerminalRuleCall_5_0(), semanticObject.getToEntityRelation());
 		feeder.finish();
 	}
 	
@@ -176,25 +176,6 @@ public class RegistrationDSLSemanticSequencer extends AbstractDelegatingSemantic
 		SequenceFeeder feeder = createSequencerFeeder(context, semanticObject);
 		feeder.accept(grammarAccess.getSelectAccess().getSelecttypeEntityIDTerminalRuleCall_1_0_1(), semanticObject.eGet(RegistrationDSLPackage.Literals.SELECT__SELECTTYPE, false));
 		feeder.accept(grammarAccess.getSelectAccess().getEntityNameIDTerminalRuleCall_2_0(), semanticObject.getEntityName());
-		feeder.finish();
-	}
-	
-	
-	/**
-	 * Contexts:
-	 *     Statement returns Set
-	 *     Set returns Set
-	 *
-	 * Constraint:
-	 *     name=ID
-	 */
-	protected void sequence_Set(ISerializationContext context, org.xtext.registrationDSL.Set semanticObject) {
-		if (errorAcceptor != null) {
-			if (transientValues.isValueTransient(semanticObject, RegistrationDSLPackage.Literals.SET__NAME) == ValueTransient.YES)
-				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, RegistrationDSLPackage.Literals.SET__NAME));
-		}
-		SequenceFeeder feeder = createSequencerFeeder(context, semanticObject);
-		feeder.accept(grammarAccess.getSetAccess().getNameIDTerminalRuleCall_1_0(), semanticObject.getName());
 		feeder.finish();
 	}
 	

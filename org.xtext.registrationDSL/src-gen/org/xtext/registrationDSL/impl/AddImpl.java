@@ -6,13 +6,11 @@ package org.xtext.registrationDSL.impl;
 import org.eclipse.emf.common.notify.Notification;
 
 import org.eclipse.emf.ecore.EClass;
-import org.eclipse.emf.ecore.InternalEObject;
 
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 
 import org.xtext.registrationDSL.Add;
 import org.xtext.registrationDSL.RegistrationDSLPackage;
-import org.xtext.registrationDSL.Relation;
 
 /**
  * <!-- begin-user-doc -->
@@ -23,6 +21,7 @@ import org.xtext.registrationDSL.Relation;
  * </p>
  * <ul>
  *   <li>{@link org.xtext.registrationDSL.impl.AddImpl#getSelectedEntityName <em>Selected Entity Name</em>}</li>
+ *   <li>{@link org.xtext.registrationDSL.impl.AddImpl#getToEntity <em>To Entity</em>}</li>
  *   <li>{@link org.xtext.registrationDSL.impl.AddImpl#getToEntityRelation <em>To Entity Relation</em>}</li>
  * </ul>
  *
@@ -51,14 +50,44 @@ public class AddImpl extends StatementImpl implements Add
   protected String selectedEntityName = SELECTED_ENTITY_NAME_EDEFAULT;
 
   /**
-   * The cached value of the '{@link #getToEntityRelation() <em>To Entity Relation</em>}' reference.
+   * The default value of the '{@link #getToEntity() <em>To Entity</em>}' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see #getToEntity()
+   * @generated
+   * @ordered
+   */
+  protected static final String TO_ENTITY_EDEFAULT = null;
+
+  /**
+   * The cached value of the '{@link #getToEntity() <em>To Entity</em>}' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see #getToEntity()
+   * @generated
+   * @ordered
+   */
+  protected String toEntity = TO_ENTITY_EDEFAULT;
+
+  /**
+   * The default value of the '{@link #getToEntityRelation() <em>To Entity Relation</em>}' attribute.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @see #getToEntityRelation()
    * @generated
    * @ordered
    */
-  protected Relation toEntityRelation;
+  protected static final String TO_ENTITY_RELATION_EDEFAULT = null;
+
+  /**
+   * The cached value of the '{@link #getToEntityRelation() <em>To Entity Relation</em>}' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see #getToEntityRelation()
+   * @generated
+   * @ordered
+   */
+  protected String toEntityRelation = TO_ENTITY_RELATION_EDEFAULT;
 
   /**
    * <!-- begin-user-doc -->
@@ -112,19 +141,9 @@ public class AddImpl extends StatementImpl implements Add
    * @generated
    */
   @Override
-  public Relation getToEntityRelation()
+  public String getToEntity()
   {
-    if (toEntityRelation != null && toEntityRelation.eIsProxy())
-    {
-      InternalEObject oldToEntityRelation = (InternalEObject)toEntityRelation;
-      toEntityRelation = (Relation)eResolveProxy(oldToEntityRelation);
-      if (toEntityRelation != oldToEntityRelation)
-      {
-        if (eNotificationRequired())
-          eNotify(new ENotificationImpl(this, Notification.RESOLVE, RegistrationDSLPackage.ADD__TO_ENTITY_RELATION, oldToEntityRelation, toEntityRelation));
-      }
-    }
-    return toEntityRelation;
+    return toEntity;
   }
 
   /**
@@ -132,7 +151,22 @@ public class AddImpl extends StatementImpl implements Add
    * <!-- end-user-doc -->
    * @generated
    */
-  public Relation basicGetToEntityRelation()
+  @Override
+  public void setToEntity(String newToEntity)
+  {
+    String oldToEntity = toEntity;
+    toEntity = newToEntity;
+    if (eNotificationRequired())
+      eNotify(new ENotificationImpl(this, Notification.SET, RegistrationDSLPackage.ADD__TO_ENTITY, oldToEntity, toEntity));
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public String getToEntityRelation()
   {
     return toEntityRelation;
   }
@@ -143,9 +177,9 @@ public class AddImpl extends StatementImpl implements Add
    * @generated
    */
   @Override
-  public void setToEntityRelation(Relation newToEntityRelation)
+  public void setToEntityRelation(String newToEntityRelation)
   {
-    Relation oldToEntityRelation = toEntityRelation;
+    String oldToEntityRelation = toEntityRelation;
     toEntityRelation = newToEntityRelation;
     if (eNotificationRequired())
       eNotify(new ENotificationImpl(this, Notification.SET, RegistrationDSLPackage.ADD__TO_ENTITY_RELATION, oldToEntityRelation, toEntityRelation));
@@ -163,9 +197,10 @@ public class AddImpl extends StatementImpl implements Add
     {
       case RegistrationDSLPackage.ADD__SELECTED_ENTITY_NAME:
         return getSelectedEntityName();
+      case RegistrationDSLPackage.ADD__TO_ENTITY:
+        return getToEntity();
       case RegistrationDSLPackage.ADD__TO_ENTITY_RELATION:
-        if (resolve) return getToEntityRelation();
-        return basicGetToEntityRelation();
+        return getToEntityRelation();
     }
     return super.eGet(featureID, resolve, coreType);
   }
@@ -183,8 +218,11 @@ public class AddImpl extends StatementImpl implements Add
       case RegistrationDSLPackage.ADD__SELECTED_ENTITY_NAME:
         setSelectedEntityName((String)newValue);
         return;
+      case RegistrationDSLPackage.ADD__TO_ENTITY:
+        setToEntity((String)newValue);
+        return;
       case RegistrationDSLPackage.ADD__TO_ENTITY_RELATION:
-        setToEntityRelation((Relation)newValue);
+        setToEntityRelation((String)newValue);
         return;
     }
     super.eSet(featureID, newValue);
@@ -203,8 +241,11 @@ public class AddImpl extends StatementImpl implements Add
       case RegistrationDSLPackage.ADD__SELECTED_ENTITY_NAME:
         setSelectedEntityName(SELECTED_ENTITY_NAME_EDEFAULT);
         return;
+      case RegistrationDSLPackage.ADD__TO_ENTITY:
+        setToEntity(TO_ENTITY_EDEFAULT);
+        return;
       case RegistrationDSLPackage.ADD__TO_ENTITY_RELATION:
-        setToEntityRelation((Relation)null);
+        setToEntityRelation(TO_ENTITY_RELATION_EDEFAULT);
         return;
     }
     super.eUnset(featureID);
@@ -222,8 +263,10 @@ public class AddImpl extends StatementImpl implements Add
     {
       case RegistrationDSLPackage.ADD__SELECTED_ENTITY_NAME:
         return SELECTED_ENTITY_NAME_EDEFAULT == null ? selectedEntityName != null : !SELECTED_ENTITY_NAME_EDEFAULT.equals(selectedEntityName);
+      case RegistrationDSLPackage.ADD__TO_ENTITY:
+        return TO_ENTITY_EDEFAULT == null ? toEntity != null : !TO_ENTITY_EDEFAULT.equals(toEntity);
       case RegistrationDSLPackage.ADD__TO_ENTITY_RELATION:
-        return toEntityRelation != null;
+        return TO_ENTITY_RELATION_EDEFAULT == null ? toEntityRelation != null : !TO_ENTITY_RELATION_EDEFAULT.equals(toEntityRelation);
     }
     return super.eIsSet(featureID);
   }
@@ -241,6 +284,10 @@ public class AddImpl extends StatementImpl implements Add
     StringBuilder result = new StringBuilder(super.toString());
     result.append(" (selectedEntityName: ");
     result.append(selectedEntityName);
+    result.append(", toEntity: ");
+    result.append(toEntity);
+    result.append(", toEntityRelation: ");
+    result.append(toEntityRelation);
     result.append(')');
     return result.toString();
   }

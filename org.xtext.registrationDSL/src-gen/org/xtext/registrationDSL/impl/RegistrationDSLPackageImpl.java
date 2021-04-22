@@ -20,7 +20,6 @@ import org.xtext.registrationDSL.RegistrationDSLFactory;
 import org.xtext.registrationDSL.RegistrationDSLPackage;
 import org.xtext.registrationDSL.Relation;
 import org.xtext.registrationDSL.Select;
-import org.xtext.registrationDSL.Set;
 import org.xtext.registrationDSL.Statement;
 import org.xtext.registrationDSL.Workflow;
 
@@ -101,13 +100,6 @@ public class RegistrationDSLPackageImpl extends EPackageImpl implements Registra
    * @generated
    */
   private EClass addEClass = null;
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  private EClass setEClass = null;
 
   /**
    * Creates an instance of the model <b>Package</b>, registered with
@@ -420,9 +412,9 @@ public class RegistrationDSLPackageImpl extends EPackageImpl implements Registra
    * @generated
    */
   @Override
-  public EReference getAdd_ToEntityRelation()
+  public EAttribute getAdd_ToEntity()
   {
-    return (EReference)addEClass.getEStructuralFeatures().get(1);
+    return (EAttribute)addEClass.getEStructuralFeatures().get(1);
   }
 
   /**
@@ -431,20 +423,9 @@ public class RegistrationDSLPackageImpl extends EPackageImpl implements Registra
    * @generated
    */
   @Override
-  public EClass getSet()
+  public EAttribute getAdd_ToEntityRelation()
   {
-    return setEClass;
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  @Override
-  public EAttribute getSet_Name()
-  {
-    return (EAttribute)setEClass.getEStructuralFeatures().get(0);
+    return (EAttribute)addEClass.getEStructuralFeatures().get(2);
   }
 
   /**
@@ -509,10 +490,8 @@ public class RegistrationDSLPackageImpl extends EPackageImpl implements Registra
 
     addEClass = createEClass(ADD);
     createEAttribute(addEClass, ADD__SELECTED_ENTITY_NAME);
-    createEReference(addEClass, ADD__TO_ENTITY_RELATION);
-
-    setEClass = createEClass(SET);
-    createEAttribute(setEClass, SET__NAME);
+    createEAttribute(addEClass, ADD__TO_ENTITY);
+    createEAttribute(addEClass, ADD__TO_ENTITY_RELATION);
   }
 
   /**
@@ -550,7 +529,6 @@ public class RegistrationDSLPackageImpl extends EPackageImpl implements Registra
     workflowEClass.getESuperTypes().add(this.getDeclaration());
     selectEClass.getESuperTypes().add(this.getStatement());
     addEClass.getESuperTypes().add(this.getStatement());
-    setEClass.getESuperTypes().add(this.getStatement());
 
     // Initialize classes and features; add operations and parameters
     initEClass(registationsystemEClass, Registationsystem.class, "Registationsystem", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
@@ -584,10 +562,8 @@ public class RegistrationDSLPackageImpl extends EPackageImpl implements Registra
 
     initEClass(addEClass, Add.class, "Add", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
     initEAttribute(getAdd_SelectedEntityName(), ecorePackage.getEString(), "selectedEntityName", null, 0, 1, Add.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-    initEReference(getAdd_ToEntityRelation(), this.getRelation(), null, "toEntityRelation", null, 0, 1, Add.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-
-    initEClass(setEClass, Set.class, "Set", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-    initEAttribute(getSet_Name(), ecorePackage.getEString(), "name", null, 0, 1, Set.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEAttribute(getAdd_ToEntity(), ecorePackage.getEString(), "toEntity", null, 0, 1, Add.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEAttribute(getAdd_ToEntityRelation(), ecorePackage.getEString(), "toEntityRelation", null, 0, 1, Add.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
     // Create resource
     createResource(eNS_URI);

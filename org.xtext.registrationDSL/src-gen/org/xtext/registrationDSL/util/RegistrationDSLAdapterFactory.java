@@ -126,11 +126,6 @@ public class RegistrationDSLAdapterFactory extends AdapterFactoryImpl
         return createAddAdapter();
       }
       @Override
-      public Adapter caseSet(Set object)
-      {
-        return createSetAdapter();
-      }
-      @Override
       public Adapter defaultCase(EObject object)
       {
         return createEObjectAdapter();
@@ -298,21 +293,6 @@ public class RegistrationDSLAdapterFactory extends AdapterFactoryImpl
    * @generated
    */
   public Adapter createAddAdapter()
-  {
-    return null;
-  }
-
-  /**
-   * Creates a new adapter for an object of class '{@link org.xtext.registrationDSL.Set <em>Set</em>}'.
-   * <!-- begin-user-doc -->
-   * This default implementation returns null so that we can easily ignore cases;
-   * it's useful to ignore a case when inheritance will catch all the cases anyway.
-   * <!-- end-user-doc -->
-   * @return the new adapter.
-   * @see org.xtext.registrationDSL.Set
-   * @generated
-   */
-  public Adapter createSetAdapter()
   {
     return null;
   }

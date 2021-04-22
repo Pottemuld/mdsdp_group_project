@@ -383,13 +383,22 @@ public interface RegistrationDSLPackage extends EPackage
   int ADD__SELECTED_ENTITY_NAME = STATEMENT_FEATURE_COUNT + 0;
 
   /**
-   * The feature id for the '<em><b>To Entity Relation</b></em>' reference.
+   * The feature id for the '<em><b>To Entity</b></em>' attribute.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    * @ordered
    */
-  int ADD__TO_ENTITY_RELATION = STATEMENT_FEATURE_COUNT + 1;
+  int ADD__TO_ENTITY = STATEMENT_FEATURE_COUNT + 1;
+
+  /**
+   * The feature id for the '<em><b>To Entity Relation</b></em>' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int ADD__TO_ENTITY_RELATION = STATEMENT_FEATURE_COUNT + 2;
 
   /**
    * The number of structural features of the '<em>Add</em>' class.
@@ -398,35 +407,7 @@ public interface RegistrationDSLPackage extends EPackage
    * @generated
    * @ordered
    */
-  int ADD_FEATURE_COUNT = STATEMENT_FEATURE_COUNT + 2;
-
-  /**
-   * The meta object id for the '{@link org.xtext.registrationDSL.impl.SetImpl <em>Set</em>}' class.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @see org.xtext.registrationDSL.impl.SetImpl
-   * @see org.xtext.registrationDSL.impl.RegistrationDSLPackageImpl#getSet()
-   * @generated
-   */
-  int SET = 10;
-
-  /**
-   * The feature id for the '<em><b>Name</b></em>' attribute.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   * @ordered
-   */
-  int SET__NAME = STATEMENT_FEATURE_COUNT + 0;
-
-  /**
-   * The number of structural features of the '<em>Set</em>' class.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   * @ordered
-   */
-  int SET_FEATURE_COUNT = STATEMENT_FEATURE_COUNT + 1;
+  int ADD_FEATURE_COUNT = STATEMENT_FEATURE_COUNT + 3;
 
 
   /**
@@ -662,36 +643,26 @@ public interface RegistrationDSLPackage extends EPackage
   EAttribute getAdd_SelectedEntityName();
 
   /**
-   * Returns the meta object for the reference '{@link org.xtext.registrationDSL.Add#getToEntityRelation <em>To Entity Relation</em>}'.
+   * Returns the meta object for the attribute '{@link org.xtext.registrationDSL.Add#getToEntity <em>To Entity</em>}'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @return the meta object for the reference '<em>To Entity Relation</em>'.
+   * @return the meta object for the attribute '<em>To Entity</em>'.
+   * @see org.xtext.registrationDSL.Add#getToEntity()
+   * @see #getAdd()
+   * @generated
+   */
+  EAttribute getAdd_ToEntity();
+
+  /**
+   * Returns the meta object for the attribute '{@link org.xtext.registrationDSL.Add#getToEntityRelation <em>To Entity Relation</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the attribute '<em>To Entity Relation</em>'.
    * @see org.xtext.registrationDSL.Add#getToEntityRelation()
    * @see #getAdd()
    * @generated
    */
-  EReference getAdd_ToEntityRelation();
-
-  /**
-   * Returns the meta object for class '{@link org.xtext.registrationDSL.Set <em>Set</em>}'.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @return the meta object for class '<em>Set</em>'.
-   * @see org.xtext.registrationDSL.Set
-   * @generated
-   */
-  EClass getSet();
-
-  /**
-   * Returns the meta object for the attribute '{@link org.xtext.registrationDSL.Set#getName <em>Name</em>}'.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @return the meta object for the attribute '<em>Name</em>'.
-   * @see org.xtext.registrationDSL.Set#getName()
-   * @see #getSet()
-   * @generated
-   */
-  EAttribute getSet_Name();
+  EAttribute getAdd_ToEntityRelation();
 
   /**
    * Returns the factory that creates the instances of the model.
@@ -913,30 +884,20 @@ public interface RegistrationDSLPackage extends EPackage
     EAttribute ADD__SELECTED_ENTITY_NAME = eINSTANCE.getAdd_SelectedEntityName();
 
     /**
-     * The meta object literal for the '<em><b>To Entity Relation</b></em>' reference feature.
+     * The meta object literal for the '<em><b>To Entity</b></em>' attribute feature.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @generated
      */
-    EReference ADD__TO_ENTITY_RELATION = eINSTANCE.getAdd_ToEntityRelation();
+    EAttribute ADD__TO_ENTITY = eINSTANCE.getAdd_ToEntity();
 
     /**
-     * The meta object literal for the '{@link org.xtext.registrationDSL.impl.SetImpl <em>Set</em>}' class.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @see org.xtext.registrationDSL.impl.SetImpl
-     * @see org.xtext.registrationDSL.impl.RegistrationDSLPackageImpl#getSet()
-     * @generated
-     */
-    EClass SET = eINSTANCE.getSet();
-
-    /**
-     * The meta object literal for the '<em><b>Name</b></em>' attribute feature.
+     * The meta object literal for the '<em><b>To Entity Relation</b></em>' attribute feature.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @generated
      */
-    EAttribute SET__NAME = eINSTANCE.getSet_Name();
+    EAttribute ADD__TO_ENTITY_RELATION = eINSTANCE.getAdd_ToEntityRelation();
 
   }
 

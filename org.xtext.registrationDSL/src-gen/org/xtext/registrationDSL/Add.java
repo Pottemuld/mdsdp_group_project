@@ -14,6 +14,7 @@ package org.xtext.registrationDSL;
  * </p>
  * <ul>
  *   <li>{@link org.xtext.registrationDSL.Add#getSelectedEntityName <em>Selected Entity Name</em>}</li>
+ *   <li>{@link org.xtext.registrationDSL.Add#getToEntity <em>To Entity</em>}</li>
  *   <li>{@link org.xtext.registrationDSL.Add#getToEntityRelation <em>To Entity Relation</em>}</li>
  * </ul>
  *
@@ -46,25 +47,47 @@ public interface Add extends Statement
   void setSelectedEntityName(String value);
 
   /**
-   * Returns the value of the '<em><b>To Entity Relation</b></em>' reference.
+   * Returns the value of the '<em><b>To Entity</b></em>' attribute.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @return the value of the '<em>To Entity Relation</em>' reference.
-   * @see #setToEntityRelation(Relation)
+   * @return the value of the '<em>To Entity</em>' attribute.
+   * @see #setToEntity(String)
+   * @see org.xtext.registrationDSL.RegistrationDSLPackage#getAdd_ToEntity()
+   * @model
+   * @generated
+   */
+  String getToEntity();
+
+  /**
+   * Sets the value of the '{@link org.xtext.registrationDSL.Add#getToEntity <em>To Entity</em>}' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @param value the new value of the '<em>To Entity</em>' attribute.
+   * @see #getToEntity()
+   * @generated
+   */
+  void setToEntity(String value);
+
+  /**
+   * Returns the value of the '<em><b>To Entity Relation</b></em>' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the value of the '<em>To Entity Relation</em>' attribute.
+   * @see #setToEntityRelation(String)
    * @see org.xtext.registrationDSL.RegistrationDSLPackage#getAdd_ToEntityRelation()
    * @model
    * @generated
    */
-  Relation getToEntityRelation();
+  String getToEntityRelation();
 
   /**
-   * Sets the value of the '{@link org.xtext.registrationDSL.Add#getToEntityRelation <em>To Entity Relation</em>}' reference.
+   * Sets the value of the '{@link org.xtext.registrationDSL.Add#getToEntityRelation <em>To Entity Relation</em>}' attribute.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @param value the new value of the '<em>To Entity Relation</em>' reference.
+   * @param value the new value of the '<em>To Entity Relation</em>' attribute.
    * @see #getToEntityRelation()
    * @generated
    */
-  void setToEntityRelation(Relation value);
+  void setToEntityRelation(String value);
 
 } // Add

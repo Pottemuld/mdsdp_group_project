@@ -36,10 +36,8 @@
     </genClasses>
     <genClasses ecoreClass="RegistrationDSL.ecore#//Add">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute RegistrationDSL.ecore#//Add/selectedEntityName"/>
-      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference RegistrationDSL.ecore#//Add/toEntityRelation"/>
-    </genClasses>
-    <genClasses ecoreClass="RegistrationDSL.ecore#//Set">
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute RegistrationDSL.ecore#//Set/name"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute RegistrationDSL.ecore#//Add/toEntity"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute RegistrationDSL.ecore#//Add/toEntityRelation"/>
     </genClasses>
   </genPackages>
 </genmodel:GenModel>

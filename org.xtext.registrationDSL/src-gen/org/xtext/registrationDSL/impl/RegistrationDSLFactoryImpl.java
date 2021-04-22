@@ -75,7 +75,6 @@ public class RegistrationDSLFactoryImpl extends EFactoryImpl implements Registra
       case RegistrationDSLPackage.STATEMENT: return createStatement();
       case RegistrationDSLPackage.SELECT: return createSelect();
       case RegistrationDSLPackage.ADD: return createAdd();
-      case RegistrationDSLPackage.SET: return createSet();
       default:
         throw new IllegalArgumentException("The class '" + eClass.getName() + "' is not a valid classifier");
     }
@@ -199,18 +198,6 @@ public class RegistrationDSLFactoryImpl extends EFactoryImpl implements Registra
   {
     AddImpl add = new AddImpl();
     return add;
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  @Override
-  public Set createSet()
-  {
-    SetImpl set = new SetImpl();
-    return set;
   }
 
   /**

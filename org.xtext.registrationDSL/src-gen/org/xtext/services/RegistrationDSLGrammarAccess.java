@@ -286,14 +286,13 @@ public class RegistrationDSLGrammarAccess extends AbstractElementFinder.Abstract
 		private final Alternatives cAlternatives = (Alternatives)rule.eContents().get(1);
 		private final RuleCall cSelectParserRuleCall_0 = (RuleCall)cAlternatives.eContents().get(0);
 		private final RuleCall cAddParserRuleCall_1 = (RuleCall)cAlternatives.eContents().get(1);
-		private final RuleCall cSetParserRuleCall_2 = (RuleCall)cAlternatives.eContents().get(2);
 		
 		//Statement:
-		//    Select | Add | Set
+		//    Select | Add //| Set
 		//;
 		@Override public ParserRule getRule() { return rule; }
 		
-		//Select | Add | Set
+		//Select | Add
 		public Alternatives getAlternatives() { return cAlternatives; }
 		
 		//Select
@@ -301,9 +300,6 @@ public class RegistrationDSLGrammarAccess extends AbstractElementFinder.Abstract
 		
 		//Add
 		public RuleCall getAddParserRuleCall_1() { return cAddParserRuleCall_1; }
-		
-		//Set
-		public RuleCall getSetParserRuleCall_2() { return cSetParserRuleCall_2; }
 	}
 	public class SelectElements extends AbstractParserRuleElementFinder {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "org.xtext.RegistrationDSL.Select");
@@ -350,17 +346,19 @@ public class RegistrationDSLGrammarAccess extends AbstractElementFinder.Abstract
 		private final Assignment cSelectedEntityNameAssignment_1 = (Assignment)cGroup.eContents().get(1);
 		private final RuleCall cSelectedEntityNameIDTerminalRuleCall_1_0 = (RuleCall)cSelectedEntityNameAssignment_1.eContents().get(0);
 		private final Keyword cToKeyword_2 = (Keyword)cGroup.eContents().get(2);
-		private final Assignment cToEntityRelationAssignment_3 = (Assignment)cGroup.eContents().get(3);
-		private final CrossReference cToEntityRelationRelationCrossReference_3_0 = (CrossReference)cToEntityRelationAssignment_3.eContents().get(0);
-		private final RuleCall cToEntityRelationRelationIDTerminalRuleCall_3_0_1 = (RuleCall)cToEntityRelationRelationCrossReference_3_0.eContents().get(1);
+		private final Assignment cToEntityAssignment_3 = (Assignment)cGroup.eContents().get(3);
+		private final RuleCall cToEntityIDTerminalRuleCall_3_0 = (RuleCall)cToEntityAssignment_3.eContents().get(0);
+		private final Keyword cFullStopKeyword_4 = (Keyword)cGroup.eContents().get(4);
+		private final Assignment cToEntityRelationAssignment_5 = (Assignment)cGroup.eContents().get(5);
+		private final RuleCall cToEntityRelationIDTerminalRuleCall_5_0 = (RuleCall)cToEntityRelationAssignment_5.eContents().get(0);
 		
 		//Add: //this is wrong
-		//    'add' selectedEntityName=ID 'to' toEntityRelation=[Relation] // check if it's right later
+		//    'add' selectedEntityName=ID 'to' toEntity=ID '.' toEntityRelation=ID // check if it's right later
 		//;
 		@Override public ParserRule getRule() { return rule; }
 		
 		////this is wrong
-		//   'add' selectedEntityName=ID 'to' toEntityRelation=[Relation]
+		//   'add' selectedEntityName=ID 'to' toEntity=ID '.' toEntityRelation=ID
 		public Group getGroup() { return cGroup; }
 		
 		////this is wrong
@@ -376,38 +374,20 @@ public class RegistrationDSLGrammarAccess extends AbstractElementFinder.Abstract
 		//'to'
 		public Keyword getToKeyword_2() { return cToKeyword_2; }
 		
-		//toEntityRelation=[Relation]
-		public Assignment getToEntityRelationAssignment_3() { return cToEntityRelationAssignment_3; }
-		
-		//[Relation]
-		public CrossReference getToEntityRelationRelationCrossReference_3_0() { return cToEntityRelationRelationCrossReference_3_0; }
+		//toEntity=ID
+		public Assignment getToEntityAssignment_3() { return cToEntityAssignment_3; }
 		
 		//ID
-		public RuleCall getToEntityRelationRelationIDTerminalRuleCall_3_0_1() { return cToEntityRelationRelationIDTerminalRuleCall_3_0_1; }
-	}
-	public class SetElements extends AbstractParserRuleElementFinder {
-		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "org.xtext.RegistrationDSL.Set");
-		private final Group cGroup = (Group)rule.eContents().get(1);
-		private final Keyword cSetKeyword_0 = (Keyword)cGroup.eContents().get(0);
-		private final Assignment cNameAssignment_1 = (Assignment)cGroup.eContents().get(1);
-		private final RuleCall cNameIDTerminalRuleCall_1_0 = (RuleCall)cNameAssignment_1.eContents().get(0);
+		public RuleCall getToEntityIDTerminalRuleCall_3_0() { return cToEntityIDTerminalRuleCall_3_0; }
 		
-		//Set:
-		//    "set" name=ID
-		//;
-		@Override public ParserRule getRule() { return rule; }
+		//'.'
+		public Keyword getFullStopKeyword_4() { return cFullStopKeyword_4; }
 		
-		//"set" name=ID
-		public Group getGroup() { return cGroup; }
-		
-		//"set"
-		public Keyword getSetKeyword_0() { return cSetKeyword_0; }
-		
-		//name=ID
-		public Assignment getNameAssignment_1() { return cNameAssignment_1; }
+		//toEntityRelation=ID
+		public Assignment getToEntityRelationAssignment_5() { return cToEntityRelationAssignment_5; }
 		
 		//ID
-		public RuleCall getNameIDTerminalRuleCall_1_0() { return cNameIDTerminalRuleCall_1_0; }
+		public RuleCall getToEntityRelationIDTerminalRuleCall_5_0() { return cToEntityRelationIDTerminalRuleCall_5_0; }
 	}
 	
 	
@@ -421,7 +401,6 @@ public class RegistrationDSLGrammarAccess extends AbstractElementFinder.Abstract
 	private final StatementElements pStatement;
 	private final SelectElements pSelect;
 	private final AddElements pAdd;
-	private final SetElements pSet;
 	
 	private final Grammar grammar;
 	
@@ -442,7 +421,6 @@ public class RegistrationDSLGrammarAccess extends AbstractElementFinder.Abstract
 		this.pStatement = new StatementElements();
 		this.pSelect = new SelectElements();
 		this.pAdd = new AddElements();
-		this.pSet = new SetElements();
 	}
 	
 	protected Grammar internalFindGrammar(GrammarProvider grammarProvider) {
@@ -550,7 +528,7 @@ public class RegistrationDSLGrammarAccess extends AbstractElementFinder.Abstract
 	}
 	
 	//Statement:
-	//    Select | Add | Set
+	//    Select | Add //| Set
 	//;
 	public StatementElements getStatementAccess() {
 		return pStatement;
@@ -572,7 +550,7 @@ public class RegistrationDSLGrammarAccess extends AbstractElementFinder.Abstract
 	}
 	
 	//Add: //this is wrong
-	//    'add' selectedEntityName=ID 'to' toEntityRelation=[Relation] // check if it's right later
+	//    'add' selectedEntityName=ID 'to' toEntity=ID '.' toEntityRelation=ID // check if it's right later
 	//;
 	public AddElements getAddAccess() {
 		return pAdd;
@@ -580,17 +558,6 @@ public class RegistrationDSLGrammarAccess extends AbstractElementFinder.Abstract
 	
 	public ParserRule getAddRule() {
 		return getAddAccess().getRule();
-	}
-	
-	//Set:
-	//    "set" name=ID
-	//;
-	public SetElements getSetAccess() {
-		return pSet;
-	}
-	
-	public ParserRule getSetRule() {
-		return getSetAccess().getRule();
 	}
 	
 	//terminal ID: '^'?('a'..'z'|'A'..'Z'|'_') ('a'..'z'|'A'..'Z'|'_'|'0'..'9')*;

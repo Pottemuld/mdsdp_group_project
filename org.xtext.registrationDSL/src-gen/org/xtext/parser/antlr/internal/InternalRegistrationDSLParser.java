@@ -21,7 +21,7 @@ import java.util.ArrayList;
 @SuppressWarnings("all")
 public class InternalRegistrationDSLParser extends AbstractInternalAntlrParser {
     public static final String[] tokenNames = new String[] {
-        "<invalid>", "<EOR>", "<DOWN>", "<UP>", "RULE_ID", "RULE_INT", "RULE_STRING", "RULE_ML_COMMENT", "RULE_SL_COMMENT", "RULE_WS", "RULE_ANY_OTHER", "'system'", "'{'", "'}'", "'entity'", "':'", "'attribute'", "'relation'", "'workflow'", "'select'", "'add'", "'to'", "'set'"
+        "<invalid>", "<EOR>", "<DOWN>", "<UP>", "RULE_ID", "RULE_INT", "RULE_STRING", "RULE_ML_COMMENT", "RULE_SL_COMMENT", "RULE_WS", "RULE_ANY_OTHER", "'system'", "'{'", "'}'", "'entity'", "':'", "'attribute'", "'relation'", "'workflow'", "'select'", "'add'", "'to'", "'.'"
     };
     public static final int RULE_STRING=6;
     public static final int RULE_SL_COMMENT=8;
@@ -1086,7 +1086,7 @@ public class InternalRegistrationDSLParser extends AbstractInternalAntlrParser {
                 int alt6=2;
                 int LA6_0 = input.LA(1);
 
-                if ( ((LA6_0>=19 && LA6_0<=20)||LA6_0==22) ) {
+                if ( ((LA6_0>=19 && LA6_0<=20)) ) {
                     alt6=1;
                 }
 
@@ -1192,7 +1192,7 @@ public class InternalRegistrationDSLParser extends AbstractInternalAntlrParser {
 
 
     // $ANTLR start "ruleStatement"
-    // InternalRegistrationDSL.g:487:1: ruleStatement returns [EObject current=null] : (this_Select_0= ruleSelect | this_Add_1= ruleAdd | this_Set_2= ruleSet ) ;
+    // InternalRegistrationDSL.g:487:1: ruleStatement returns [EObject current=null] : (this_Select_0= ruleSelect | this_Add_1= ruleAdd ) ;
     public final EObject ruleStatement() throws RecognitionException {
         EObject current = null;
 
@@ -1200,41 +1200,30 @@ public class InternalRegistrationDSLParser extends AbstractInternalAntlrParser {
 
         EObject this_Add_1 = null;
 
-        EObject this_Set_2 = null;
-
 
 
         	enterRule();
 
         try {
-            // InternalRegistrationDSL.g:493:2: ( (this_Select_0= ruleSelect | this_Add_1= ruleAdd | this_Set_2= ruleSet ) )
-            // InternalRegistrationDSL.g:494:2: (this_Select_0= ruleSelect | this_Add_1= ruleAdd | this_Set_2= ruleSet )
+            // InternalRegistrationDSL.g:493:2: ( (this_Select_0= ruleSelect | this_Add_1= ruleAdd ) )
+            // InternalRegistrationDSL.g:494:2: (this_Select_0= ruleSelect | this_Add_1= ruleAdd )
             {
-            // InternalRegistrationDSL.g:494:2: (this_Select_0= ruleSelect | this_Add_1= ruleAdd | this_Set_2= ruleSet )
-            int alt7=3;
-            switch ( input.LA(1) ) {
-            case 19:
-                {
+            // InternalRegistrationDSL.g:494:2: (this_Select_0= ruleSelect | this_Add_1= ruleAdd )
+            int alt7=2;
+            int LA7_0 = input.LA(1);
+
+            if ( (LA7_0==19) ) {
                 alt7=1;
-                }
-                break;
-            case 20:
-                {
+            }
+            else if ( (LA7_0==20) ) {
                 alt7=2;
-                }
-                break;
-            case 22:
-                {
-                alt7=3;
-                }
-                break;
-            default:
+            }
+            else {
                 NoViableAltException nvae =
                     new NoViableAltException("", 7, 0, input);
 
                 throw nvae;
             }
-
             switch (alt7) {
                 case 1 :
                     // InternalRegistrationDSL.g:495:3: this_Select_0= ruleSelect
@@ -1272,24 +1261,6 @@ public class InternalRegistrationDSLParser extends AbstractInternalAntlrParser {
 
                     }
                     break;
-                case 3 :
-                    // InternalRegistrationDSL.g:513:3: this_Set_2= ruleSet
-                    {
-
-                    			newCompositeNode(grammarAccess.getStatementAccess().getSetParserRuleCall_2());
-                    		
-                    pushFollow(FOLLOW_2);
-                    this_Set_2=ruleSet();
-
-                    state._fsp--;
-
-
-                    			current = this_Set_2;
-                    			afterParserOrEnumRuleCall();
-                    		
-
-                    }
-                    break;
 
             }
 
@@ -1313,7 +1284,7 @@ public class InternalRegistrationDSLParser extends AbstractInternalAntlrParser {
 
 
     // $ANTLR start "entryRuleSelect"
-    // InternalRegistrationDSL.g:525:1: entryRuleSelect returns [EObject current=null] : iv_ruleSelect= ruleSelect EOF ;
+    // InternalRegistrationDSL.g:516:1: entryRuleSelect returns [EObject current=null] : iv_ruleSelect= ruleSelect EOF ;
     public final EObject entryRuleSelect() throws RecognitionException {
         EObject current = null;
 
@@ -1321,8 +1292,8 @@ public class InternalRegistrationDSLParser extends AbstractInternalAntlrParser {
 
 
         try {
-            // InternalRegistrationDSL.g:525:47: (iv_ruleSelect= ruleSelect EOF )
-            // InternalRegistrationDSL.g:526:2: iv_ruleSelect= ruleSelect EOF
+            // InternalRegistrationDSL.g:516:47: (iv_ruleSelect= ruleSelect EOF )
+            // InternalRegistrationDSL.g:517:2: iv_ruleSelect= ruleSelect EOF
             {
              newCompositeNode(grammarAccess.getSelectRule()); 
             pushFollow(FOLLOW_1);
@@ -1349,7 +1320,7 @@ public class InternalRegistrationDSLParser extends AbstractInternalAntlrParser {
 
 
     // $ANTLR start "ruleSelect"
-    // InternalRegistrationDSL.g:532:1: ruleSelect returns [EObject current=null] : (otherlv_0= 'select' ( (otherlv_1= RULE_ID ) ) ( (lv_entityName_2_0= RULE_ID ) ) ) ;
+    // InternalRegistrationDSL.g:523:1: ruleSelect returns [EObject current=null] : (otherlv_0= 'select' ( (otherlv_1= RULE_ID ) ) ( (lv_entityName_2_0= RULE_ID ) ) ) ;
     public final EObject ruleSelect() throws RecognitionException {
         EObject current = null;
 
@@ -1361,21 +1332,21 @@ public class InternalRegistrationDSLParser extends AbstractInternalAntlrParser {
         	enterRule();
 
         try {
-            // InternalRegistrationDSL.g:538:2: ( (otherlv_0= 'select' ( (otherlv_1= RULE_ID ) ) ( (lv_entityName_2_0= RULE_ID ) ) ) )
-            // InternalRegistrationDSL.g:539:2: (otherlv_0= 'select' ( (otherlv_1= RULE_ID ) ) ( (lv_entityName_2_0= RULE_ID ) ) )
+            // InternalRegistrationDSL.g:529:2: ( (otherlv_0= 'select' ( (otherlv_1= RULE_ID ) ) ( (lv_entityName_2_0= RULE_ID ) ) ) )
+            // InternalRegistrationDSL.g:530:2: (otherlv_0= 'select' ( (otherlv_1= RULE_ID ) ) ( (lv_entityName_2_0= RULE_ID ) ) )
             {
-            // InternalRegistrationDSL.g:539:2: (otherlv_0= 'select' ( (otherlv_1= RULE_ID ) ) ( (lv_entityName_2_0= RULE_ID ) ) )
-            // InternalRegistrationDSL.g:540:3: otherlv_0= 'select' ( (otherlv_1= RULE_ID ) ) ( (lv_entityName_2_0= RULE_ID ) )
+            // InternalRegistrationDSL.g:530:2: (otherlv_0= 'select' ( (otherlv_1= RULE_ID ) ) ( (lv_entityName_2_0= RULE_ID ) ) )
+            // InternalRegistrationDSL.g:531:3: otherlv_0= 'select' ( (otherlv_1= RULE_ID ) ) ( (lv_entityName_2_0= RULE_ID ) )
             {
             otherlv_0=(Token)match(input,19,FOLLOW_3); 
 
             			newLeafNode(otherlv_0, grammarAccess.getSelectAccess().getSelectKeyword_0());
             		
-            // InternalRegistrationDSL.g:544:3: ( (otherlv_1= RULE_ID ) )
-            // InternalRegistrationDSL.g:545:4: (otherlv_1= RULE_ID )
+            // InternalRegistrationDSL.g:535:3: ( (otherlv_1= RULE_ID ) )
+            // InternalRegistrationDSL.g:536:4: (otherlv_1= RULE_ID )
             {
-            // InternalRegistrationDSL.g:545:4: (otherlv_1= RULE_ID )
-            // InternalRegistrationDSL.g:546:5: otherlv_1= RULE_ID
+            // InternalRegistrationDSL.g:536:4: (otherlv_1= RULE_ID )
+            // InternalRegistrationDSL.g:537:5: otherlv_1= RULE_ID
             {
 
             					if (current==null) {
@@ -1392,11 +1363,11 @@ public class InternalRegistrationDSLParser extends AbstractInternalAntlrParser {
 
             }
 
-            // InternalRegistrationDSL.g:557:3: ( (lv_entityName_2_0= RULE_ID ) )
-            // InternalRegistrationDSL.g:558:4: (lv_entityName_2_0= RULE_ID )
+            // InternalRegistrationDSL.g:548:3: ( (lv_entityName_2_0= RULE_ID ) )
+            // InternalRegistrationDSL.g:549:4: (lv_entityName_2_0= RULE_ID )
             {
-            // InternalRegistrationDSL.g:558:4: (lv_entityName_2_0= RULE_ID )
-            // InternalRegistrationDSL.g:559:5: lv_entityName_2_0= RULE_ID
+            // InternalRegistrationDSL.g:549:4: (lv_entityName_2_0= RULE_ID )
+            // InternalRegistrationDSL.g:550:5: lv_entityName_2_0= RULE_ID
             {
             lv_entityName_2_0=(Token)match(input,RULE_ID,FOLLOW_2); 
 
@@ -1441,7 +1412,7 @@ public class InternalRegistrationDSLParser extends AbstractInternalAntlrParser {
 
 
     // $ANTLR start "entryRuleAdd"
-    // InternalRegistrationDSL.g:579:1: entryRuleAdd returns [EObject current=null] : iv_ruleAdd= ruleAdd EOF ;
+    // InternalRegistrationDSL.g:570:1: entryRuleAdd returns [EObject current=null] : iv_ruleAdd= ruleAdd EOF ;
     public final EObject entryRuleAdd() throws RecognitionException {
         EObject current = null;
 
@@ -1449,8 +1420,8 @@ public class InternalRegistrationDSLParser extends AbstractInternalAntlrParser {
 
 
         try {
-            // InternalRegistrationDSL.g:579:44: (iv_ruleAdd= ruleAdd EOF )
-            // InternalRegistrationDSL.g:580:2: iv_ruleAdd= ruleAdd EOF
+            // InternalRegistrationDSL.g:570:44: (iv_ruleAdd= ruleAdd EOF )
+            // InternalRegistrationDSL.g:571:2: iv_ruleAdd= ruleAdd EOF
             {
              newCompositeNode(grammarAccess.getAddRule()); 
             pushFollow(FOLLOW_1);
@@ -1477,34 +1448,36 @@ public class InternalRegistrationDSLParser extends AbstractInternalAntlrParser {
 
 
     // $ANTLR start "ruleAdd"
-    // InternalRegistrationDSL.g:586:1: ruleAdd returns [EObject current=null] : (otherlv_0= 'add' ( (lv_selectedEntityName_1_0= RULE_ID ) ) otherlv_2= 'to' ( (otherlv_3= RULE_ID ) ) ) ;
+    // InternalRegistrationDSL.g:577:1: ruleAdd returns [EObject current=null] : (otherlv_0= 'add' ( (lv_selectedEntityName_1_0= RULE_ID ) ) otherlv_2= 'to' ( (lv_toEntity_3_0= RULE_ID ) ) otherlv_4= '.' ( (lv_toEntityRelation_5_0= RULE_ID ) ) ) ;
     public final EObject ruleAdd() throws RecognitionException {
         EObject current = null;
 
         Token otherlv_0=null;
         Token lv_selectedEntityName_1_0=null;
         Token otherlv_2=null;
-        Token otherlv_3=null;
+        Token lv_toEntity_3_0=null;
+        Token otherlv_4=null;
+        Token lv_toEntityRelation_5_0=null;
 
 
         	enterRule();
 
         try {
-            // InternalRegistrationDSL.g:592:2: ( (otherlv_0= 'add' ( (lv_selectedEntityName_1_0= RULE_ID ) ) otherlv_2= 'to' ( (otherlv_3= RULE_ID ) ) ) )
-            // InternalRegistrationDSL.g:593:2: (otherlv_0= 'add' ( (lv_selectedEntityName_1_0= RULE_ID ) ) otherlv_2= 'to' ( (otherlv_3= RULE_ID ) ) )
+            // InternalRegistrationDSL.g:583:2: ( (otherlv_0= 'add' ( (lv_selectedEntityName_1_0= RULE_ID ) ) otherlv_2= 'to' ( (lv_toEntity_3_0= RULE_ID ) ) otherlv_4= '.' ( (lv_toEntityRelation_5_0= RULE_ID ) ) ) )
+            // InternalRegistrationDSL.g:584:2: (otherlv_0= 'add' ( (lv_selectedEntityName_1_0= RULE_ID ) ) otherlv_2= 'to' ( (lv_toEntity_3_0= RULE_ID ) ) otherlv_4= '.' ( (lv_toEntityRelation_5_0= RULE_ID ) ) )
             {
-            // InternalRegistrationDSL.g:593:2: (otherlv_0= 'add' ( (lv_selectedEntityName_1_0= RULE_ID ) ) otherlv_2= 'to' ( (otherlv_3= RULE_ID ) ) )
-            // InternalRegistrationDSL.g:594:3: otherlv_0= 'add' ( (lv_selectedEntityName_1_0= RULE_ID ) ) otherlv_2= 'to' ( (otherlv_3= RULE_ID ) )
+            // InternalRegistrationDSL.g:584:2: (otherlv_0= 'add' ( (lv_selectedEntityName_1_0= RULE_ID ) ) otherlv_2= 'to' ( (lv_toEntity_3_0= RULE_ID ) ) otherlv_4= '.' ( (lv_toEntityRelation_5_0= RULE_ID ) ) )
+            // InternalRegistrationDSL.g:585:3: otherlv_0= 'add' ( (lv_selectedEntityName_1_0= RULE_ID ) ) otherlv_2= 'to' ( (lv_toEntity_3_0= RULE_ID ) ) otherlv_4= '.' ( (lv_toEntityRelation_5_0= RULE_ID ) )
             {
             otherlv_0=(Token)match(input,20,FOLLOW_3); 
 
             			newLeafNode(otherlv_0, grammarAccess.getAddAccess().getAddKeyword_0());
             		
-            // InternalRegistrationDSL.g:598:3: ( (lv_selectedEntityName_1_0= RULE_ID ) )
-            // InternalRegistrationDSL.g:599:4: (lv_selectedEntityName_1_0= RULE_ID )
+            // InternalRegistrationDSL.g:589:3: ( (lv_selectedEntityName_1_0= RULE_ID ) )
+            // InternalRegistrationDSL.g:590:4: (lv_selectedEntityName_1_0= RULE_ID )
             {
-            // InternalRegistrationDSL.g:599:4: (lv_selectedEntityName_1_0= RULE_ID )
-            // InternalRegistrationDSL.g:600:5: lv_selectedEntityName_1_0= RULE_ID
+            // InternalRegistrationDSL.g:590:4: (lv_selectedEntityName_1_0= RULE_ID )
+            // InternalRegistrationDSL.g:591:5: lv_selectedEntityName_1_0= RULE_ID
             {
             lv_selectedEntityName_1_0=(Token)match(input,RULE_ID,FOLLOW_10); 
 
@@ -1530,20 +1503,55 @@ public class InternalRegistrationDSLParser extends AbstractInternalAntlrParser {
 
             			newLeafNode(otherlv_2, grammarAccess.getAddAccess().getToKeyword_2());
             		
-            // InternalRegistrationDSL.g:620:3: ( (otherlv_3= RULE_ID ) )
-            // InternalRegistrationDSL.g:621:4: (otherlv_3= RULE_ID )
+            // InternalRegistrationDSL.g:611:3: ( (lv_toEntity_3_0= RULE_ID ) )
+            // InternalRegistrationDSL.g:612:4: (lv_toEntity_3_0= RULE_ID )
             {
-            // InternalRegistrationDSL.g:621:4: (otherlv_3= RULE_ID )
-            // InternalRegistrationDSL.g:622:5: otherlv_3= RULE_ID
+            // InternalRegistrationDSL.g:612:4: (lv_toEntity_3_0= RULE_ID )
+            // InternalRegistrationDSL.g:613:5: lv_toEntity_3_0= RULE_ID
             {
+            lv_toEntity_3_0=(Token)match(input,RULE_ID,FOLLOW_11); 
+
+            					newLeafNode(lv_toEntity_3_0, grammarAccess.getAddAccess().getToEntityIDTerminalRuleCall_3_0());
+            				
 
             					if (current==null) {
             						current = createModelElement(grammarAccess.getAddRule());
             					}
+            					setWithLastConsumed(
+            						current,
+            						"toEntity",
+            						lv_toEntity_3_0,
+            						"org.eclipse.xtext.common.Terminals.ID");
             				
-            otherlv_3=(Token)match(input,RULE_ID,FOLLOW_2); 
 
-            					newLeafNode(otherlv_3, grammarAccess.getAddAccess().getToEntityRelationRelationCrossReference_3_0());
+            }
+
+
+            }
+
+            otherlv_4=(Token)match(input,22,FOLLOW_3); 
+
+            			newLeafNode(otherlv_4, grammarAccess.getAddAccess().getFullStopKeyword_4());
+            		
+            // InternalRegistrationDSL.g:633:3: ( (lv_toEntityRelation_5_0= RULE_ID ) )
+            // InternalRegistrationDSL.g:634:4: (lv_toEntityRelation_5_0= RULE_ID )
+            {
+            // InternalRegistrationDSL.g:634:4: (lv_toEntityRelation_5_0= RULE_ID )
+            // InternalRegistrationDSL.g:635:5: lv_toEntityRelation_5_0= RULE_ID
+            {
+            lv_toEntityRelation_5_0=(Token)match(input,RULE_ID,FOLLOW_2); 
+
+            					newLeafNode(lv_toEntityRelation_5_0, grammarAccess.getAddAccess().getToEntityRelationIDTerminalRuleCall_5_0());
+            				
+
+            					if (current==null) {
+            						current = createModelElement(grammarAccess.getAddRule());
+            					}
+            					setWithLastConsumed(
+            						current,
+            						"toEntityRelation",
+            						lv_toEntityRelation_5_0,
+            						"org.eclipse.xtext.common.Terminals.ID");
             				
 
             }
@@ -1572,112 +1580,6 @@ public class InternalRegistrationDSLParser extends AbstractInternalAntlrParser {
     }
     // $ANTLR end "ruleAdd"
 
-
-    // $ANTLR start "entryRuleSet"
-    // InternalRegistrationDSL.g:637:1: entryRuleSet returns [EObject current=null] : iv_ruleSet= ruleSet EOF ;
-    public final EObject entryRuleSet() throws RecognitionException {
-        EObject current = null;
-
-        EObject iv_ruleSet = null;
-
-
-        try {
-            // InternalRegistrationDSL.g:637:44: (iv_ruleSet= ruleSet EOF )
-            // InternalRegistrationDSL.g:638:2: iv_ruleSet= ruleSet EOF
-            {
-             newCompositeNode(grammarAccess.getSetRule()); 
-            pushFollow(FOLLOW_1);
-            iv_ruleSet=ruleSet();
-
-            state._fsp--;
-
-             current =iv_ruleSet; 
-            match(input,EOF,FOLLOW_2); 
-
-            }
-
-        }
-
-            catch (RecognitionException re) {
-                recover(input,re);
-                appendSkippedTokens();
-            }
-        finally {
-        }
-        return current;
-    }
-    // $ANTLR end "entryRuleSet"
-
-
-    // $ANTLR start "ruleSet"
-    // InternalRegistrationDSL.g:644:1: ruleSet returns [EObject current=null] : (otherlv_0= 'set' ( (lv_name_1_0= RULE_ID ) ) ) ;
-    public final EObject ruleSet() throws RecognitionException {
-        EObject current = null;
-
-        Token otherlv_0=null;
-        Token lv_name_1_0=null;
-
-
-        	enterRule();
-
-        try {
-            // InternalRegistrationDSL.g:650:2: ( (otherlv_0= 'set' ( (lv_name_1_0= RULE_ID ) ) ) )
-            // InternalRegistrationDSL.g:651:2: (otherlv_0= 'set' ( (lv_name_1_0= RULE_ID ) ) )
-            {
-            // InternalRegistrationDSL.g:651:2: (otherlv_0= 'set' ( (lv_name_1_0= RULE_ID ) ) )
-            // InternalRegistrationDSL.g:652:3: otherlv_0= 'set' ( (lv_name_1_0= RULE_ID ) )
-            {
-            otherlv_0=(Token)match(input,22,FOLLOW_3); 
-
-            			newLeafNode(otherlv_0, grammarAccess.getSetAccess().getSetKeyword_0());
-            		
-            // InternalRegistrationDSL.g:656:3: ( (lv_name_1_0= RULE_ID ) )
-            // InternalRegistrationDSL.g:657:4: (lv_name_1_0= RULE_ID )
-            {
-            // InternalRegistrationDSL.g:657:4: (lv_name_1_0= RULE_ID )
-            // InternalRegistrationDSL.g:658:5: lv_name_1_0= RULE_ID
-            {
-            lv_name_1_0=(Token)match(input,RULE_ID,FOLLOW_2); 
-
-            					newLeafNode(lv_name_1_0, grammarAccess.getSetAccess().getNameIDTerminalRuleCall_1_0());
-            				
-
-            					if (current==null) {
-            						current = createModelElement(grammarAccess.getSetRule());
-            					}
-            					setWithLastConsumed(
-            						current,
-            						"name",
-            						lv_name_1_0,
-            						"org.eclipse.xtext.common.Terminals.ID");
-            				
-
-            }
-
-
-            }
-
-
-            }
-
-
-            }
-
-
-            	leaveRule();
-
-        }
-
-            catch (RecognitionException re) {
-                recover(input,re);
-                appendSkippedTokens();
-            }
-        finally {
-        }
-        return current;
-    }
-    // $ANTLR end "ruleSet"
-
     // Delegated rules
 
 
@@ -1691,7 +1593,8 @@ public class InternalRegistrationDSLParser extends AbstractInternalAntlrParser {
     public static final BitSet FOLLOW_6 = new BitSet(new long[]{0x0000000000009000L});
     public static final BitSet FOLLOW_7 = new BitSet(new long[]{0x0000000000032000L});
     public static final BitSet FOLLOW_8 = new BitSet(new long[]{0x0000000000008000L});
-    public static final BitSet FOLLOW_9 = new BitSet(new long[]{0x0000000000582000L});
+    public static final BitSet FOLLOW_9 = new BitSet(new long[]{0x0000000000182000L});
     public static final BitSet FOLLOW_10 = new BitSet(new long[]{0x0000000000200000L});
+    public static final BitSet FOLLOW_11 = new BitSet(new long[]{0x0000000000400000L});
 
 }

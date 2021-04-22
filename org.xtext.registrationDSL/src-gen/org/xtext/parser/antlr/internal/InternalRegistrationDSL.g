@@ -509,15 +509,6 @@ ruleStatement returns [EObject current=null]
 			$current = $this_Add_1.current;
 			afterParserOrEnumRuleCall();
 		}
-		    |
-		{
-			newCompositeNode(grammarAccess.getStatementAccess().getSetParserRuleCall_2());
-		}
-		this_Set_2=ruleSet
-		{
-			$current = $this_Set_2.current;
-			afterParserOrEnumRuleCall();
-		}
 	)
 ;
 
@@ -619,54 +610,40 @@ ruleAdd returns [EObject current=null]
 		}
 		(
 			(
+				lv_toEntity_3_0=RULE_ID
+				{
+					newLeafNode(lv_toEntity_3_0, grammarAccess.getAddAccess().getToEntityIDTerminalRuleCall_3_0());
+				}
 				{
 					if ($current==null) {
 						$current = createModelElement(grammarAccess.getAddRule());
 					}
-				}
-				otherlv_3=RULE_ID
-				{
-					newLeafNode(otherlv_3, grammarAccess.getAddAccess().getToEntityRelationRelationCrossReference_3_0());
+					setWithLastConsumed(
+						$current,
+						"toEntity",
+						lv_toEntity_3_0,
+						"org.eclipse.xtext.common.Terminals.ID");
 				}
 			)
 		)
-	)
-;
-
-// Entry rule entryRuleSet
-entryRuleSet returns [EObject current=null]:
-	{ newCompositeNode(grammarAccess.getSetRule()); }
-	iv_ruleSet=ruleSet
-	{ $current=$iv_ruleSet.current; }
-	EOF;
-
-// Rule Set
-ruleSet returns [EObject current=null]
-@init {
-	enterRule();
-}
-@after {
-	leaveRule();
-}:
-	(
-		otherlv_0='set'
+		otherlv_4='.'
 		{
-			newLeafNode(otherlv_0, grammarAccess.getSetAccess().getSetKeyword_0());
+			newLeafNode(otherlv_4, grammarAccess.getAddAccess().getFullStopKeyword_4());
 		}
 		(
 			(
-				lv_name_1_0=RULE_ID
+				lv_toEntityRelation_5_0=RULE_ID
 				{
-					newLeafNode(lv_name_1_0, grammarAccess.getSetAccess().getNameIDTerminalRuleCall_1_0());
+					newLeafNode(lv_toEntityRelation_5_0, grammarAccess.getAddAccess().getToEntityRelationIDTerminalRuleCall_5_0());
 				}
 				{
 					if ($current==null) {
-						$current = createModelElement(grammarAccess.getSetRule());
+						$current = createModelElement(grammarAccess.getAddRule());
 					}
 					setWithLastConsumed(
 						$current,
-						"name",
-						lv_name_1_0,
+						"toEntityRelation",
+						lv_toEntityRelation_5_0,
 						"org.eclipse.xtext.common.Terminals.ID");
 				}
 			)
