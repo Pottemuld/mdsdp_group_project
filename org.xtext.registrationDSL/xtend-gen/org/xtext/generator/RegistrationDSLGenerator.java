@@ -3,14 +3,27 @@
  */
 package org.xtext.generator;
 
+import com.google.common.collect.Iterables;
+import com.google.common.collect.Iterators;
+import java.util.ArrayList;
+import java.util.function.Consumer;
+import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.emf.ecore.xmi.impl.XMLResourceImpl;
+import org.eclipse.xtend2.lib.StringConcatenation;
 import org.eclipse.xtext.generator.AbstractGenerator;
 import org.eclipse.xtext.generator.IFileSystemAccess2;
 import org.eclipse.xtext.generator.IGeneratorContext;
 import org.eclipse.xtext.xbase.lib.Exceptions;
+import org.eclipse.xtext.xbase.lib.StringExtensions;
+import org.xtext.registrationDSL.Attribute;
+import org.xtext.registrationDSL.Entity;
+import org.xtext.registrationDSL.Field;
+import org.xtext.registrationDSL.Registationsystem;
+import org.xtext.registrationDSL.Relation;
+import org.xtext.registrationDSL.Workflow;
 
 /**
  * Generates code from your model files on save.
@@ -21,17 +34,269 @@ import org.eclipse.xtext.xbase.lib.Exceptions;
 public class RegistrationDSLGenerator extends AbstractGenerator {
   @Override
   public void doGenerate(final Resource resource, final IFileSystemAccess2 fsa, final IGeneratorContext context) {
-    throw new Error("Unresolved compilation problems:"
-      + "\nThe method or field Entity is undefined"
-      + "\nThe method or field Workflow is undefined");
+    final Registationsystem modelInstance = Iterators.<Registationsystem>filter(resource.getAllContents(), Registationsystem.class).next();
+    this.display(modelInstance);
+    final Consumer<Entity> _function = (Entity it) -> {
+      this.generateEntityFile(it, modelInstance.getName(), fsa);
+    };
+    Iterables.<Entity>filter(modelInstance.getDeclarations(), Entity.class).forEach(_function);
+    final Consumer<Workflow> _function_1 = (Workflow it) -> {
+      this.generateWorkflowFile(it, modelInstance.getName(), fsa);
+    };
+    Iterables.<Workflow>filter(modelInstance.getDeclarations(), Workflow.class).forEach(_function_1);
   }
   
-  public void generateEntityFile(final String string, final IFileSystemAccess2 access2) {
-    throw new UnsupportedOperationException("TODO: auto-generated method stub");
+  public void generateEntityFile(final Entity entity, final String systemName, final IFileSystemAccess2 fsa) {
+    String _lowerCase = systemName.toLowerCase();
+    String _plus = (_lowerCase + "/");
+    String _name = entity.getName();
+    String _plus_1 = (_plus + _name);
+    String _plus_2 = (_plus_1 + ".java");
+    fsa.generateFile(_plus_2, this.generateEntity(entity, systemName));
   }
   
-  public void generateWorkflowFile(final String string, final IFileSystemAccess2 access2) {
-    throw new UnsupportedOperationException("TODO: auto-generated method stub");
+  public CharSequence generateEntity(final Entity entity, final String systemName) {
+    StringConcatenation _builder = new StringConcatenation();
+    _builder.append("package ");
+    String _lowerCase = systemName.toLowerCase();
+    _builder.append(_lowerCase);
+    _builder.append(";");
+    _builder.newLineIfNotEmpty();
+    _builder.append("import java.util.*;");
+    _builder.newLine();
+    _builder.newLine();
+    _builder.append("public class ");
+    String _name = entity.getName();
+    _builder.append(_name);
+    {
+      Entity _base = entity.getBase();
+      boolean _tripleNotEquals = (_base != null);
+      if (_tripleNotEquals) {
+        _builder.append(" extends ");
+        String _name_1 = entity.getBase().getName();
+        _builder.append(_name_1);
+      }
+    }
+    _builder.append(" {");
+    _builder.newLineIfNotEmpty();
+    _builder.append("\t");
+    CharSequence _generateConstructor = this.generateConstructor(entity);
+    _builder.append(_generateConstructor, "\t");
+    _builder.newLineIfNotEmpty();
+    _builder.append("\t");
+    _builder.newLine();
+    _builder.append("\t");
+    _builder.append("//ad relations and atributes");
+    _builder.newLine();
+    {
+      Iterable<Attribute> _filter = Iterables.<Attribute>filter(entity.getFields(), Attribute.class);
+      for(final Attribute a : _filter) {
+        _builder.append("\t");
+        _builder.append("private ");
+        String _type = a.getType();
+        _builder.append(_type, "\t");
+        _builder.append(" ");
+        String _name_2 = a.getName();
+        _builder.append(_name_2, "\t");
+        _builder.append(";");
+        _builder.newLineIfNotEmpty();
+        _builder.append("\t");
+        _builder.newLine();
+        _builder.append("\t");
+        _builder.append("public ");
+        String _type_1 = a.getType();
+        _builder.append(_type_1, "\t");
+        _builder.append(" get");
+        String _firstUpper = StringExtensions.toFirstUpper(a.getName());
+        _builder.append(_firstUpper, "\t");
+        _builder.append("(){");
+        _builder.newLineIfNotEmpty();
+        _builder.append("\t");
+        _builder.append("\t");
+        _builder.append("return ");
+        String _name_3 = a.getName();
+        _builder.append(_name_3, "\t\t");
+        _builder.append(";");
+        _builder.newLineIfNotEmpty();
+        _builder.append("\t");
+        _builder.append("\t");
+        _builder.append("}");
+        _builder.newLine();
+        _builder.append("\t");
+        _builder.append("\t");
+        _builder.newLine();
+        _builder.append("\t");
+        _builder.append("public void set");
+        String _firstUpper_1 = StringExtensions.toFirstUpper(a.getName());
+        _builder.append(_firstUpper_1, "\t");
+        _builder.append("(");
+        String _type_2 = a.getType();
+        _builder.append(_type_2, "\t");
+        _builder.append(" value){");
+        _builder.newLineIfNotEmpty();
+        _builder.append("\t");
+        _builder.append("\t");
+        _builder.append("this.");
+        String _name_4 = a.getName();
+        _builder.append(_name_4, "\t\t");
+        _builder.append(" = value;");
+        _builder.newLineIfNotEmpty();
+        _builder.append("\t");
+        _builder.append("\t");
+        _builder.append("}");
+        _builder.newLine();
+        _builder.append("\t");
+        _builder.append("\t");
+        _builder.newLine();
+      }
+    }
+    {
+      Iterable<Relation> _filter_1 = Iterables.<Relation>filter(entity.getFields(), Relation.class);
+      for(final Relation r : _filter_1) {
+        _builder.append("\t");
+        _builder.append("private ArrayList<");
+        String _name_5 = r.getTarget().getName();
+        _builder.append(_name_5, "\t");
+        _builder.append("> r.name = new ArrayList<>();");
+        _builder.newLineIfNotEmpty();
+        _builder.append("\t");
+        _builder.newLine();
+        _builder.append("\t");
+        _builder.append("public get");
+        String _firstUpper_2 = StringExtensions.toFirstUpper(r.getName());
+        _builder.append(_firstUpper_2, "\t");
+        _builder.append("(){");
+        _builder.newLineIfNotEmpty();
+        _builder.append("\t");
+        _builder.append("\t");
+        _builder.append("return ");
+        String _name_6 = r.getName();
+        _builder.append(_name_6, "\t\t");
+        _builder.append(";");
+        _builder.newLineIfNotEmpty();
+        _builder.append("\t");
+        _builder.append("\t");
+        _builder.append("}");
+        _builder.newLine();
+        _builder.append("\t");
+        _builder.append("\t");
+        _builder.newLine();
+        _builder.append("\t");
+        _builder.append("public add");
+        String _firstUpper_3 = StringExtensions.toFirstUpper(r.getName());
+        _builder.append(_firstUpper_3, "\t");
+        _builder.append("(");
+        String _firstUpper_4 = StringExtensions.toFirstUpper(r.getTarget().getName());
+        _builder.append(_firstUpper_4, "\t");
+        _builder.append(" target){");
+        _builder.newLineIfNotEmpty();
+        _builder.append("\t");
+        _builder.append("\t");
+        _builder.append("this.");
+        String _name_7 = r.getName();
+        _builder.append(_name_7, "\t\t");
+        _builder.append(".add(target);");
+        _builder.newLineIfNotEmpty();
+        _builder.append("\t");
+        _builder.append("\t");
+        _builder.append("}");
+        _builder.newLine();
+        _builder.append("\t");
+        _builder.append("\t");
+        _builder.newLine();
+      }
+    }
+    _builder.append("\t");
+    _builder.newLine();
+    _builder.append("}");
+    _builder.newLine();
+    return _builder;
+  }
+  
+  public CharSequence generateConstructor(final Entity entity) {
+    StringConcatenation _builder = new StringConcatenation();
+    _builder.append("public ");
+    String _name = entity.getName();
+    _builder.append(_name);
+    _builder.append("(");
+    {
+      ArrayList<Attribute> _allAtributeFields = this.allAtributeFields(entity);
+      boolean _hasElements = false;
+      for(final Attribute a : _allAtributeFields) {
+        if (!_hasElements) {
+          _hasElements = true;
+        } else {
+          _builder.appendImmediate(", ", "");
+        }
+        String _type = a.getType();
+        _builder.append(_type);
+        _builder.append(" ");
+        String _name_1 = a.getName();
+        _builder.append(_name_1);
+      }
+    }
+    _builder.append(") {");
+    _builder.newLineIfNotEmpty();
+    {
+      Entity _base = entity.getBase();
+      boolean _tripleNotEquals = (_base != null);
+      if (_tripleNotEquals) {
+        _builder.append("\t");
+        _builder.append("super(");
+        {
+          ArrayList<Attribute> _allAtributeFields_1 = this.allAtributeFields(entity.getBase());
+          boolean _hasElements_1 = false;
+          for(final Attribute a_1 : _allAtributeFields_1) {
+            if (!_hasElements_1) {
+              _hasElements_1 = true;
+            } else {
+              _builder.appendImmediate(", ", "\t");
+            }
+            String _name_2 = a_1.getName();
+            _builder.append(_name_2, "\t");
+          }
+        }
+        _builder.append(");");
+        _builder.newLineIfNotEmpty();
+      }
+    }
+    {
+      EList<Field> _fields = entity.getFields();
+      for(final Field a_2 : _fields) {
+        _builder.append("\t");
+        _builder.append("this.");
+        String _name_3 = a_2.getName();
+        _builder.append(_name_3, "\t");
+        _builder.append(" = ");
+        String _name_4 = a_2.getName();
+        _builder.append(_name_4, "\t");
+        _builder.append(";");
+        _builder.newLineIfNotEmpty();
+      }
+    }
+    _builder.append("}");
+    _builder.newLine();
+    return _builder;
+  }
+  
+  public ArrayList<Attribute> allAtributeFields(final Entity entity) {
+    ArrayList<Attribute> _xblockexpression = null;
+    {
+      final ArrayList<Attribute> result = new ArrayList<Attribute>();
+      Entity currentEntity = entity;
+      while ((currentEntity != null)) {
+        {
+          Iterables.<Attribute>addAll(result, Iterables.<Attribute>filter(currentEntity.getFields(), Attribute.class));
+          currentEntity = currentEntity.getBase();
+        }
+      }
+      _xblockexpression = result;
+    }
+    return _xblockexpression;
+  }
+  
+  public Object generateWorkflowFile(final Workflow workflow, final String systemName, final IFileSystemAccess2 fsa) {
+    return null;
   }
   
   public void display(final EObject model) {

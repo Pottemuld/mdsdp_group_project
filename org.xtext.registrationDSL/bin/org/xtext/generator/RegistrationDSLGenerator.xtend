@@ -7,10 +7,11 @@ import org.eclipse.emf.ecore.resource.Resource
 import org.eclipse.xtext.generator.AbstractGenerator
 import org.eclipse.xtext.generator.IFileSystemAccess2
 import org.eclipse.xtext.generator.IGeneratorContext
-import org.xtext.registrationDSL.Registationsystem
+import org.xtext.registrationDSL.*
 import org.eclipse.emf.ecore.EObject
 import org.eclipse.emf.ecore.xmi.impl.XMLResourceImpl
 import org.eclipse.emf.ecore.util.EcoreUtil
+import java.util.ArrayList
 
 /**
  * Generates code from your model files on save.
@@ -26,12 +27,68 @@ class RegistrationDSLGenerator extends AbstractGenerator {
 		modelInstance.declarations.filter(Workflow).forEach[generateWorkflowFile(modelInstance.name,fsa)]
 	}
 	
-	def generateEntityFile(String string, IFileSystemAccess2 access2) {
-		throw new UnsupportedOperationException("TODO: auto-generated method stub")
+	def generateEntityFile(Entity entity, String systemName, IFileSystemAccess2 fsa) {
+		fsa.generateFile(systemName.toLowerCase+"/"+entity.name+".java", entity.generateEntity(systemName))
 	}
 	
-	def generateWorkflowFile(String string, IFileSystemAccess2 access2) {
-		throw new UnsupportedOperationException("TODO: auto-generated method stub")
+	def CharSequence generateEntity(Entity entity, String systemName) '''
+	package «systemName.toLowerCase»;
+	import java.util.*;
+	
+	public class «entity.name»«IF entity.base !==null» extends «entity.base.name»«ENDIF» {
+		«entity.generateConstructor»
+		
+		//ad relations and atributes
+		«FOR a:entity.fields.filter(Attribute)»
+		private «a.type» «a.name»;
+		
+		public «a.type» get«a.name.toFirstUpper»(){
+			return «a.name»;
+			}
+			
+		public void set«a.name.toFirstUpper»(«a.type» value){
+			this.«a.name» = value;
+			}
+			
+		«ENDFOR»
+		«FOR r:entity.fields.filter(Relation)»
+		private ArrayList<«r.target.name»> r.name = new ArrayList<>();
+		
+		public get«r.name.toFirstUpper»(){
+			return «r.name»;
+			}
+			
+		public add«r.name.toFirstUpper»(«r.target.name.toFirstUpper» target){
+			this.«r.name».add(target);
+			}
+			
+		«ENDFOR»
+		
+	}
+	'''
+	def generateConstructor(Entity entity) '''
+	public «entity.name»(«FOR a:entity.allAtributeFields SEPARATOR ", "»«a.type» «a.name»«ENDFOR») {
+		«IF entity.base!==null»
+		super(«FOR a:entity.base.allAtributeFields SEPARATOR ", "»«a.name»«ENDFOR»);
+		«ENDIF»
+		«FOR a:entity.fields»
+		this.«a.name» = «a.name»;
+		«ENDFOR»
+	}
+	'''
+	
+	def allAtributeFields(Entity entity) {//
+		val result = new ArrayList<Attribute>
+		var currentEntity = entity
+		while(currentEntity!==null) {
+			result.addAll(currentEntity.fields.filter(Attribute))
+			currentEntity = currentEntity.base
+		}
+		result
+	}
+	
+	def generateWorkflowFile(Workflow workflow, String systemName, IFileSystemAccess2 fsa) {
+		// generate java class for 
 	}
 		
 	
