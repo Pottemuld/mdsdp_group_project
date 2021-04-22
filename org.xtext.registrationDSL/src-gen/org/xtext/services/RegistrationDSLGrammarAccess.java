@@ -305,33 +305,33 @@ public class RegistrationDSLGrammarAccess extends AbstractElementFinder.Abstract
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "org.xtext.RegistrationDSL.Select");
 		private final Group cGroup = (Group)rule.eContents().get(1);
 		private final Keyword cSelectKeyword_0 = (Keyword)cGroup.eContents().get(0);
-		private final Assignment cSelecttypeAssignment_1 = (Assignment)cGroup.eContents().get(1);
-		private final CrossReference cSelecttypeEntityCrossReference_1_0 = (CrossReference)cSelecttypeAssignment_1.eContents().get(0);
-		private final RuleCall cSelecttypeEntityIDTerminalRuleCall_1_0_1 = (RuleCall)cSelecttypeEntityCrossReference_1_0.eContents().get(1);
+		private final Assignment cSelectTypeAssignment_1 = (Assignment)cGroup.eContents().get(1);
+		private final CrossReference cSelectTypeEntityCrossReference_1_0 = (CrossReference)cSelectTypeAssignment_1.eContents().get(0);
+		private final RuleCall cSelectTypeEntityIDTerminalRuleCall_1_0_1 = (RuleCall)cSelectTypeEntityCrossReference_1_0.eContents().get(1);
 		private final Assignment cEntityNameAssignment_2 = (Assignment)cGroup.eContents().get(2);
 		private final RuleCall cEntityNameIDTerminalRuleCall_2_0 = (RuleCall)cEntityNameAssignment_2.eContents().get(0);
 		
 		//Select:// this is wrong
-		//    'select' selecttype=[Entity] entityName=ID //('where' '{'  '}' )?
+		//    'select' selectType=[Entity] entityName=ID //('where' '{'  '}' )?
 		//;
 		@Override public ParserRule getRule() { return rule; }
 		
 		//// this is wrong
-		//    'select' selecttype=[Entity] entityName=ID
+		//    'select' selectType=[Entity] entityName=ID
 		public Group getGroup() { return cGroup; }
 		
 		//// this is wrong
 		//    'select'
 		public Keyword getSelectKeyword_0() { return cSelectKeyword_0; }
 		
-		//selecttype=[Entity]
-		public Assignment getSelecttypeAssignment_1() { return cSelecttypeAssignment_1; }
+		//selectType=[Entity]
+		public Assignment getSelectTypeAssignment_1() { return cSelectTypeAssignment_1; }
 		
 		//[Entity]
-		public CrossReference getSelecttypeEntityCrossReference_1_0() { return cSelecttypeEntityCrossReference_1_0; }
+		public CrossReference getSelectTypeEntityCrossReference_1_0() { return cSelectTypeEntityCrossReference_1_0; }
 		
 		//ID
-		public RuleCall getSelecttypeEntityIDTerminalRuleCall_1_0_1() { return cSelecttypeEntityIDTerminalRuleCall_1_0_1; }
+		public RuleCall getSelectTypeEntityIDTerminalRuleCall_1_0_1() { return cSelectTypeEntityIDTerminalRuleCall_1_0_1; }
 		
 		//entityName=ID
 		public Assignment getEntityNameAssignment_2() { return cEntityNameAssignment_2; }
@@ -347,18 +347,19 @@ public class RegistrationDSLGrammarAccess extends AbstractElementFinder.Abstract
 		private final RuleCall cSelectedEntityNameIDTerminalRuleCall_1_0 = (RuleCall)cSelectedEntityNameAssignment_1.eContents().get(0);
 		private final Keyword cToKeyword_2 = (Keyword)cGroup.eContents().get(2);
 		private final Assignment cToEntityAssignment_3 = (Assignment)cGroup.eContents().get(3);
-		private final RuleCall cToEntityIDTerminalRuleCall_3_0 = (RuleCall)cToEntityAssignment_3.eContents().get(0);
+		private final CrossReference cToEntityEntityCrossReference_3_0 = (CrossReference)cToEntityAssignment_3.eContents().get(0);
+		private final RuleCall cToEntityEntityIDTerminalRuleCall_3_0_1 = (RuleCall)cToEntityEntityCrossReference_3_0.eContents().get(1);
 		private final Keyword cFullStopKeyword_4 = (Keyword)cGroup.eContents().get(4);
 		private final Assignment cToEntityRelationAssignment_5 = (Assignment)cGroup.eContents().get(5);
 		private final RuleCall cToEntityRelationIDTerminalRuleCall_5_0 = (RuleCall)cToEntityRelationAssignment_5.eContents().get(0);
 		
 		//Add: //this is wrong
-		//    'add' selectedEntityName=ID 'to' toEntity=ID '.' toEntityRelation=ID // check if it's right later
+		//    'add' selectedEntityName=ID 'to' toEntity=[Entity] '.' toEntityRelation=ID // check if it's right later
 		//;
 		@Override public ParserRule getRule() { return rule; }
 		
 		////this is wrong
-		//   'add' selectedEntityName=ID 'to' toEntity=ID '.' toEntityRelation=ID
+		//   'add' selectedEntityName=ID 'to' toEntity=[Entity] '.' toEntityRelation=ID
 		public Group getGroup() { return cGroup; }
 		
 		////this is wrong
@@ -374,11 +375,14 @@ public class RegistrationDSLGrammarAccess extends AbstractElementFinder.Abstract
 		//'to'
 		public Keyword getToKeyword_2() { return cToKeyword_2; }
 		
-		//toEntity=ID
+		//toEntity=[Entity]
 		public Assignment getToEntityAssignment_3() { return cToEntityAssignment_3; }
 		
+		//[Entity]
+		public CrossReference getToEntityEntityCrossReference_3_0() { return cToEntityEntityCrossReference_3_0; }
+		
 		//ID
-		public RuleCall getToEntityIDTerminalRuleCall_3_0() { return cToEntityIDTerminalRuleCall_3_0; }
+		public RuleCall getToEntityEntityIDTerminalRuleCall_3_0_1() { return cToEntityEntityIDTerminalRuleCall_3_0_1; }
 		
 		//'.'
 		public Keyword getFullStopKeyword_4() { return cFullStopKeyword_4; }
@@ -539,7 +543,7 @@ public class RegistrationDSLGrammarAccess extends AbstractElementFinder.Abstract
 	}
 	
 	//Select:// this is wrong
-	//    'select' selecttype=[Entity] entityName=ID //('where' '{'  '}' )?
+	//    'select' selectType=[Entity] entityName=ID //('where' '{'  '}' )?
 	//;
 	public SelectElements getSelectAccess() {
 		return pSelect;
@@ -550,7 +554,7 @@ public class RegistrationDSLGrammarAccess extends AbstractElementFinder.Abstract
 	}
 	
 	//Add: //this is wrong
-	//    'add' selectedEntityName=ID 'to' toEntity=ID '.' toEntityRelation=ID // check if it's right later
+	//    'add' selectedEntityName=ID 'to' toEntity=[Entity] '.' toEntityRelation=ID // check if it's right later
 	//;
 	public AddElements getAddAccess() {
 		return pAdd;

@@ -31,12 +31,12 @@
     </genClasses>
     <genClasses ecoreClass="RegistrationDSL.ecore#//Statement"/>
     <genClasses ecoreClass="RegistrationDSL.ecore#//Select">
-      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference RegistrationDSL.ecore#//Select/selecttype"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference RegistrationDSL.ecore#//Select/selectType"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute RegistrationDSL.ecore#//Select/entityName"/>
     </genClasses>
     <genClasses ecoreClass="RegistrationDSL.ecore#//Add">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute RegistrationDSL.ecore#//Add/selectedEntityName"/>
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute RegistrationDSL.ecore#//Add/toEntity"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference RegistrationDSL.ecore#//Add/toEntity"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute RegistrationDSL.ecore#//Add/toEntityRelation"/>
     </genClasses>
   </genPackages>

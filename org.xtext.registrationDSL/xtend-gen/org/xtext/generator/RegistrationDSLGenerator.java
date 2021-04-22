@@ -44,7 +44,7 @@ public class RegistrationDSLGenerator extends AbstractGenerator {
       this.generateEntityFile(it, modelInstance.getName(), fsa);
     };
     Iterables.<Entity>filter(modelInstance.getDeclarations(), Entity.class).forEach(_function);
-    this.generateWorkflowFile(Iterables.<Workflow>filter(modelInstance.getDeclarations(), Workflow.class), modelInstance.getName(), fsa);
+    this.generateWorkflowFile(Iterables.<Workflow>filter(modelInstance.getDeclarations(), Workflow.class), modelInstance.getName(), Iterables.<Entity>filter(modelInstance.getDeclarations(), Entity.class), fsa);
   }
   
   public void generateEntityFile(final Entity entity, final String systemName, final IFileSystemAccess2 fsa) {
@@ -292,7 +292,7 @@ public class RegistrationDSLGenerator extends AbstractGenerator {
     return _xblockexpression;
   }
   
-  public CharSequence generateWorkflowFile(final Iterable<Workflow> workflows, final String systemName, final IFileSystemAccess2 fsa) {
+  public CharSequence generateWorkflowFile(final Iterable<Workflow> workflows, final String systemName, final Iterable<Entity> entities, final IFileSystemAccess2 fsa) {
     StringConcatenation _builder = new StringConcatenation();
     _builder.append("package ");
     String _lowerCase = systemName.toLowerCase();
@@ -302,15 +302,76 @@ public class RegistrationDSLGenerator extends AbstractGenerator {
     _builder.newLine();
     _builder.append("public class WorkflowManager {");
     _builder.newLine();
-    _builder.append("\t");
-    _builder.append("ArrayList<? extends Object> entityList = new Arraylist<>();");
     _builder.newLine();
+    _builder.append("Scanner scan = new Scanner(System.in); ");
+    _builder.newLine();
+    _builder.newLine();
+    {
+      for(final Entity e : entities) {
+        _builder.append("\t");
+        _builder.append("ArrayList<");
+        String _name = e.getName();
+        _builder.append(_name, "\t");
+        _builder.append("> ");
+        String _firstLower = StringExtensions.toFirstLower(e.getName());
+        _builder.append(_firstLower, "\t");
+        _builder.append("List = new ArrayList<>();");
+        _builder.newLineIfNotEmpty();
+        _builder.append("\t");
+        _builder.newLine();
+        _builder.append("\t");
+        _builder.append("public ");
+        String _name_1 = e.getName();
+        _builder.append(_name_1, "\t");
+        _builder.append(" choose");
+        String _firstUpper = StringExtensions.toFirstUpper(e.getName());
+        _builder.append(_firstUpper, "\t");
+        _builder.append(" () {");
+        _builder.newLineIfNotEmpty();
+        _builder.append("\t");
+        _builder.append("\t");
+        _builder.append("for (");
+        String _name_2 = e.getName();
+        _builder.append(_name_2, "\t\t");
+        _builder.append(" x : ");
+        String _firstLower_1 = StringExtensions.toFirstLower(e.getName());
+        _builder.append(_firstLower_1, "\t\t");
+        _builder.append("List) {");
+        _builder.newLineIfNotEmpty();
+        _builder.append("\t");
+        _builder.append("\t\t");
+        _builder.append("System.out.println(indexOf(x) + \": \" + x.toString());\t");
+        _builder.newLine();
+        _builder.append("\t");
+        _builder.append("\t");
+        _builder.append("}");
+        _builder.newLine();
+        _builder.append("\t");
+        _builder.append("\t\t");
+        _builder.append("System.out.println(\"Please choose from list above, by index: \");");
+        _builder.newLine();
+        _builder.append("\t");
+        _builder.append("\t\t");
+        _builder.append("String input = scan.nextLine();");
+        _builder.newLine();
+        _builder.append("\t");
+        _builder.append("\t\t");
+        _builder.append("return ");
+        String _firstLower_2 = StringExtensions.toFirstLower(e.getName());
+        _builder.append(_firstLower_2, "\t\t\t");
+        _builder.append("List.get(input);");
+        _builder.newLineIfNotEmpty();
+        _builder.append("\t");
+        _builder.append("} ");
+        _builder.newLine();
+      }
+    }
     {
       for(final Workflow w : workflows) {
         _builder.append("\t");
         _builder.append("public void ");
-        String _firstLower = StringExtensions.toFirstLower(w.getName());
-        _builder.append(_firstLower, "\t");
+        String _firstLower_3 = StringExtensions.toFirstLower(w.getName());
+        _builder.append(_firstLower_3, "\t");
         _builder.append(" () {");
         _builder.newLineIfNotEmpty();
         {
@@ -331,7 +392,7 @@ public class RegistrationDSLGenerator extends AbstractGenerator {
     }
     _builder.append("\t");
     _builder.newLine();
-    _builder.append("}");
+    _builder.append("\t");
     _builder.newLine();
     _builder.append("\t");
     _builder.newLine();
@@ -342,8 +403,16 @@ public class RegistrationDSLGenerator extends AbstractGenerator {
   
   protected CharSequence _handleStatement(final Select statement) {
     StringConcatenation _builder = new StringConcatenation();
-    _builder.append("\t\t");
-    _builder.newLine();
+    Entity _selectType = statement.getSelectType();
+    _builder.append(_selectType);
+    _builder.append(" ");
+    String _entityName = statement.getEntityName();
+    _builder.append(_entityName);
+    _builder.append(" = choose");
+    Entity _selectType_1 = statement.getSelectType();
+    _builder.append(_selectType_1);
+    _builder.append("();");
+    _builder.newLineIfNotEmpty();
     return _builder;
   }
   

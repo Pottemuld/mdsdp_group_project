@@ -6,10 +6,12 @@ package org.xtext.registrationDSL.impl;
 import org.eclipse.emf.common.notify.Notification;
 
 import org.eclipse.emf.ecore.EClass;
+import org.eclipse.emf.ecore.InternalEObject;
 
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 
 import org.xtext.registrationDSL.Add;
+import org.xtext.registrationDSL.Entity;
 import org.xtext.registrationDSL.RegistrationDSLPackage;
 
 /**
@@ -50,24 +52,14 @@ public class AddImpl extends StatementImpl implements Add
   protected String selectedEntityName = SELECTED_ENTITY_NAME_EDEFAULT;
 
   /**
-   * The default value of the '{@link #getToEntity() <em>To Entity</em>}' attribute.
+   * The cached value of the '{@link #getToEntity() <em>To Entity</em>}' reference.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @see #getToEntity()
    * @generated
    * @ordered
    */
-  protected static final String TO_ENTITY_EDEFAULT = null;
-
-  /**
-   * The cached value of the '{@link #getToEntity() <em>To Entity</em>}' attribute.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @see #getToEntity()
-   * @generated
-   * @ordered
-   */
-  protected String toEntity = TO_ENTITY_EDEFAULT;
+  protected Entity toEntity;
 
   /**
    * The default value of the '{@link #getToEntityRelation() <em>To Entity Relation</em>}' attribute.
@@ -141,7 +133,27 @@ public class AddImpl extends StatementImpl implements Add
    * @generated
    */
   @Override
-  public String getToEntity()
+  public Entity getToEntity()
+  {
+    if (toEntity != null && toEntity.eIsProxy())
+    {
+      InternalEObject oldToEntity = (InternalEObject)toEntity;
+      toEntity = (Entity)eResolveProxy(oldToEntity);
+      if (toEntity != oldToEntity)
+      {
+        if (eNotificationRequired())
+          eNotify(new ENotificationImpl(this, Notification.RESOLVE, RegistrationDSLPackage.ADD__TO_ENTITY, oldToEntity, toEntity));
+      }
+    }
+    return toEntity;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public Entity basicGetToEntity()
   {
     return toEntity;
   }
@@ -152,9 +164,9 @@ public class AddImpl extends StatementImpl implements Add
    * @generated
    */
   @Override
-  public void setToEntity(String newToEntity)
+  public void setToEntity(Entity newToEntity)
   {
-    String oldToEntity = toEntity;
+    Entity oldToEntity = toEntity;
     toEntity = newToEntity;
     if (eNotificationRequired())
       eNotify(new ENotificationImpl(this, Notification.SET, RegistrationDSLPackage.ADD__TO_ENTITY, oldToEntity, toEntity));
@@ -198,7 +210,8 @@ public class AddImpl extends StatementImpl implements Add
       case RegistrationDSLPackage.ADD__SELECTED_ENTITY_NAME:
         return getSelectedEntityName();
       case RegistrationDSLPackage.ADD__TO_ENTITY:
-        return getToEntity();
+        if (resolve) return getToEntity();
+        return basicGetToEntity();
       case RegistrationDSLPackage.ADD__TO_ENTITY_RELATION:
         return getToEntityRelation();
     }
@@ -219,7 +232,7 @@ public class AddImpl extends StatementImpl implements Add
         setSelectedEntityName((String)newValue);
         return;
       case RegistrationDSLPackage.ADD__TO_ENTITY:
-        setToEntity((String)newValue);
+        setToEntity((Entity)newValue);
         return;
       case RegistrationDSLPackage.ADD__TO_ENTITY_RELATION:
         setToEntityRelation((String)newValue);
@@ -242,7 +255,7 @@ public class AddImpl extends StatementImpl implements Add
         setSelectedEntityName(SELECTED_ENTITY_NAME_EDEFAULT);
         return;
       case RegistrationDSLPackage.ADD__TO_ENTITY:
-        setToEntity(TO_ENTITY_EDEFAULT);
+        setToEntity((Entity)null);
         return;
       case RegistrationDSLPackage.ADD__TO_ENTITY_RELATION:
         setToEntityRelation(TO_ENTITY_RELATION_EDEFAULT);
@@ -264,7 +277,7 @@ public class AddImpl extends StatementImpl implements Add
       case RegistrationDSLPackage.ADD__SELECTED_ENTITY_NAME:
         return SELECTED_ENTITY_NAME_EDEFAULT == null ? selectedEntityName != null : !SELECTED_ENTITY_NAME_EDEFAULT.equals(selectedEntityName);
       case RegistrationDSLPackage.ADD__TO_ENTITY:
-        return TO_ENTITY_EDEFAULT == null ? toEntity != null : !TO_ENTITY_EDEFAULT.equals(toEntity);
+        return toEntity != null;
       case RegistrationDSLPackage.ADD__TO_ENTITY_RELATION:
         return TO_ENTITY_RELATION_EDEFAULT == null ? toEntityRelation != null : !TO_ENTITY_RELATION_EDEFAULT.equals(toEntityRelation);
     }
@@ -284,8 +297,6 @@ public class AddImpl extends StatementImpl implements Add
     StringBuilder result = new StringBuilder(super.toString());
     result.append(" (selectedEntityName: ");
     result.append(selectedEntityName);
-    result.append(", toEntity: ");
-    result.append(toEntity);
     result.append(", toEntityRelation: ");
     result.append(toEntityRelation);
     result.append(')');

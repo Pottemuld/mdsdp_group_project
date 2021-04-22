@@ -22,7 +22,7 @@ import org.xtext.registrationDSL.Select;
  * The following features are implemented:
  * </p>
  * <ul>
- *   <li>{@link org.xtext.registrationDSL.impl.SelectImpl#getSelecttype <em>Selecttype</em>}</li>
+ *   <li>{@link org.xtext.registrationDSL.impl.SelectImpl#getSelectType <em>Select Type</em>}</li>
  *   <li>{@link org.xtext.registrationDSL.impl.SelectImpl#getEntityName <em>Entity Name</em>}</li>
  * </ul>
  *
@@ -31,14 +31,14 @@ import org.xtext.registrationDSL.Select;
 public class SelectImpl extends StatementImpl implements Select
 {
   /**
-   * The cached value of the '{@link #getSelecttype() <em>Selecttype</em>}' reference.
+   * The cached value of the '{@link #getSelectType() <em>Select Type</em>}' reference.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @see #getSelecttype()
+   * @see #getSelectType()
    * @generated
    * @ordered
    */
-  protected Entity selecttype;
+  protected Entity selectType;
 
   /**
    * The default value of the '{@link #getEntityName() <em>Entity Name</em>}' attribute.
@@ -87,19 +87,19 @@ public class SelectImpl extends StatementImpl implements Select
    * @generated
    */
   @Override
-  public Entity getSelecttype()
+  public Entity getSelectType()
   {
-    if (selecttype != null && selecttype.eIsProxy())
+    if (selectType != null && selectType.eIsProxy())
     {
-      InternalEObject oldSelecttype = (InternalEObject)selecttype;
-      selecttype = (Entity)eResolveProxy(oldSelecttype);
-      if (selecttype != oldSelecttype)
+      InternalEObject oldSelectType = (InternalEObject)selectType;
+      selectType = (Entity)eResolveProxy(oldSelectType);
+      if (selectType != oldSelectType)
       {
         if (eNotificationRequired())
-          eNotify(new ENotificationImpl(this, Notification.RESOLVE, RegistrationDSLPackage.SELECT__SELECTTYPE, oldSelecttype, selecttype));
+          eNotify(new ENotificationImpl(this, Notification.RESOLVE, RegistrationDSLPackage.SELECT__SELECT_TYPE, oldSelectType, selectType));
       }
     }
-    return selecttype;
+    return selectType;
   }
 
   /**
@@ -107,9 +107,9 @@ public class SelectImpl extends StatementImpl implements Select
    * <!-- end-user-doc -->
    * @generated
    */
-  public Entity basicGetSelecttype()
+  public Entity basicGetSelectType()
   {
-    return selecttype;
+    return selectType;
   }
 
   /**
@@ -118,12 +118,12 @@ public class SelectImpl extends StatementImpl implements Select
    * @generated
    */
   @Override
-  public void setSelecttype(Entity newSelecttype)
+  public void setSelectType(Entity newSelectType)
   {
-    Entity oldSelecttype = selecttype;
-    selecttype = newSelecttype;
+    Entity oldSelectType = selectType;
+    selectType = newSelectType;
     if (eNotificationRequired())
-      eNotify(new ENotificationImpl(this, Notification.SET, RegistrationDSLPackage.SELECT__SELECTTYPE, oldSelecttype, selecttype));
+      eNotify(new ENotificationImpl(this, Notification.SET, RegistrationDSLPackage.SELECT__SELECT_TYPE, oldSelectType, selectType));
   }
 
   /**
@@ -161,9 +161,9 @@ public class SelectImpl extends StatementImpl implements Select
   {
     switch (featureID)
     {
-      case RegistrationDSLPackage.SELECT__SELECTTYPE:
-        if (resolve) return getSelecttype();
-        return basicGetSelecttype();
+      case RegistrationDSLPackage.SELECT__SELECT_TYPE:
+        if (resolve) return getSelectType();
+        return basicGetSelectType();
       case RegistrationDSLPackage.SELECT__ENTITY_NAME:
         return getEntityName();
     }
@@ -180,8 +180,8 @@ public class SelectImpl extends StatementImpl implements Select
   {
     switch (featureID)
     {
-      case RegistrationDSLPackage.SELECT__SELECTTYPE:
-        setSelecttype((Entity)newValue);
+      case RegistrationDSLPackage.SELECT__SELECT_TYPE:
+        setSelectType((Entity)newValue);
         return;
       case RegistrationDSLPackage.SELECT__ENTITY_NAME:
         setEntityName((String)newValue);
@@ -200,8 +200,8 @@ public class SelectImpl extends StatementImpl implements Select
   {
     switch (featureID)
     {
-      case RegistrationDSLPackage.SELECT__SELECTTYPE:
-        setSelecttype((Entity)null);
+      case RegistrationDSLPackage.SELECT__SELECT_TYPE:
+        setSelectType((Entity)null);
         return;
       case RegistrationDSLPackage.SELECT__ENTITY_NAME:
         setEntityName(ENTITY_NAME_EDEFAULT);
@@ -220,8 +220,8 @@ public class SelectImpl extends StatementImpl implements Select
   {
     switch (featureID)
     {
-      case RegistrationDSLPackage.SELECT__SELECTTYPE:
-        return selecttype != null;
+      case RegistrationDSLPackage.SELECT__SELECT_TYPE:
+        return selectType != null;
       case RegistrationDSLPackage.SELECT__ENTITY_NAME:
         return ENTITY_NAME_EDEFAULT == null ? entityName != null : !ENTITY_NAME_EDEFAULT.equals(entityName);
     }

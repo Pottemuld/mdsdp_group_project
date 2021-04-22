@@ -337,13 +337,13 @@ public interface RegistrationDSLPackage extends EPackage
   int SELECT = 8;
 
   /**
-   * The feature id for the '<em><b>Selecttype</b></em>' reference.
+   * The feature id for the '<em><b>Select Type</b></em>' reference.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    * @ordered
    */
-  int SELECT__SELECTTYPE = STATEMENT_FEATURE_COUNT + 0;
+  int SELECT__SELECT_TYPE = STATEMENT_FEATURE_COUNT + 0;
 
   /**
    * The feature id for the '<em><b>Entity Name</b></em>' attribute.
@@ -383,7 +383,7 @@ public interface RegistrationDSLPackage extends EPackage
   int ADD__SELECTED_ENTITY_NAME = STATEMENT_FEATURE_COUNT + 0;
 
   /**
-   * The feature id for the '<em><b>To Entity</b></em>' attribute.
+   * The feature id for the '<em><b>To Entity</b></em>' reference.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
@@ -600,15 +600,15 @@ public interface RegistrationDSLPackage extends EPackage
   EClass getSelect();
 
   /**
-   * Returns the meta object for the reference '{@link org.xtext.registrationDSL.Select#getSelecttype <em>Selecttype</em>}'.
+   * Returns the meta object for the reference '{@link org.xtext.registrationDSL.Select#getSelectType <em>Select Type</em>}'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @return the meta object for the reference '<em>Selecttype</em>'.
-   * @see org.xtext.registrationDSL.Select#getSelecttype()
+   * @return the meta object for the reference '<em>Select Type</em>'.
+   * @see org.xtext.registrationDSL.Select#getSelectType()
    * @see #getSelect()
    * @generated
    */
-  EReference getSelect_Selecttype();
+  EReference getSelect_SelectType();
 
   /**
    * Returns the meta object for the attribute '{@link org.xtext.registrationDSL.Select#getEntityName <em>Entity Name</em>}'.
@@ -643,15 +643,15 @@ public interface RegistrationDSLPackage extends EPackage
   EAttribute getAdd_SelectedEntityName();
 
   /**
-   * Returns the meta object for the attribute '{@link org.xtext.registrationDSL.Add#getToEntity <em>To Entity</em>}'.
+   * Returns the meta object for the reference '{@link org.xtext.registrationDSL.Add#getToEntity <em>To Entity</em>}'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @return the meta object for the attribute '<em>To Entity</em>'.
+   * @return the meta object for the reference '<em>To Entity</em>'.
    * @see org.xtext.registrationDSL.Add#getToEntity()
    * @see #getAdd()
    * @generated
    */
-  EAttribute getAdd_ToEntity();
+  EReference getAdd_ToEntity();
 
   /**
    * Returns the meta object for the attribute '{@link org.xtext.registrationDSL.Add#getToEntityRelation <em>To Entity Relation</em>}'.
@@ -850,12 +850,12 @@ public interface RegistrationDSLPackage extends EPackage
     EClass SELECT = eINSTANCE.getSelect();
 
     /**
-     * The meta object literal for the '<em><b>Selecttype</b></em>' reference feature.
+     * The meta object literal for the '<em><b>Select Type</b></em>' reference feature.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @generated
      */
-    EReference SELECT__SELECTTYPE = eINSTANCE.getSelect_Selecttype();
+    EReference SELECT__SELECT_TYPE = eINSTANCE.getSelect_SelectType();
 
     /**
      * The meta object literal for the '<em><b>Entity Name</b></em>' attribute feature.
@@ -884,12 +884,12 @@ public interface RegistrationDSLPackage extends EPackage
     EAttribute ADD__SELECTED_ENTITY_NAME = eINSTANCE.getAdd_SelectedEntityName();
 
     /**
-     * The meta object literal for the '<em><b>To Entity</b></em>' attribute feature.
+     * The meta object literal for the '<em><b>To Entity</b></em>' reference feature.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @generated
      */
-    EAttribute ADD__TO_ENTITY = eINSTANCE.getAdd_ToEntity();
+    EReference ADD__TO_ENTITY = eINSTANCE.getAdd_ToEntity();
 
     /**
      * The meta object literal for the '<em><b>To Entity Relation</b></em>' attribute feature.

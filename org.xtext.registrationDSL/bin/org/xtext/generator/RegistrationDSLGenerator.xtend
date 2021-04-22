@@ -25,7 +25,7 @@ class RegistrationDSLGenerator extends AbstractGenerator {
 		val Registationsystem modelInstance = resource.allContents.filter(Registationsystem).next
 		modelInstance.display
 		modelInstance.declarations.filter(Entity).forEach[generateEntityFile(modelInstance.name,fsa)]
-		modelInstance.declarations.filter(Workflow).generateWorkflowFile(modelInstance.name,fsa)
+		modelInstance.declarations.filter(Workflow).generateWorkflowFile(modelInstance.name, modelInstance.declarations.filter(Entity),fsa)
 	}
 	
 	def generateEntityFile(Entity entity, String systemName, IFileSystemAccess2 fsa) {
@@ -88,11 +88,25 @@ class RegistrationDSLGenerator extends AbstractGenerator {
 		result
 	}
 	
-	def generateWorkflowFile(Iterable<Workflow> workflows, String systemName, IFileSystemAccess2 fsa) { '''
+	def generateWorkflowFile(Iterable<Workflow> workflows, String systemName, Iterable<Entity> entities, IFileSystemAccess2 fsa) { '''
 		package «systemName.toLowerCase»
 		import java.util.*;
 		public class WorkflowManager {
-			ArrayList<? extends Object> entityList = new Arraylist<>();
+		
+		Scanner scan = new Scanner(System.in); 
+		
+			«FOR e: entities»
+				ArrayList<«e.name»> «e.name.toFirstLower»List = new ArrayList<>();
+				
+				public «e.name» choose«e.name.toFirstUpper» () {
+					for («e.name» x : «e.name.toFirstLower»List) {
+						System.out.println(indexOf(x) + ": " + x.toString());	
+					}
+						System.out.println("Please choose from list above, by index: ");
+						String input = scan.nextLine();
+						return «e.name.toFirstLower»List.get(input);
+				} 
+			«ENDFOR»
 			«FOR w : workflows»
 				public void «w.name.toFirstLower» () {
 					«FOR s : w.statements»
@@ -101,7 +115,7 @@ class RegistrationDSLGenerator extends AbstractGenerator {
 				}
 			«ENDFOR»
 			
-		}
+			
 	
 	
 	'''
@@ -109,7 +123,7 @@ class RegistrationDSLGenerator extends AbstractGenerator {
 	}
 	
 	def dispatch handleStatement(Select statement) {'''
-		
+		«statement.selectType» «statement.entityName» = choose«statement.selectType»();
 	'''
 	}	
 	

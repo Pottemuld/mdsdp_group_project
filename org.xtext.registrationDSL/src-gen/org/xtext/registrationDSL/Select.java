@@ -13,7 +13,7 @@ package org.xtext.registrationDSL;
  * The following features are supported:
  * </p>
  * <ul>
- *   <li>{@link org.xtext.registrationDSL.Select#getSelecttype <em>Selecttype</em>}</li>
+ *   <li>{@link org.xtext.registrationDSL.Select#getSelectType <em>Select Type</em>}</li>
  *   <li>{@link org.xtext.registrationDSL.Select#getEntityName <em>Entity Name</em>}</li>
  * </ul>
  *
@@ -24,26 +24,26 @@ package org.xtext.registrationDSL;
 public interface Select extends Statement
 {
   /**
-   * Returns the value of the '<em><b>Selecttype</b></em>' reference.
+   * Returns the value of the '<em><b>Select Type</b></em>' reference.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @return the value of the '<em>Selecttype</em>' reference.
-   * @see #setSelecttype(Entity)
-   * @see org.xtext.registrationDSL.RegistrationDSLPackage#getSelect_Selecttype()
+   * @return the value of the '<em>Select Type</em>' reference.
+   * @see #setSelectType(Entity)
+   * @see org.xtext.registrationDSL.RegistrationDSLPackage#getSelect_SelectType()
    * @model
    * @generated
    */
-  Entity getSelecttype();
+  Entity getSelectType();
 
   /**
-   * Sets the value of the '{@link org.xtext.registrationDSL.Select#getSelecttype <em>Selecttype</em>}' reference.
+   * Sets the value of the '{@link org.xtext.registrationDSL.Select#getSelectType <em>Select Type</em>}' reference.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @param value the new value of the '<em>Selecttype</em>' reference.
-   * @see #getSelecttype()
+   * @param value the new value of the '<em>Select Type</em>' reference.
+   * @see #getSelectType()
    * @generated
    */
-  void setSelecttype(Entity value);
+  void setSelectType(Entity value);
 
   /**
    * Returns the value of the '<em><b>Entity Name</b></em>' attribute.

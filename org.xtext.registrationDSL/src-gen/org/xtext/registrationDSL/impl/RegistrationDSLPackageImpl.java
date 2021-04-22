@@ -368,7 +368,7 @@ public class RegistrationDSLPackageImpl extends EPackageImpl implements Registra
    * @generated
    */
   @Override
-  public EReference getSelect_Selecttype()
+  public EReference getSelect_SelectType()
   {
     return (EReference)selectEClass.getEStructuralFeatures().get(0);
   }
@@ -412,9 +412,9 @@ public class RegistrationDSLPackageImpl extends EPackageImpl implements Registra
    * @generated
    */
   @Override
-  public EAttribute getAdd_ToEntity()
+  public EReference getAdd_ToEntity()
   {
-    return (EAttribute)addEClass.getEStructuralFeatures().get(1);
+    return (EReference)addEClass.getEStructuralFeatures().get(1);
   }
 
   /**
@@ -485,12 +485,12 @@ public class RegistrationDSLPackageImpl extends EPackageImpl implements Registra
     statementEClass = createEClass(STATEMENT);
 
     selectEClass = createEClass(SELECT);
-    createEReference(selectEClass, SELECT__SELECTTYPE);
+    createEReference(selectEClass, SELECT__SELECT_TYPE);
     createEAttribute(selectEClass, SELECT__ENTITY_NAME);
 
     addEClass = createEClass(ADD);
     createEAttribute(addEClass, ADD__SELECTED_ENTITY_NAME);
-    createEAttribute(addEClass, ADD__TO_ENTITY);
+    createEReference(addEClass, ADD__TO_ENTITY);
     createEAttribute(addEClass, ADD__TO_ENTITY_RELATION);
   }
 
@@ -557,12 +557,12 @@ public class RegistrationDSLPackageImpl extends EPackageImpl implements Registra
     initEClass(statementEClass, Statement.class, "Statement", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 
     initEClass(selectEClass, Select.class, "Select", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-    initEReference(getSelect_Selecttype(), this.getEntity(), null, "selecttype", null, 0, 1, Select.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEReference(getSelect_SelectType(), this.getEntity(), null, "selectType", null, 0, 1, Select.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
     initEAttribute(getSelect_EntityName(), ecorePackage.getEString(), "entityName", null, 0, 1, Select.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
     initEClass(addEClass, Add.class, "Add", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
     initEAttribute(getAdd_SelectedEntityName(), ecorePackage.getEString(), "selectedEntityName", null, 0, 1, Add.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-    initEAttribute(getAdd_ToEntity(), ecorePackage.getEString(), "toEntity", null, 0, 1, Add.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEReference(getAdd_ToEntity(), this.getEntity(), null, "toEntity", null, 0, 1, Add.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
     initEAttribute(getAdd_ToEntityRelation(), ecorePackage.getEString(), "toEntityRelation", null, 0, 1, Add.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
     // Create resource

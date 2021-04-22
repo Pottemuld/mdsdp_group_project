@@ -70,7 +70,7 @@ public class RegistrationDSLSemanticSequencer extends AbstractDelegatingSemantic
 	 *     Add returns Add
 	 *
 	 * Constraint:
-	 *     (selectedEntityName=ID toEntity=ID toEntityRelation=ID)
+	 *     (selectedEntityName=ID toEntity=[Entity|ID] toEntityRelation=ID)
 	 */
 	protected void sequence_Add(ISerializationContext context, Add semanticObject) {
 		if (errorAcceptor != null) {
@@ -83,7 +83,7 @@ public class RegistrationDSLSemanticSequencer extends AbstractDelegatingSemantic
 		}
 		SequenceFeeder feeder = createSequencerFeeder(context, semanticObject);
 		feeder.accept(grammarAccess.getAddAccess().getSelectedEntityNameIDTerminalRuleCall_1_0(), semanticObject.getSelectedEntityName());
-		feeder.accept(grammarAccess.getAddAccess().getToEntityIDTerminalRuleCall_3_0(), semanticObject.getToEntity());
+		feeder.accept(grammarAccess.getAddAccess().getToEntityEntityIDTerminalRuleCall_3_0_1(), semanticObject.eGet(RegistrationDSLPackage.Literals.ADD__TO_ENTITY, false));
 		feeder.accept(grammarAccess.getAddAccess().getToEntityRelationIDTerminalRuleCall_5_0(), semanticObject.getToEntityRelation());
 		feeder.finish();
 	}
@@ -164,17 +164,17 @@ public class RegistrationDSLSemanticSequencer extends AbstractDelegatingSemantic
 	 *     Select returns Select
 	 *
 	 * Constraint:
-	 *     (selecttype=[Entity|ID] entityName=ID)
+	 *     (selectType=[Entity|ID] entityName=ID)
 	 */
 	protected void sequence_Select(ISerializationContext context, Select semanticObject) {
 		if (errorAcceptor != null) {
-			if (transientValues.isValueTransient(semanticObject, RegistrationDSLPackage.Literals.SELECT__SELECTTYPE) == ValueTransient.YES)
-				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, RegistrationDSLPackage.Literals.SELECT__SELECTTYPE));
+			if (transientValues.isValueTransient(semanticObject, RegistrationDSLPackage.Literals.SELECT__SELECT_TYPE) == ValueTransient.YES)
+				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, RegistrationDSLPackage.Literals.SELECT__SELECT_TYPE));
 			if (transientValues.isValueTransient(semanticObject, RegistrationDSLPackage.Literals.SELECT__ENTITY_NAME) == ValueTransient.YES)
 				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, RegistrationDSLPackage.Literals.SELECT__ENTITY_NAME));
 		}
 		SequenceFeeder feeder = createSequencerFeeder(context, semanticObject);
-		feeder.accept(grammarAccess.getSelectAccess().getSelecttypeEntityIDTerminalRuleCall_1_0_1(), semanticObject.eGet(RegistrationDSLPackage.Literals.SELECT__SELECTTYPE, false));
+		feeder.accept(grammarAccess.getSelectAccess().getSelectTypeEntityIDTerminalRuleCall_1_0_1(), semanticObject.eGet(RegistrationDSLPackage.Literals.SELECT__SELECT_TYPE, false));
 		feeder.accept(grammarAccess.getSelectAccess().getEntityNameIDTerminalRuleCall_2_0(), semanticObject.getEntityName());
 		feeder.finish();
 	}

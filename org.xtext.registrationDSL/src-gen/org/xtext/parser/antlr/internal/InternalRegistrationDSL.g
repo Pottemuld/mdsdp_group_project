@@ -541,7 +541,7 @@ ruleSelect returns [EObject current=null]
 				}
 				otherlv_1=RULE_ID
 				{
-					newLeafNode(otherlv_1, grammarAccess.getSelectAccess().getSelecttypeEntityCrossReference_1_0());
+					newLeafNode(otherlv_1, grammarAccess.getSelectAccess().getSelectTypeEntityCrossReference_1_0());
 				}
 			)
 		)
@@ -610,19 +610,14 @@ ruleAdd returns [EObject current=null]
 		}
 		(
 			(
-				lv_toEntity_3_0=RULE_ID
-				{
-					newLeafNode(lv_toEntity_3_0, grammarAccess.getAddAccess().getToEntityIDTerminalRuleCall_3_0());
-				}
 				{
 					if ($current==null) {
 						$current = createModelElement(grammarAccess.getAddRule());
 					}
-					setWithLastConsumed(
-						$current,
-						"toEntity",
-						lv_toEntity_3_0,
-						"org.eclipse.xtext.common.Terminals.ID");
+				}
+				otherlv_3=RULE_ID
+				{
+					newLeafNode(otherlv_3, grammarAccess.getAddAccess().getToEntityEntityCrossReference_3_0());
 				}
 			)
 		)

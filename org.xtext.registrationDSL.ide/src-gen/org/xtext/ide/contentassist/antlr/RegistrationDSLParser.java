@@ -53,7 +53,7 @@ public class RegistrationDSLParser extends AbstractContentAssistParser {
 			builder.put(grammarAccess.getRelationAccess().getTargetAssignment_3(), "rule__Relation__TargetAssignment_3");
 			builder.put(grammarAccess.getWorkflowAccess().getNameAssignment_1(), "rule__Workflow__NameAssignment_1");
 			builder.put(grammarAccess.getWorkflowAccess().getStatementsAssignment_3(), "rule__Workflow__StatementsAssignment_3");
-			builder.put(grammarAccess.getSelectAccess().getSelecttypeAssignment_1(), "rule__Select__SelecttypeAssignment_1");
+			builder.put(grammarAccess.getSelectAccess().getSelectTypeAssignment_1(), "rule__Select__SelectTypeAssignment_1");
 			builder.put(grammarAccess.getSelectAccess().getEntityNameAssignment_2(), "rule__Select__EntityNameAssignment_2");
 			builder.put(grammarAccess.getAddAccess().getSelectedEntityNameAssignment_1(), "rule__Add__SelectedEntityNameAssignment_1");
 			builder.put(grammarAccess.getAddAccess().getToEntityAssignment_3(), "rule__Add__ToEntityAssignment_3");

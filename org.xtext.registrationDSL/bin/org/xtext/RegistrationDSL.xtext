@@ -34,7 +34,7 @@ Statement:
 ;
 
 Select:// this is wrong
-	'select' selecttype=[Entity] entityName=ID //('where' '{'  '}' )?
+	'select' selectType=[Entity] entityName=ID //('where' '{'  '}' )?
 ;
 
 Add: //this is wrong
