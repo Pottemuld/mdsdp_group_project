@@ -47,26 +47,26 @@ public interface Add extends Statement
   void setSelectedEntityName(String value);
 
   /**
-   * Returns the value of the '<em><b>To Entity</b></em>' reference.
+   * Returns the value of the '<em><b>To Entity</b></em>' attribute.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @return the value of the '<em>To Entity</em>' reference.
-   * @see #setToEntity(Entity)
+   * @return the value of the '<em>To Entity</em>' attribute.
+   * @see #setToEntity(String)
    * @see org.xtext.registrationDSL.RegistrationDSLPackage#getAdd_ToEntity()
    * @model
    * @generated
    */
-  Entity getToEntity();
+  String getToEntity();
 
   /**
-   * Sets the value of the '{@link org.xtext.registrationDSL.Add#getToEntity <em>To Entity</em>}' reference.
+   * Sets the value of the '{@link org.xtext.registrationDSL.Add#getToEntity <em>To Entity</em>}' attribute.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @param value the new value of the '<em>To Entity</em>' reference.
+   * @param value the new value of the '<em>To Entity</em>' attribute.
    * @see #getToEntity()
    * @generated
    */
-  void setToEntity(Entity value);
+  void setToEntity(String value);
 
   /**
    * Returns the value of the '<em><b>To Entity Relation</b></em>' attribute.

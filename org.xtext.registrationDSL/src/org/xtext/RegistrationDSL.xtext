@@ -30,7 +30,7 @@ Workflow:
 ;
 
 Statement:
-	Select | Add //| Set
+	Select | Add | Register //| Set
 ;
 
 Select:// this is wrong
@@ -38,9 +38,12 @@ Select:// this is wrong
 ;
 
 Add: //this is wrong
-	'add' selectedEntityName=ID 'to' toEntity=[Entity] '.' toEntityRelation=ID // check if it's right later
+	'add' selectedEntityName=ID 'to' toEntity=ID '.' toEntityRelation=ID // check if it's right later
 ;
 
+Register:
+	'register' 
+;
 /*Set: // Do we need this?
 	"set" name=ID
 ;*/

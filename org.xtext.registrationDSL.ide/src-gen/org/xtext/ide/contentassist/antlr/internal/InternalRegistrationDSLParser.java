@@ -4462,29 +4462,21 @@ public class InternalRegistrationDSLParser extends AbstractInternalContentAssist
 
 
     // $ANTLR start "rule__Add__ToEntityAssignment_3"
-    // InternalRegistrationDSL.g:1532:1: rule__Add__ToEntityAssignment_3 : ( ( RULE_ID ) ) ;
+    // InternalRegistrationDSL.g:1532:1: rule__Add__ToEntityAssignment_3 : ( RULE_ID ) ;
     public final void rule__Add__ToEntityAssignment_3() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalRegistrationDSL.g:1536:1: ( ( ( RULE_ID ) ) )
-            // InternalRegistrationDSL.g:1537:2: ( ( RULE_ID ) )
+            // InternalRegistrationDSL.g:1536:1: ( ( RULE_ID ) )
+            // InternalRegistrationDSL.g:1537:2: ( RULE_ID )
             {
-            // InternalRegistrationDSL.g:1537:2: ( ( RULE_ID ) )
-            // InternalRegistrationDSL.g:1538:3: ( RULE_ID )
+            // InternalRegistrationDSL.g:1537:2: ( RULE_ID )
+            // InternalRegistrationDSL.g:1538:3: RULE_ID
             {
-             before(grammarAccess.getAddAccess().getToEntityEntityCrossReference_3_0()); 
-            // InternalRegistrationDSL.g:1539:3: ( RULE_ID )
-            // InternalRegistrationDSL.g:1540:4: RULE_ID
-            {
-             before(grammarAccess.getAddAccess().getToEntityEntityIDTerminalRuleCall_3_0_1()); 
+             before(grammarAccess.getAddAccess().getToEntityIDTerminalRuleCall_3_0()); 
             match(input,RULE_ID,FOLLOW_2); 
-             after(grammarAccess.getAddAccess().getToEntityEntityIDTerminalRuleCall_3_0_1()); 
-
-            }
-
-             after(grammarAccess.getAddAccess().getToEntityEntityCrossReference_3_0()); 
+             after(grammarAccess.getAddAccess().getToEntityIDTerminalRuleCall_3_0()); 
 
             }
 
@@ -4507,17 +4499,17 @@ public class InternalRegistrationDSLParser extends AbstractInternalContentAssist
 
 
     // $ANTLR start "rule__Add__ToEntityRelationAssignment_5"
-    // InternalRegistrationDSL.g:1551:1: rule__Add__ToEntityRelationAssignment_5 : ( RULE_ID ) ;
+    // InternalRegistrationDSL.g:1547:1: rule__Add__ToEntityRelationAssignment_5 : ( RULE_ID ) ;
     public final void rule__Add__ToEntityRelationAssignment_5() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalRegistrationDSL.g:1555:1: ( ( RULE_ID ) )
-            // InternalRegistrationDSL.g:1556:2: ( RULE_ID )
+            // InternalRegistrationDSL.g:1551:1: ( ( RULE_ID ) )
+            // InternalRegistrationDSL.g:1552:2: ( RULE_ID )
             {
-            // InternalRegistrationDSL.g:1556:2: ( RULE_ID )
-            // InternalRegistrationDSL.g:1557:3: RULE_ID
+            // InternalRegistrationDSL.g:1552:2: ( RULE_ID )
+            // InternalRegistrationDSL.g:1553:3: RULE_ID
             {
              before(grammarAccess.getAddAccess().getToEntityRelationIDTerminalRuleCall_5_0()); 
             match(input,RULE_ID,FOLLOW_2); 

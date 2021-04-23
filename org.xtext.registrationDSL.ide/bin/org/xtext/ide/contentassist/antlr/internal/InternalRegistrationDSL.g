@@ -1535,13 +1535,9 @@ rule__Add__ToEntityAssignment_3
 	}
 :
 	(
-		{ before(grammarAccess.getAddAccess().getToEntityEntityCrossReference_3_0()); }
-		(
-			{ before(grammarAccess.getAddAccess().getToEntityEntityIDTerminalRuleCall_3_0_1()); }
-			RULE_ID
-			{ after(grammarAccess.getAddAccess().getToEntityEntityIDTerminalRuleCall_3_0_1()); }
-		)
-		{ after(grammarAccess.getAddAccess().getToEntityEntityCrossReference_3_0()); }
+		{ before(grammarAccess.getAddAccess().getToEntityIDTerminalRuleCall_3_0()); }
+		RULE_ID
+		{ after(grammarAccess.getAddAccess().getToEntityIDTerminalRuleCall_3_0()); }
 	)
 ;
 finally {

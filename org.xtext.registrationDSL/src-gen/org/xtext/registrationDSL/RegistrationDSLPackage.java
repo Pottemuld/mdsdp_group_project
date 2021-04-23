@@ -383,7 +383,7 @@ public interface RegistrationDSLPackage extends EPackage
   int ADD__SELECTED_ENTITY_NAME = STATEMENT_FEATURE_COUNT + 0;
 
   /**
-   * The feature id for the '<em><b>To Entity</b></em>' reference.
+   * The feature id for the '<em><b>To Entity</b></em>' attribute.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
@@ -643,15 +643,15 @@ public interface RegistrationDSLPackage extends EPackage
   EAttribute getAdd_SelectedEntityName();
 
   /**
-   * Returns the meta object for the reference '{@link org.xtext.registrationDSL.Add#getToEntity <em>To Entity</em>}'.
+   * Returns the meta object for the attribute '{@link org.xtext.registrationDSL.Add#getToEntity <em>To Entity</em>}'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @return the meta object for the reference '<em>To Entity</em>'.
+   * @return the meta object for the attribute '<em>To Entity</em>'.
    * @see org.xtext.registrationDSL.Add#getToEntity()
    * @see #getAdd()
    * @generated
    */
-  EReference getAdd_ToEntity();
+  EAttribute getAdd_ToEntity();
 
   /**
    * Returns the meta object for the attribute '{@link org.xtext.registrationDSL.Add#getToEntityRelation <em>To Entity Relation</em>}'.
@@ -884,12 +884,12 @@ public interface RegistrationDSLPackage extends EPackage
     EAttribute ADD__SELECTED_ENTITY_NAME = eINSTANCE.getAdd_SelectedEntityName();
 
     /**
-     * The meta object literal for the '<em><b>To Entity</b></em>' reference feature.
+     * The meta object literal for the '<em><b>To Entity</b></em>' attribute feature.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @generated
      */
-    EReference ADD__TO_ENTITY = eINSTANCE.getAdd_ToEntity();
+    EAttribute ADD__TO_ENTITY = eINSTANCE.getAdd_ToEntity();
 
     /**
      * The meta object literal for the '<em><b>To Entity Relation</b></em>' attribute feature.

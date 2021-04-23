@@ -347,19 +347,18 @@ public class RegistrationDSLGrammarAccess extends AbstractElementFinder.Abstract
 		private final RuleCall cSelectedEntityNameIDTerminalRuleCall_1_0 = (RuleCall)cSelectedEntityNameAssignment_1.eContents().get(0);
 		private final Keyword cToKeyword_2 = (Keyword)cGroup.eContents().get(2);
 		private final Assignment cToEntityAssignment_3 = (Assignment)cGroup.eContents().get(3);
-		private final CrossReference cToEntityEntityCrossReference_3_0 = (CrossReference)cToEntityAssignment_3.eContents().get(0);
-		private final RuleCall cToEntityEntityIDTerminalRuleCall_3_0_1 = (RuleCall)cToEntityEntityCrossReference_3_0.eContents().get(1);
+		private final RuleCall cToEntityIDTerminalRuleCall_3_0 = (RuleCall)cToEntityAssignment_3.eContents().get(0);
 		private final Keyword cFullStopKeyword_4 = (Keyword)cGroup.eContents().get(4);
 		private final Assignment cToEntityRelationAssignment_5 = (Assignment)cGroup.eContents().get(5);
 		private final RuleCall cToEntityRelationIDTerminalRuleCall_5_0 = (RuleCall)cToEntityRelationAssignment_5.eContents().get(0);
 		
 		//Add: //this is wrong
-		//    'add' selectedEntityName=ID 'to' toEntity=[Entity] '.' toEntityRelation=ID // check if it's right later
+		//    'add' selectedEntityName=ID 'to' toEntity=ID '.' toEntityRelation=ID // check if it's right later
 		//;
 		@Override public ParserRule getRule() { return rule; }
 		
 		////this is wrong
-		//   'add' selectedEntityName=ID 'to' toEntity=[Entity] '.' toEntityRelation=ID
+		//   'add' selectedEntityName=ID 'to' toEntity=ID '.' toEntityRelation=ID
 		public Group getGroup() { return cGroup; }
 		
 		////this is wrong
@@ -375,14 +374,11 @@ public class RegistrationDSLGrammarAccess extends AbstractElementFinder.Abstract
 		//'to'
 		public Keyword getToKeyword_2() { return cToKeyword_2; }
 		
-		//toEntity=[Entity]
+		//toEntity=ID
 		public Assignment getToEntityAssignment_3() { return cToEntityAssignment_3; }
 		
-		//[Entity]
-		public CrossReference getToEntityEntityCrossReference_3_0() { return cToEntityEntityCrossReference_3_0; }
-		
 		//ID
-		public RuleCall getToEntityEntityIDTerminalRuleCall_3_0_1() { return cToEntityEntityIDTerminalRuleCall_3_0_1; }
+		public RuleCall getToEntityIDTerminalRuleCall_3_0() { return cToEntityIDTerminalRuleCall_3_0; }
 		
 		//'.'
 		public Keyword getFullStopKeyword_4() { return cFullStopKeyword_4; }
@@ -554,7 +550,7 @@ public class RegistrationDSLGrammarAccess extends AbstractElementFinder.Abstract
 	}
 	
 	//Add: //this is wrong
-	//    'add' selectedEntityName=ID 'to' toEntity=[Entity] '.' toEntityRelation=ID // check if it's right later
+	//    'add' selectedEntityName=ID 'to' toEntity=ID '.' toEntityRelation=ID // check if it's right later
 	//;
 	public AddElements getAddAccess() {
 		return pAdd;

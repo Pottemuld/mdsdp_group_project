@@ -292,7 +292,15 @@ public class RegistrationDSLGenerator extends AbstractGenerator {
     return _xblockexpression;
   }
   
-  public CharSequence generateWorkflowFile(final Iterable<Workflow> workflows, final String systemName, final Iterable<Entity> entities, final IFileSystemAccess2 fsa) {
+  public void generateWorkflowFile(final Iterable<Workflow> workflows, final String systemName, final Iterable<Entity> entities, final IFileSystemAccess2 fsa) {
+    String _lowerCase = systemName.toLowerCase();
+    String _plus = (_lowerCase + "/");
+    String _plus_1 = (_plus + "WorkflowManager");
+    String _plus_2 = (_plus_1 + ".java");
+    fsa.generateFile(_plus_2, this.generateWorkflowManager(workflows, systemName, entities, fsa));
+  }
+  
+  public CharSequence generateWorkflowManager(final Iterable<Workflow> workflows, final String systemName, final Iterable<Entity> entities, final IFileSystemAccess2 fsa) {
     StringConcatenation _builder = new StringConcatenation();
     _builder.append("package ");
     String _lowerCase = systemName.toLowerCase();
@@ -403,14 +411,14 @@ public class RegistrationDSLGenerator extends AbstractGenerator {
   
   protected CharSequence _handleStatement(final Select statement) {
     StringConcatenation _builder = new StringConcatenation();
-    Entity _selectType = statement.getSelectType();
-    _builder.append(_selectType);
+    String _name = statement.getSelectType().getName();
+    _builder.append(_name);
     _builder.append(" ");
     String _entityName = statement.getEntityName();
     _builder.append(_entityName);
     _builder.append(" = choose");
-    Entity _selectType_1 = statement.getSelectType();
-    _builder.append(_selectType_1);
+    String _name_1 = statement.getSelectType().getName();
+    _builder.append(_name_1);
     _builder.append("();");
     _builder.newLineIfNotEmpty();
     return _builder;
@@ -418,8 +426,16 @@ public class RegistrationDSLGenerator extends AbstractGenerator {
   
   protected CharSequence _handleStatement(final Add statement) {
     StringConcatenation _builder = new StringConcatenation();
-    _builder.append("\t\t\t");
-    _builder.newLine();
+    String _toEntity = statement.getToEntity();
+    _builder.append(_toEntity);
+    _builder.append(".set");
+    String _firstUpper = StringExtensions.toFirstUpper(statement.getToEntityRelation());
+    _builder.append(_firstUpper);
+    _builder.append("(");
+    String _selectedEntityName = statement.getSelectedEntityName();
+    _builder.append(_selectedEntityName);
+    _builder.append(")");
+    _builder.newLineIfNotEmpty();
     return _builder;
   }
   

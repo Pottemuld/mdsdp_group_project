@@ -70,7 +70,7 @@ public class RegistrationDSLSemanticSequencer extends AbstractDelegatingSemantic
 	 *     Add returns Add
 	 *
 	 * Constraint:
-	 *     (selectedEntityName=ID toEntity=[Entity|ID] toEntityRelation=ID)
+	 *     (selectedEntityName=ID toEntity=ID toEntityRelation=ID)
 	 */
 	protected void sequence_Add(ISerializationContext context, Add semanticObject) {
 		if (errorAcceptor != null) {
@@ -83,7 +83,7 @@ public class RegistrationDSLSemanticSequencer extends AbstractDelegatingSemantic
 		}
 		SequenceFeeder feeder = createSequencerFeeder(context, semanticObject);
 		feeder.accept(grammarAccess.getAddAccess().getSelectedEntityNameIDTerminalRuleCall_1_0(), semanticObject.getSelectedEntityName());
-		feeder.accept(grammarAccess.getAddAccess().getToEntityEntityIDTerminalRuleCall_3_0_1(), semanticObject.eGet(RegistrationDSLPackage.Literals.ADD__TO_ENTITY, false));
+		feeder.accept(grammarAccess.getAddAccess().getToEntityIDTerminalRuleCall_3_0(), semanticObject.getToEntity());
 		feeder.accept(grammarAccess.getAddAccess().getToEntityRelationIDTerminalRuleCall_5_0(), semanticObject.getToEntityRelation());
 		feeder.finish();
 	}

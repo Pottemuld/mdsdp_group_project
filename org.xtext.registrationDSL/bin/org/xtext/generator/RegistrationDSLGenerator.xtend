@@ -88,7 +88,11 @@ class RegistrationDSLGenerator extends AbstractGenerator {
 		result
 	}
 	
-	def generateWorkflowFile(Iterable<Workflow> workflows, String systemName, Iterable<Entity> entities, IFileSystemAccess2 fsa) { '''
+	def generateWorkflowFile(Iterable<Workflow> workflows, String systemName, Iterable<Entity> entities, IFileSystemAccess2 fsa) {
+		fsa.generateFile(systemName.toLowerCase+"/"+ "WorkflowManager"+".java", generateWorkflowManager(workflows, systemName, entities, fsa))
+	}
+	
+	def CharSequence generateWorkflowManager(Iterable<Workflow> workflows, String systemName, Iterable<Entity> entities, IFileSystemAccess2 fsa) { '''
 		package «systemName.toLowerCase»
 		import java.util.*;
 		public class WorkflowManager {
@@ -107,7 +111,7 @@ class RegistrationDSLGenerator extends AbstractGenerator {
 						return «e.name.toFirstLower»List.get(input);
 				} 
 			«ENDFOR»
-			«FOR w : workflows»
+			«FOR w : workflows» 
 				public void «w.name.toFirstLower» () {
 					«FOR s : w.statements»
 						«handleStatement(s)»	
@@ -123,12 +127,12 @@ class RegistrationDSLGenerator extends AbstractGenerator {
 	}
 	
 	def dispatch handleStatement(Select statement) {'''
-		«statement.selectType» «statement.entityName» = choose«statement.selectType»();
+		«statement.selectType.name» «statement.entityName» = choose«statement.selectType.name»();
 	'''
 	}	
 	
 	def dispatch handleStatement(Add statement) {'''
-			
+		«statement.toEntity».set«statement.toEntityRelation.toFirstUpper»(«statement.selectedEntityName»)
 	'''
 	}	
 	

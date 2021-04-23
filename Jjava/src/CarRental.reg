@@ -22,4 +22,4 @@ workflow book_car {
     add customer to vehicle.rented_to
     //set vehicle.availability = periode
 }
-}
+} 

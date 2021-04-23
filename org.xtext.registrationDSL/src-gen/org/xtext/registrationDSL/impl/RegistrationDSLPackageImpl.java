@@ -412,9 +412,9 @@ public class RegistrationDSLPackageImpl extends EPackageImpl implements Registra
    * @generated
    */
   @Override
-  public EReference getAdd_ToEntity()
+  public EAttribute getAdd_ToEntity()
   {
-    return (EReference)addEClass.getEStructuralFeatures().get(1);
+    return (EAttribute)addEClass.getEStructuralFeatures().get(1);
   }
 
   /**
@@ -490,7 +490,7 @@ public class RegistrationDSLPackageImpl extends EPackageImpl implements Registra
 
     addEClass = createEClass(ADD);
     createEAttribute(addEClass, ADD__SELECTED_ENTITY_NAME);
-    createEReference(addEClass, ADD__TO_ENTITY);
+    createEAttribute(addEClass, ADD__TO_ENTITY);
     createEAttribute(addEClass, ADD__TO_ENTITY_RELATION);
   }
 
@@ -562,7 +562,7 @@ public class RegistrationDSLPackageImpl extends EPackageImpl implements Registra
 
     initEClass(addEClass, Add.class, "Add", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
     initEAttribute(getAdd_SelectedEntityName(), ecorePackage.getEString(), "selectedEntityName", null, 0, 1, Add.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-    initEReference(getAdd_ToEntity(), this.getEntity(), null, "toEntity", null, 0, 1, Add.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEAttribute(getAdd_ToEntity(), ecorePackage.getEString(), "toEntity", null, 0, 1, Add.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
     initEAttribute(getAdd_ToEntityRelation(), ecorePackage.getEString(), "toEntityRelation", null, 0, 1, Add.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
     // Create resource
