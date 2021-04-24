@@ -76,6 +76,7 @@ public class RegistrationDSLFactoryImpl extends EFactoryImpl implements Registra
       case RegistrationDSLPackage.STATEMENT: return createStatement();
       case RegistrationDSLPackage.SELECT: return createSelect();
       case RegistrationDSLPackage.ADD: return createAdd();
+      case RegistrationDSLPackage.REGISTER: return createRegister();
       case RegistrationDSLPackage.LOGIC_EXP: return createLogicExp();
       case RegistrationDSLPackage.COMPARISON: return createComparison();
       case RegistrationDSLPackage.EXPRESSION: return createExpression();
@@ -223,6 +224,18 @@ public class RegistrationDSLFactoryImpl extends EFactoryImpl implements Registra
   {
     AddImpl add = new AddImpl();
     return add;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public Register createRegister()
+  {
+    RegisterImpl register = new RegisterImpl();
+    return register;
   }
 
   /**

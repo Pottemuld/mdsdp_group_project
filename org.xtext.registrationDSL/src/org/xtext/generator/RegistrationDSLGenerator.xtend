@@ -115,7 +115,8 @@ class RegistrationDSLGenerator extends AbstractGenerator {
 		import java.util.*;
 		public class WorkflowManager {
 		
-		Scanner scan = new Scanner(System.in); 
+		Scanner scan = new Scanner(System.in);
+		String input; 
 		
 			«FOR e: entities»
 				ArrayList<«e.name»> «e.name.toFirstLower»List = new ArrayList<>();
@@ -127,7 +128,7 @@ class RegistrationDSLGenerator extends AbstractGenerator {
 						i++;
 					}
 						System.out.println("Please choose from list above, by index: ");
-						String input = scan.nextLine();
+						input = scan.nextLine();
 						return «e.name.toFirstLower»List.get(Integer.parseInt(input));
 				} 
 			«ENDFOR»
@@ -152,6 +153,27 @@ class RegistrationDSLGenerator extends AbstractGenerator {
 		«statement.toEntity».add«statement.toEntityRelation.toFirstUpper»(«statement.selectedEntityName»);
 	'''
 	}	
+	
+	def dispatch handleStatement(Register s){'''
+		String regex = "\\d+";
+		«s.type.name.toFirstUpper» «s.name»;
+		«FOR a:s.type.allAtributeFields.filter(Attribute)»
+			System.out.println("Please enter value for «s.type.name» «a.name»: ");
+			input = scan.nextLine();
+			«IF a.type=="int"»
+				while(!input.matches(regex)){
+					System.out.println("Entered value was not of type «a.type», please try again: ");
+					input = scan.nextLine();
+				}
+				«a.type» «a.name» = Integer.parseInt(input);	
+			«ELSE»
+			«a.type» «a.name» = input;	
+			«ENDIF»
+		«ENDFOR»
+		«s.name» = new «s.type.name»(«FOR a:s.type.allAtributeFields SEPARATOR ", "»«a.name»«ENDFOR»);
+		«s.type.name.toFirstLower»List.add(«s.name»);
+	'''
+	}
 	
 	def display(EObject model) {
   		val res = new XMLResourceImpl

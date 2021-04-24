@@ -26,6 +26,7 @@ import org.xtext.registrationDSL.Mult;
 import org.xtext.registrationDSL.Or;
 import org.xtext.registrationDSL.Plus;
 import org.xtext.registrationDSL.Registationsystem;
+import org.xtext.registrationDSL.Register;
 import org.xtext.registrationDSL.RegistrationDSLFactory;
 import org.xtext.registrationDSL.RegistrationDSLPackage;
 import org.xtext.registrationDSL.Relation;
@@ -120,6 +121,13 @@ public class RegistrationDSLPackageImpl extends EPackageImpl implements Registra
    * @generated
    */
   private EClass addEClass = null;
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  private EClass registerEClass = null;
 
   /**
    * <!-- begin-user-doc -->
@@ -571,6 +579,39 @@ public class RegistrationDSLPackageImpl extends EPackageImpl implements Registra
    * @generated
    */
   @Override
+  public EClass getRegister()
+  {
+    return registerEClass;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public EReference getRegister_Type()
+  {
+    return (EReference)registerEClass.getEStructuralFeatures().get(0);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public EAttribute getRegister_Name()
+  {
+    return (EAttribute)registerEClass.getEStructuralFeatures().get(1);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
   public EClass getLogicExp()
   {
     return logicExpEClass;
@@ -975,6 +1016,10 @@ public class RegistrationDSLPackageImpl extends EPackageImpl implements Registra
     createEAttribute(addEClass, ADD__TO_ENTITY);
     createEAttribute(addEClass, ADD__TO_ENTITY_RELATION);
 
+    registerEClass = createEClass(REGISTER);
+    createEReference(registerEClass, REGISTER__TYPE);
+    createEAttribute(registerEClass, REGISTER__NAME);
+
     logicExpEClass = createEClass(LOGIC_EXP);
     createEReference(logicExpEClass, LOGIC_EXP__LOGIC);
 
@@ -1055,6 +1100,7 @@ public class RegistrationDSLPackageImpl extends EPackageImpl implements Registra
     workflowEClass.getESuperTypes().add(this.getDeclaration());
     selectEClass.getESuperTypes().add(this.getStatement());
     addEClass.getESuperTypes().add(this.getStatement());
+    registerEClass.getESuperTypes().add(this.getStatement());
     comparisonEClass.getESuperTypes().add(this.getLogicExp());
     varEClass.getESuperTypes().add(this.getExpression());
     constantEClass.getESuperTypes().add(this.getExpression());
@@ -1104,6 +1150,10 @@ public class RegistrationDSLPackageImpl extends EPackageImpl implements Registra
     initEAttribute(getAdd_SelectedEntityName(), ecorePackage.getEString(), "selectedEntityName", null, 0, 1, Add.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
     initEAttribute(getAdd_ToEntity(), ecorePackage.getEString(), "toEntity", null, 0, 1, Add.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
     initEAttribute(getAdd_ToEntityRelation(), ecorePackage.getEString(), "toEntityRelation", null, 0, 1, Add.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+    initEClass(registerEClass, Register.class, "Register", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+    initEReference(getRegister_Type(), this.getEntity(), null, "type", null, 0, 1, Register.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEAttribute(getRegister_Name(), ecorePackage.getEString(), "name", null, 0, 1, Register.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
     initEClass(logicExpEClass, LogicExp.class, "LogicExp", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
     initEReference(getLogicExp_Logic(), this.getLogicExp(), null, "logic", null, 0, 1, LogicExp.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);

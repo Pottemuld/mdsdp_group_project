@@ -424,15 +424,39 @@ public class RegistrationDSLGrammarAccess extends AbstractElementFinder.Abstract
 	}
 	public class RegisterElements extends AbstractParserRuleElementFinder {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "org.xtext.RegistrationDSL.Register");
-		private final Keyword cRegisterKeyword = (Keyword)rule.eContents().get(1);
+		private final Group cGroup = (Group)rule.eContents().get(1);
+		private final Keyword cRegisterKeyword_0 = (Keyword)cGroup.eContents().get(0);
+		private final Assignment cTypeAssignment_1 = (Assignment)cGroup.eContents().get(1);
+		private final CrossReference cTypeEntityCrossReference_1_0 = (CrossReference)cTypeAssignment_1.eContents().get(0);
+		private final RuleCall cTypeEntityIDTerminalRuleCall_1_0_1 = (RuleCall)cTypeEntityCrossReference_1_0.eContents().get(1);
+		private final Assignment cNameAssignment_2 = (Assignment)cGroup.eContents().get(2);
+		private final RuleCall cNameIDTerminalRuleCall_2_0 = (RuleCall)cNameAssignment_2.eContents().get(0);
 		
 		//Register:
-		//    'register'
+		//    'register' type=[Entity] name=ID
 		//;
 		@Override public ParserRule getRule() { return rule; }
 		
+		//'register' type=[Entity] name=ID
+		public Group getGroup() { return cGroup; }
+		
 		//'register'
-		public Keyword getRegisterKeyword() { return cRegisterKeyword; }
+		public Keyword getRegisterKeyword_0() { return cRegisterKeyword_0; }
+		
+		//type=[Entity]
+		public Assignment getTypeAssignment_1() { return cTypeAssignment_1; }
+		
+		//[Entity]
+		public CrossReference getTypeEntityCrossReference_1_0() { return cTypeEntityCrossReference_1_0; }
+		
+		//ID
+		public RuleCall getTypeEntityIDTerminalRuleCall_1_0_1() { return cTypeEntityIDTerminalRuleCall_1_0_1; }
+		
+		//name=ID
+		public Assignment getNameAssignment_2() { return cNameAssignment_2; }
+		
+		//ID
+		public RuleCall getNameIDTerminalRuleCall_2_0() { return cNameIDTerminalRuleCall_2_0; }
 	}
 	public class LogicElements extends AbstractParserRuleElementFinder {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "org.xtext.RegistrationDSL.Logic");
@@ -1016,7 +1040,7 @@ public class RegistrationDSLGrammarAccess extends AbstractElementFinder.Abstract
 	}
 	
 	//Register:
-	//    'register'
+	//    'register' type=[Entity] name=ID
 	//;
 	public RegisterElements getRegisterAccess() {
 		return pRegister;

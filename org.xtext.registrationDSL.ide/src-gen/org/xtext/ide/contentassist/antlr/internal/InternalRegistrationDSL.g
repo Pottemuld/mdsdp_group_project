@@ -340,9 +340,9 @@ ruleRegister
 	}
 	:
 	(
-		{ before(grammarAccess.getRegisterAccess().getRegisterKeyword()); }
-		'register'
-		{ after(grammarAccess.getRegisterAccess().getRegisterKeyword()); }
+		{ before(grammarAccess.getRegisterAccess().getGroup()); }
+		(rule__Register__Group__0)
+		{ after(grammarAccess.getRegisterAccess().getGroup()); }
 	)
 ;
 finally {
@@ -1802,6 +1802,87 @@ finally {
 }
 
 
+rule__Register__Group__0
+	@init {
+		int stackSize = keepStackSize();
+	}
+:
+	rule__Register__Group__0__Impl
+	rule__Register__Group__1
+;
+finally {
+	restoreStackSize(stackSize);
+}
+
+rule__Register__Group__0__Impl
+	@init {
+		int stackSize = keepStackSize();
+	}
+:
+(
+	{ before(grammarAccess.getRegisterAccess().getRegisterKeyword_0()); }
+	'register'
+	{ after(grammarAccess.getRegisterAccess().getRegisterKeyword_0()); }
+)
+;
+finally {
+	restoreStackSize(stackSize);
+}
+
+rule__Register__Group__1
+	@init {
+		int stackSize = keepStackSize();
+	}
+:
+	rule__Register__Group__1__Impl
+	rule__Register__Group__2
+;
+finally {
+	restoreStackSize(stackSize);
+}
+
+rule__Register__Group__1__Impl
+	@init {
+		int stackSize = keepStackSize();
+	}
+:
+(
+	{ before(grammarAccess.getRegisterAccess().getTypeAssignment_1()); }
+	(rule__Register__TypeAssignment_1)
+	{ after(grammarAccess.getRegisterAccess().getTypeAssignment_1()); }
+)
+;
+finally {
+	restoreStackSize(stackSize);
+}
+
+rule__Register__Group__2
+	@init {
+		int stackSize = keepStackSize();
+	}
+:
+	rule__Register__Group__2__Impl
+;
+finally {
+	restoreStackSize(stackSize);
+}
+
+rule__Register__Group__2__Impl
+	@init {
+		int stackSize = keepStackSize();
+	}
+:
+(
+	{ before(grammarAccess.getRegisterAccess().getNameAssignment_2()); }
+	(rule__Register__NameAssignment_2)
+	{ after(grammarAccess.getRegisterAccess().getNameAssignment_2()); }
+)
+;
+finally {
+	restoreStackSize(stackSize);
+}
+
+
 rule__Logic__Group__0
 	@init {
 		int stackSize = keepStackSize();
@@ -3062,6 +3143,40 @@ rule__Add__ToEntityRelationAssignment_5
 		{ before(grammarAccess.getAddAccess().getToEntityRelationIDTerminalRuleCall_5_0()); }
 		RULE_ID
 		{ after(grammarAccess.getAddAccess().getToEntityRelationIDTerminalRuleCall_5_0()); }
+	)
+;
+finally {
+	restoreStackSize(stackSize);
+}
+
+rule__Register__TypeAssignment_1
+	@init {
+		int stackSize = keepStackSize();
+	}
+:
+	(
+		{ before(grammarAccess.getRegisterAccess().getTypeEntityCrossReference_1_0()); }
+		(
+			{ before(grammarAccess.getRegisterAccess().getTypeEntityIDTerminalRuleCall_1_0_1()); }
+			RULE_ID
+			{ after(grammarAccess.getRegisterAccess().getTypeEntityIDTerminalRuleCall_1_0_1()); }
+		)
+		{ after(grammarAccess.getRegisterAccess().getTypeEntityCrossReference_1_0()); }
+	)
+;
+finally {
+	restoreStackSize(stackSize);
+}
+
+rule__Register__NameAssignment_2
+	@init {
+		int stackSize = keepStackSize();
+	}
+:
+	(
+		{ before(grammarAccess.getRegisterAccess().getNameIDTerminalRuleCall_2_0()); }
+		RULE_ID
+		{ after(grammarAccess.getRegisterAccess().getNameIDTerminalRuleCall_2_0()); }
 	)
 ;
 finally {

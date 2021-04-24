@@ -123,6 +123,15 @@ public interface RegistrationDSLFactory extends EFactory
   Add createAdd();
 
   /**
+   * Returns a new object of class '<em>Register</em>'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return a new object of class '<em>Register</em>'.
+   * @generated
+   */
+  Register createRegister();
+
+  /**
    * Returns a new object of class '<em>Logic Exp</em>'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->

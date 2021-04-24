@@ -131,6 +131,11 @@ public class RegistrationDSLAdapterFactory extends AdapterFactoryImpl
         return createAddAdapter();
       }
       @Override
+      public Adapter caseRegister(Register object)
+      {
+        return createRegisterAdapter();
+      }
+      @Override
       public Adapter caseLogicExp(LogicExp object)
       {
         return createLogicExpAdapter();
@@ -373,6 +378,21 @@ public class RegistrationDSLAdapterFactory extends AdapterFactoryImpl
    * @generated
    */
   public Adapter createAddAdapter()
+  {
+    return null;
+  }
+
+  /**
+   * Creates a new adapter for an object of class '{@link org.xtext.registrationDSL.Register <em>Register</em>}'.
+   * <!-- begin-user-doc -->
+   * This default implementation returns null so that we can easily ignore cases;
+   * it's useful to ignore a case when inheritance will catch all the cases anyway.
+   * <!-- end-user-doc -->
+   * @return the new adapter.
+   * @see org.xtext.registrationDSL.Register
+   * @generated
+   */
+  public Adapter createRegisterAdapter()
   {
     return null;
   }

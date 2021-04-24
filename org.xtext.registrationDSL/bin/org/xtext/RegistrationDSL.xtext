@@ -46,7 +46,7 @@ Add: //this is wrong
 ;
 
 Register:
-	'register' 
+	'register' type=[Entity] name=ID
 ;
 /*Set: // Do we need this?
 	"set" name=ID

@@ -3,6 +3,7 @@
  */
 package org.xtext.generator;
 
+import com.google.common.base.Objects;
 import com.google.common.collect.Iterables;
 import com.google.common.collect.Iterators;
 import java.util.ArrayList;
@@ -33,6 +34,7 @@ import org.xtext.registrationDSL.Mult;
 import org.xtext.registrationDSL.Or;
 import org.xtext.registrationDSL.Plus;
 import org.xtext.registrationDSL.Registationsystem;
+import org.xtext.registrationDSL.Register;
 import org.xtext.registrationDSL.Relation;
 import org.xtext.registrationDSL.Require;
 import org.xtext.registrationDSL.Select;
@@ -416,7 +418,9 @@ public class RegistrationDSLGenerator extends AbstractGenerator {
     _builder.append("public class WorkflowManager {");
     _builder.newLine();
     _builder.newLine();
-    _builder.append("Scanner scan = new Scanner(System.in); ");
+    _builder.append("Scanner scan = new Scanner(System.in);");
+    _builder.newLine();
+    _builder.append("String input; ");
     _builder.newLine();
     _builder.newLine();
     {
@@ -473,7 +477,7 @@ public class RegistrationDSLGenerator extends AbstractGenerator {
         _builder.newLine();
         _builder.append("\t");
         _builder.append("\t\t");
-        _builder.append("String input = scan.nextLine();");
+        _builder.append("input = scan.nextLine();");
         _builder.newLine();
         _builder.append("\t");
         _builder.append("\t\t");
@@ -546,6 +550,97 @@ public class RegistrationDSLGenerator extends AbstractGenerator {
     return _builder;
   }
   
+  protected CharSequence _handleStatement(final Register s) {
+    StringConcatenation _builder = new StringConcatenation();
+    _builder.append("String regex = \"\\\\d+\";");
+    _builder.newLine();
+    String _firstUpper = StringExtensions.toFirstUpper(s.getType().getName());
+    _builder.append(_firstUpper);
+    _builder.append(" ");
+    String _name = s.getName();
+    _builder.append(_name);
+    _builder.append(";");
+    _builder.newLineIfNotEmpty();
+    {
+      Iterable<Attribute> _filter = Iterables.<Attribute>filter(this.allAtributeFields(s.getType()), Attribute.class);
+      for(final Attribute a : _filter) {
+        _builder.append("System.out.println(\"Please enter value for ");
+        String _name_1 = s.getType().getName();
+        _builder.append(_name_1);
+        _builder.append(" ");
+        String _name_2 = a.getName();
+        _builder.append(_name_2);
+        _builder.append(": \");");
+        _builder.newLineIfNotEmpty();
+        _builder.append("input = scan.nextLine();");
+        _builder.newLine();
+        {
+          String _type = a.getType();
+          boolean _equals = Objects.equal(_type, "int");
+          if (_equals) {
+            _builder.append("while(!input.matches(regex)){");
+            _builder.newLine();
+            _builder.append("\t");
+            _builder.append("System.out.println(\"Entered value was not of type ");
+            String _type_1 = a.getType();
+            _builder.append(_type_1, "\t");
+            _builder.append(", please try again: \");");
+            _builder.newLineIfNotEmpty();
+            _builder.append("\t");
+            _builder.append("input = scan.nextLine();");
+            _builder.newLine();
+            _builder.append("}");
+            _builder.newLine();
+            String _type_2 = a.getType();
+            _builder.append(_type_2);
+            _builder.append(" ");
+            String _name_3 = a.getName();
+            _builder.append(_name_3);
+            _builder.append(" = Integer.parseInt(input);\t");
+            _builder.newLineIfNotEmpty();
+          } else {
+            String _type_3 = a.getType();
+            _builder.append(_type_3);
+            _builder.append(" ");
+            String _name_4 = a.getName();
+            _builder.append(_name_4);
+            _builder.append(" = input;\t");
+            _builder.newLineIfNotEmpty();
+          }
+        }
+      }
+    }
+    String _name_5 = s.getName();
+    _builder.append(_name_5);
+    _builder.append(" = new ");
+    String _name_6 = s.getType().getName();
+    _builder.append(_name_6);
+    _builder.append("(");
+    {
+      ArrayList<Attribute> _allAtributeFields = this.allAtributeFields(s.getType());
+      boolean _hasElements = false;
+      for(final Attribute a_1 : _allAtributeFields) {
+        if (!_hasElements) {
+          _hasElements = true;
+        } else {
+          _builder.appendImmediate(", ", "");
+        }
+        String _name_7 = a_1.getName();
+        _builder.append(_name_7);
+      }
+    }
+    _builder.append(");");
+    _builder.newLineIfNotEmpty();
+    String _firstLower = StringExtensions.toFirstLower(s.getType().getName());
+    _builder.append(_firstLower);
+    _builder.append("List.add(");
+    String _name_8 = s.getName();
+    _builder.append(_name_8);
+    _builder.append(");");
+    _builder.newLineIfNotEmpty();
+    return _builder;
+  }
+  
   public void display(final EObject model) {
     try {
       final XMLResourceImpl res = new XMLResourceImpl();
@@ -592,6 +687,8 @@ public class RegistrationDSLGenerator extends AbstractGenerator {
   public CharSequence handleStatement(final Statement statement) {
     if (statement instanceof Add) {
       return _handleStatement((Add)statement);
+    } else if (statement instanceof Register) {
+      return _handleStatement((Register)statement);
     } else if (statement instanceof Select) {
       return _handleStatement((Select)statement);
     } else {

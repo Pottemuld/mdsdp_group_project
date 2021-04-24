@@ -28,6 +28,7 @@ import org.xtext.registrationDSL.Mult;
 import org.xtext.registrationDSL.Or;
 import org.xtext.registrationDSL.Plus;
 import org.xtext.registrationDSL.Registationsystem;
+import org.xtext.registrationDSL.Register;
 import org.xtext.registrationDSL.RegistrationDSLPackage;
 import org.xtext.registrationDSL.Relation;
 import org.xtext.registrationDSL.Require;
@@ -91,6 +92,9 @@ public class RegistrationDSLSemanticSequencer extends AbstractDelegatingSemantic
 				return; 
 			case RegistrationDSLPackage.REGISTATIONSYSTEM:
 				sequence_Registationsystem(context, (Registationsystem) semanticObject); 
+				return; 
+			case RegistrationDSLPackage.REGISTER:
+				sequence_Register(context, (Register) semanticObject); 
 				return; 
 			case RegistrationDSLPackage.RELATION:
 				sequence_Relation(context, (Relation) semanticObject); 
@@ -425,6 +429,28 @@ public class RegistrationDSLSemanticSequencer extends AbstractDelegatingSemantic
 	 */
 	protected void sequence_Registationsystem(ISerializationContext context, Registationsystem semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);
+	}
+	
+	
+	/**
+	 * Contexts:
+	 *     Statement returns Register
+	 *     Register returns Register
+	 *
+	 * Constraint:
+	 *     (type=[Entity|ID] name=ID)
+	 */
+	protected void sequence_Register(ISerializationContext context, Register semanticObject) {
+		if (errorAcceptor != null) {
+			if (transientValues.isValueTransient(semanticObject, RegistrationDSLPackage.Literals.REGISTER__TYPE) == ValueTransient.YES)
+				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, RegistrationDSLPackage.Literals.REGISTER__TYPE));
+			if (transientValues.isValueTransient(semanticObject, RegistrationDSLPackage.Literals.REGISTER__NAME) == ValueTransient.YES)
+				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, RegistrationDSLPackage.Literals.REGISTER__NAME));
+		}
+		SequenceFeeder feeder = createSequencerFeeder(context, semanticObject);
+		feeder.accept(grammarAccess.getRegisterAccess().getTypeEntityIDTerminalRuleCall_1_0_1(), semanticObject.eGet(RegistrationDSLPackage.Literals.REGISTER__TYPE, false));
+		feeder.accept(grammarAccess.getRegisterAccess().getNameIDTerminalRuleCall_2_0(), semanticObject.getName());
+		feeder.finish();
 	}
 	
 	

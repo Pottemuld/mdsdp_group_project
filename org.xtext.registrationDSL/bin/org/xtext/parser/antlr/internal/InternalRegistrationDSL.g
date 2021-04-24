@@ -564,8 +564,9 @@ ruleStatement returns [EObject current=null]
 		{
 			newCompositeNode(grammarAccess.getStatementAccess().getRegisterParserRuleCall_2());
 		}
-		ruleRegister
+		this_Register_2=ruleRegister
 		{
+			$current = $this_Register_2.current;
 			afterParserOrEnumRuleCall();
 		}
 	)
@@ -711,25 +712,57 @@ ruleAdd returns [EObject current=null]
 ;
 
 // Entry rule entryRuleRegister
-entryRuleRegister returns [String current=null]:
+entryRuleRegister returns [EObject current=null]:
 	{ newCompositeNode(grammarAccess.getRegisterRule()); }
 	iv_ruleRegister=ruleRegister
-	{ $current=$iv_ruleRegister.current.getText(); }
+	{ $current=$iv_ruleRegister.current; }
 	EOF;
 
 // Rule Register
-ruleRegister returns [AntlrDatatypeRuleToken current=new AntlrDatatypeRuleToken()]
+ruleRegister returns [EObject current=null]
 @init {
 	enterRule();
 }
 @after {
 	leaveRule();
 }:
-	kw='register'
-	{
-		$current.merge(kw);
-		newLeafNode(kw, grammarAccess.getRegisterAccess().getRegisterKeyword());
-	}
+	(
+		otherlv_0='register'
+		{
+			newLeafNode(otherlv_0, grammarAccess.getRegisterAccess().getRegisterKeyword_0());
+		}
+		(
+			(
+				{
+					if ($current==null) {
+						$current = createModelElement(grammarAccess.getRegisterRule());
+					}
+				}
+				otherlv_1=RULE_ID
+				{
+					newLeafNode(otherlv_1, grammarAccess.getRegisterAccess().getTypeEntityCrossReference_1_0());
+				}
+			)
+		)
+		(
+			(
+				lv_name_2_0=RULE_ID
+				{
+					newLeafNode(lv_name_2_0, grammarAccess.getRegisterAccess().getNameIDTerminalRuleCall_2_0());
+				}
+				{
+					if ($current==null) {
+						$current = createModelElement(grammarAccess.getRegisterRule());
+					}
+					setWithLastConsumed(
+						$current,
+						"name",
+						lv_name_2_0,
+						"org.eclipse.xtext.common.Terminals.ID");
+				}
+			)
+		)
+	)
 ;
 
 // Entry rule entryRuleLogic

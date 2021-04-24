@@ -48,6 +48,7 @@ public class RegistrationDSLParser extends AbstractContentAssistParser {
 			builder.put(grammarAccess.getWorkflowAccess().getGroup(), "rule__Workflow__Group__0");
 			builder.put(grammarAccess.getSelectAccess().getGroup(), "rule__Select__Group__0");
 			builder.put(grammarAccess.getAddAccess().getGroup(), "rule__Add__Group__0");
+			builder.put(grammarAccess.getRegisterAccess().getGroup(), "rule__Register__Group__0");
 			builder.put(grammarAccess.getLogicAccess().getGroup(), "rule__Logic__Group__0");
 			builder.put(grammarAccess.getLogicAccess().getGroup_1(), "rule__Logic__Group_1__0");
 			builder.put(grammarAccess.getConjunctionAccess().getGroup(), "rule__Conjunction__Group__0");
@@ -81,6 +82,8 @@ public class RegistrationDSLParser extends AbstractContentAssistParser {
 			builder.put(grammarAccess.getAddAccess().getSelectedEntityNameAssignment_1(), "rule__Add__SelectedEntityNameAssignment_1");
 			builder.put(grammarAccess.getAddAccess().getToEntityAssignment_3(), "rule__Add__ToEntityAssignment_3");
 			builder.put(grammarAccess.getAddAccess().getToEntityRelationAssignment_5(), "rule__Add__ToEntityRelationAssignment_5");
+			builder.put(grammarAccess.getRegisterAccess().getTypeAssignment_1(), "rule__Register__TypeAssignment_1");
+			builder.put(grammarAccess.getRegisterAccess().getNameAssignment_2(), "rule__Register__NameAssignment_2");
 			builder.put(grammarAccess.getLogicAccess().getRightAssignment_1_2(), "rule__Logic__RightAssignment_1_2");
 			builder.put(grammarAccess.getConjunctionAccess().getRightAssignment_1_2(), "rule__Conjunction__RightAssignment_1_2");
 			builder.put(grammarAccess.getPrimLogicAccess().getLogicAssignment_1_1(), "rule__PrimLogic__LogicAssignment_1_1");

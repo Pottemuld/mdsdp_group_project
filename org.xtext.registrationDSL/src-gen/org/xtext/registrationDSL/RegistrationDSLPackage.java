@@ -429,6 +429,43 @@ public interface RegistrationDSLPackage extends EPackage
   int ADD_FEATURE_COUNT = STATEMENT_FEATURE_COUNT + 3;
 
   /**
+   * The meta object id for the '{@link org.xtext.registrationDSL.impl.RegisterImpl <em>Register</em>}' class.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see org.xtext.registrationDSL.impl.RegisterImpl
+   * @see org.xtext.registrationDSL.impl.RegistrationDSLPackageImpl#getRegister()
+   * @generated
+   */
+  int REGISTER = 11;
+
+  /**
+   * The feature id for the '<em><b>Type</b></em>' reference.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int REGISTER__TYPE = STATEMENT_FEATURE_COUNT + 0;
+
+  /**
+   * The feature id for the '<em><b>Name</b></em>' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int REGISTER__NAME = STATEMENT_FEATURE_COUNT + 1;
+
+  /**
+   * The number of structural features of the '<em>Register</em>' class.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int REGISTER_FEATURE_COUNT = STATEMENT_FEATURE_COUNT + 2;
+
+  /**
    * The meta object id for the '{@link org.xtext.registrationDSL.impl.LogicExpImpl <em>Logic Exp</em>}' class.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
@@ -436,7 +473,7 @@ public interface RegistrationDSLPackage extends EPackage
    * @see org.xtext.registrationDSL.impl.RegistrationDSLPackageImpl#getLogicExp()
    * @generated
    */
-  int LOGIC_EXP = 11;
+  int LOGIC_EXP = 12;
 
   /**
    * The feature id for the '<em><b>Logic</b></em>' containment reference.
@@ -464,7 +501,7 @@ public interface RegistrationDSLPackage extends EPackage
    * @see org.xtext.registrationDSL.impl.RegistrationDSLPackageImpl#getComparison()
    * @generated
    */
-  int COMPARISON = 12;
+  int COMPARISON = 13;
 
   /**
    * The feature id for the '<em><b>Logic</b></em>' containment reference.
@@ -519,7 +556,7 @@ public interface RegistrationDSLPackage extends EPackage
    * @see org.xtext.registrationDSL.impl.RegistrationDSLPackageImpl#getExpression()
    * @generated
    */
-  int EXPRESSION = 13;
+  int EXPRESSION = 14;
 
   /**
    * The feature id for the '<em><b>Exp</b></em>' containment reference.
@@ -547,7 +584,7 @@ public interface RegistrationDSLPackage extends EPackage
    * @see org.xtext.registrationDSL.impl.RegistrationDSLPackageImpl#getVar()
    * @generated
    */
-  int VAR = 14;
+  int VAR = 15;
 
   /**
    * The feature id for the '<em><b>Exp</b></em>' containment reference.
@@ -575,7 +612,7 @@ public interface RegistrationDSLPackage extends EPackage
    * @see org.xtext.registrationDSL.impl.RegistrationDSLPackageImpl#getConstant()
    * @generated
    */
-  int CONSTANT = 15;
+  int CONSTANT = 16;
 
   /**
    * The feature id for the '<em><b>Exp</b></em>' containment reference.
@@ -612,7 +649,7 @@ public interface RegistrationDSLPackage extends EPackage
    * @see org.xtext.registrationDSL.impl.RegistrationDSLPackageImpl#getOr()
    * @generated
    */
-  int OR = 16;
+  int OR = 17;
 
   /**
    * The feature id for the '<em><b>Logic</b></em>' containment reference.
@@ -658,7 +695,7 @@ public interface RegistrationDSLPackage extends EPackage
    * @see org.xtext.registrationDSL.impl.RegistrationDSLPackageImpl#getAnd()
    * @generated
    */
-  int AND = 17;
+  int AND = 18;
 
   /**
    * The feature id for the '<em><b>Logic</b></em>' containment reference.
@@ -704,7 +741,7 @@ public interface RegistrationDSLPackage extends EPackage
    * @see org.xtext.registrationDSL.impl.RegistrationDSLPackageImpl#getPlus()
    * @generated
    */
-  int PLUS = 18;
+  int PLUS = 19;
 
   /**
    * The feature id for the '<em><b>Exp</b></em>' containment reference.
@@ -750,7 +787,7 @@ public interface RegistrationDSLPackage extends EPackage
    * @see org.xtext.registrationDSL.impl.RegistrationDSLPackageImpl#getMinus()
    * @generated
    */
-  int MINUS = 19;
+  int MINUS = 20;
 
   /**
    * The feature id for the '<em><b>Exp</b></em>' containment reference.
@@ -796,7 +833,7 @@ public interface RegistrationDSLPackage extends EPackage
    * @see org.xtext.registrationDSL.impl.RegistrationDSLPackageImpl#getMult()
    * @generated
    */
-  int MULT = 20;
+  int MULT = 21;
 
   /**
    * The feature id for the '<em><b>Exp</b></em>' containment reference.
@@ -842,7 +879,7 @@ public interface RegistrationDSLPackage extends EPackage
    * @see org.xtext.registrationDSL.impl.RegistrationDSLPackageImpl#getDiv()
    * @generated
    */
-  int DIV = 21;
+  int DIV = 22;
 
   /**
    * The feature id for the '<em><b>Exp</b></em>' containment reference.
@@ -888,7 +925,7 @@ public interface RegistrationDSLPackage extends EPackage
    * @see org.xtext.registrationDSL.impl.RegistrationDSLPackageImpl#getVariable()
    * @generated
    */
-  int VARIABLE = 22;
+  int VARIABLE = 23;
 
   /**
    * The feature id for the '<em><b>Exp</b></em>' containment reference.
@@ -1203,6 +1240,38 @@ public interface RegistrationDSLPackage extends EPackage
    * @generated
    */
   EAttribute getAdd_ToEntityRelation();
+
+  /**
+   * Returns the meta object for class '{@link org.xtext.registrationDSL.Register <em>Register</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for class '<em>Register</em>'.
+   * @see org.xtext.registrationDSL.Register
+   * @generated
+   */
+  EClass getRegister();
+
+  /**
+   * Returns the meta object for the reference '{@link org.xtext.registrationDSL.Register#getType <em>Type</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the reference '<em>Type</em>'.
+   * @see org.xtext.registrationDSL.Register#getType()
+   * @see #getRegister()
+   * @generated
+   */
+  EReference getRegister_Type();
+
+  /**
+   * Returns the meta object for the attribute '{@link org.xtext.registrationDSL.Register#getName <em>Name</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the attribute '<em>Name</em>'.
+   * @see org.xtext.registrationDSL.Register#getName()
+   * @see #getRegister()
+   * @generated
+   */
+  EAttribute getRegister_Name();
 
   /**
    * Returns the meta object for class '{@link org.xtext.registrationDSL.LogicExp <em>Logic Exp</em>}'.
@@ -1793,6 +1862,32 @@ public interface RegistrationDSLPackage extends EPackage
      * @generated
      */
     EAttribute ADD__TO_ENTITY_RELATION = eINSTANCE.getAdd_ToEntityRelation();
+
+    /**
+     * The meta object literal for the '{@link org.xtext.registrationDSL.impl.RegisterImpl <em>Register</em>}' class.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @see org.xtext.registrationDSL.impl.RegisterImpl
+     * @see org.xtext.registrationDSL.impl.RegistrationDSLPackageImpl#getRegister()
+     * @generated
+     */
+    EClass REGISTER = eINSTANCE.getRegister();
+
+    /**
+     * The meta object literal for the '<em><b>Type</b></em>' reference feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EReference REGISTER__TYPE = eINSTANCE.getRegister_Type();
+
+    /**
+     * The meta object literal for the '<em><b>Name</b></em>' attribute feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EAttribute REGISTER__NAME = eINSTANCE.getRegister_Name();
 
     /**
      * The meta object literal for the '{@link org.xtext.registrationDSL.impl.LogicExpImpl <em>Logic Exp</em>}' class.
