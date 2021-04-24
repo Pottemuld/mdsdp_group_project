@@ -22,6 +22,7 @@ import org.xtext.registrationDSL.Relation;
  * The following features are implemented:
  * </p>
  * <ul>
+ *   <li>{@link org.xtext.registrationDSL.impl.RelationImpl#getName <em>Name</em>}</li>
  *   <li>{@link org.xtext.registrationDSL.impl.RelationImpl#getTarget <em>Target</em>}</li>
  * </ul>
  *
@@ -29,6 +30,26 @@ import org.xtext.registrationDSL.Relation;
  */
 public class RelationImpl extends FieldImpl implements Relation
 {
+  /**
+   * The default value of the '{@link #getName() <em>Name</em>}' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see #getName()
+   * @generated
+   * @ordered
+   */
+  protected static final String NAME_EDEFAULT = null;
+
+  /**
+   * The cached value of the '{@link #getName() <em>Name</em>}' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see #getName()
+   * @generated
+   * @ordered
+   */
+  protected String name = NAME_EDEFAULT;
+
   /**
    * The cached value of the '{@link #getTarget() <em>Target</em>}' reference.
    * <!-- begin-user-doc -->
@@ -58,6 +79,31 @@ public class RelationImpl extends FieldImpl implements Relation
   protected EClass eStaticClass()
   {
     return RegistrationDSLPackage.Literals.RELATION;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public String getName()
+  {
+    return name;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public void setName(String newName)
+  {
+    String oldName = name;
+    name = newName;
+    if (eNotificationRequired())
+      eNotify(new ENotificationImpl(this, Notification.SET, RegistrationDSLPackage.RELATION__NAME, oldName, name));
   }
 
   /**
@@ -115,6 +161,8 @@ public class RelationImpl extends FieldImpl implements Relation
   {
     switch (featureID)
     {
+      case RegistrationDSLPackage.RELATION__NAME:
+        return getName();
       case RegistrationDSLPackage.RELATION__TARGET:
         if (resolve) return getTarget();
         return basicGetTarget();
@@ -132,6 +180,9 @@ public class RelationImpl extends FieldImpl implements Relation
   {
     switch (featureID)
     {
+      case RegistrationDSLPackage.RELATION__NAME:
+        setName((String)newValue);
+        return;
       case RegistrationDSLPackage.RELATION__TARGET:
         setTarget((Entity)newValue);
         return;
@@ -149,6 +200,9 @@ public class RelationImpl extends FieldImpl implements Relation
   {
     switch (featureID)
     {
+      case RegistrationDSLPackage.RELATION__NAME:
+        setName(NAME_EDEFAULT);
+        return;
       case RegistrationDSLPackage.RELATION__TARGET:
         setTarget((Entity)null);
         return;
@@ -166,10 +220,29 @@ public class RelationImpl extends FieldImpl implements Relation
   {
     switch (featureID)
     {
+      case RegistrationDSLPackage.RELATION__NAME:
+        return NAME_EDEFAULT == null ? name != null : !NAME_EDEFAULT.equals(name);
       case RegistrationDSLPackage.RELATION__TARGET:
         return target != null;
     }
     return super.eIsSet(featureID);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public String toString()
+  {
+    if (eIsProxy()) return super.toString();
+
+    StringBuilder result = new StringBuilder(super.toString());
+    result.append(" (name: ");
+    result.append(name);
+    result.append(')');
+    return result.toString();
   }
 
 } //RelationImpl

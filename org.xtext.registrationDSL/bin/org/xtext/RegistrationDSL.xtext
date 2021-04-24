@@ -14,7 +14,7 @@ Entity:
 ;
 
 Field:
-	Attribute | Relation
+	Attribute | Relation | Require
 ;
 
 Attribute:
@@ -23,6 +23,10 @@ Attribute:
 
 Relation:
 	'relation' name=ID ':' target=[Entity]
+;
+
+Require:
+	'require' logic=Logic	
 ;
 
 Workflow:
@@ -47,3 +51,45 @@ Register:
 /*Set: // Do we need this?
 	"set" name=ID
 ;*/
+
+Logic returns LogicExp:
+	Conjunction ('||' {Or.left=current} right=Conjunction)*
+;
+
+Conjunction returns LogicExp:
+	PrimLogic ('&&' {And.left=current} right=PrimLogic)*
+;
+
+PrimLogic returns LogicExp:
+	Comparison | '[' logic=Logic ']'
+;
+
+
+Comparison:
+	left=Exp op=CompareOp right=Exp
+;
+
+CompareOp:
+	'<' | '>' | '==' | '<=' | '>='
+;
+
+Exp returns Expression:
+	Factor (('+' {Plus.left=current}| '-' {Minus.left=current}) right=Factor)*
+;
+
+Factor returns Expression:
+	PrimExp (('*' {Mult.left=current} | '/' {Div.left=current}) right=PrimExp)*
+;
+
+PrimExp returns Expression:
+	Var | Constant | '(' exp=Exp ')'
+;
+
+Var:
+	{Variable} name=[Attribute]
+;
+
+Constant:
+	value=INT
+;
+

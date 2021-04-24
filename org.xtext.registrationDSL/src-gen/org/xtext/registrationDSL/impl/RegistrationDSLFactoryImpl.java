@@ -71,10 +71,23 @@ public class RegistrationDSLFactoryImpl extends EFactoryImpl implements Registra
       case RegistrationDSLPackage.FIELD: return createField();
       case RegistrationDSLPackage.ATTRIBUTE: return createAttribute();
       case RegistrationDSLPackage.RELATION: return createRelation();
+      case RegistrationDSLPackage.REQUIRE: return createRequire();
       case RegistrationDSLPackage.WORKFLOW: return createWorkflow();
       case RegistrationDSLPackage.STATEMENT: return createStatement();
       case RegistrationDSLPackage.SELECT: return createSelect();
       case RegistrationDSLPackage.ADD: return createAdd();
+      case RegistrationDSLPackage.LOGIC_EXP: return createLogicExp();
+      case RegistrationDSLPackage.COMPARISON: return createComparison();
+      case RegistrationDSLPackage.EXPRESSION: return createExpression();
+      case RegistrationDSLPackage.VAR: return createVar();
+      case RegistrationDSLPackage.CONSTANT: return createConstant();
+      case RegistrationDSLPackage.OR: return createOr();
+      case RegistrationDSLPackage.AND: return createAnd();
+      case RegistrationDSLPackage.PLUS: return createPlus();
+      case RegistrationDSLPackage.MINUS: return createMinus();
+      case RegistrationDSLPackage.MULT: return createMult();
+      case RegistrationDSLPackage.DIV: return createDiv();
+      case RegistrationDSLPackage.VARIABLE: return createVariable();
       default:
         throw new IllegalArgumentException("The class '" + eClass.getName() + "' is not a valid classifier");
     }
@@ -158,6 +171,18 @@ public class RegistrationDSLFactoryImpl extends EFactoryImpl implements Registra
    * @generated
    */
   @Override
+  public Require createRequire()
+  {
+    RequireImpl require = new RequireImpl();
+    return require;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
   public Workflow createWorkflow()
   {
     WorkflowImpl workflow = new WorkflowImpl();
@@ -198,6 +223,150 @@ public class RegistrationDSLFactoryImpl extends EFactoryImpl implements Registra
   {
     AddImpl add = new AddImpl();
     return add;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public LogicExp createLogicExp()
+  {
+    LogicExpImpl logicExp = new LogicExpImpl();
+    return logicExp;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public Comparison createComparison()
+  {
+    ComparisonImpl comparison = new ComparisonImpl();
+    return comparison;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public Expression createExpression()
+  {
+    ExpressionImpl expression = new ExpressionImpl();
+    return expression;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public Var createVar()
+  {
+    VarImpl var = new VarImpl();
+    return var;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public Constant createConstant()
+  {
+    ConstantImpl constant = new ConstantImpl();
+    return constant;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public Or createOr()
+  {
+    OrImpl or = new OrImpl();
+    return or;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public And createAnd()
+  {
+    AndImpl and = new AndImpl();
+    return and;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public Plus createPlus()
+  {
+    PlusImpl plus = new PlusImpl();
+    return plus;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public Minus createMinus()
+  {
+    MinusImpl minus = new MinusImpl();
+    return minus;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public Mult createMult()
+  {
+    MultImpl mult = new MultImpl();
+    return mult;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public Div createDiv()
+  {
+    DivImpl div = new DivImpl();
+    return div;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public Variable createVariable()
+  {
+    VariableImpl variable = new VariableImpl();
+    return variable;
   }
 
   /**

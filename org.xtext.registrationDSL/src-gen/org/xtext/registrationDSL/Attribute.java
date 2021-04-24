@@ -13,6 +13,7 @@ package org.xtext.registrationDSL;
  * The following features are supported:
  * </p>
  * <ul>
+ *   <li>{@link org.xtext.registrationDSL.Attribute#getName <em>Name</em>}</li>
  *   <li>{@link org.xtext.registrationDSL.Attribute#getType <em>Type</em>}</li>
  * </ul>
  *
@@ -22,6 +23,28 @@ package org.xtext.registrationDSL;
  */
 public interface Attribute extends Field
 {
+  /**
+   * Returns the value of the '<em><b>Name</b></em>' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the value of the '<em>Name</em>' attribute.
+   * @see #setName(String)
+   * @see org.xtext.registrationDSL.RegistrationDSLPackage#getAttribute_Name()
+   * @model
+   * @generated
+   */
+  String getName();
+
+  /**
+   * Sets the value of the '{@link org.xtext.registrationDSL.Attribute#getName <em>Name</em>}' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @param value the new value of the '<em>Name</em>' attribute.
+   * @see #getName()
+   * @generated
+   */
+  void setName(String value);
+
   /**
    * Returns the value of the '<em><b>Type</b></em>' attribute.
    * <!-- begin-user-doc -->

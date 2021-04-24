@@ -53,18 +53,22 @@ class RegistrationDSLGenerator extends AbstractGenerator {
 			
 		«ENDFOR»
 		«FOR r:entity.fields.filter(Relation)»
-		private ArrayList<«r.target.name»> r.name = new ArrayList<>();
+		private ArrayList<«r.target.name»> «r.name» = new ArrayList<>();
 		
-		public get«r.name.toFirstUpper»(){
+		public ArrayList<«r.target.name.toFirstUpper»> get«r.name.toFirstUpper»(){
 			return «r.name»;
 		}
 			
-		public add«r.name.toFirstUpper»(«r.target.name.toFirstUpper» target){
+		public void add«r.name.toFirstUpper»(«r.target.name.toFirstUpper» target){
 			this.«r.name».add(target);
 		}
 			
 		«ENDFOR»
-		
+		private void checkRequirements() {
+				«FOR r:entity.fields.filter(Require)»
+					if(!(«r.generateRequire»)) throw new Error("Requirement not satisfied");
+				«ENDFOR»
+				}
 	}
 	'''
 	def generateConstructor(Entity entity) '''
@@ -72,9 +76,10 @@ class RegistrationDSLGenerator extends AbstractGenerator {
 		«IF entity.base!==null»
 		super(«FOR a:entity.base.allAtributeFields SEPARATOR ", "»«a.name»«ENDFOR»);
 		«ENDIF»
-		«FOR a:entity.fields»
+		«FOR a:entity.fields.filter(Attribute)»
 		this.«a.name» = «a.name»;
 		«ENDFOR»
+		checkRequirements();
 	}
 	'''
 	
@@ -88,12 +93,25 @@ class RegistrationDSLGenerator extends AbstractGenerator {
 		result
 	}
 	
+		def generateRequire(Require require) { require.logic.generateLogicExp }
+		
+	def dispatch CharSequence generateLogicExp(And exp) { exp.left.generateLogicExp+"&&"+exp.right.generateLogicExp }
+	def dispatch CharSequence generateLogicExp(Or exp) { exp.left.generateLogicExp+"||"+exp.right.generateLogicExp }
+	def dispatch CharSequence generateLogicExp(Comparison exp) { exp.left.generateMExp+exp.op+exp.right.generateMExp }
+		
+	def dispatch CharSequence generateMExp(Plus exp) { exp.left.generateMExp+"+"+exp.right.generateMExp }
+	def dispatch CharSequence generateMExp(Minus exp) { exp.left.generateMExp+"-"+exp.right.generateMExp }
+	def dispatch CharSequence generateMExp(Mult exp) { exp.left.generateMExp+"*"+exp.right.generateMExp }
+	def dispatch CharSequence generateMExp(Div exp) { exp.left.generateMExp+"/"+exp.right.generateMExp }
+	def dispatch CharSequence generateMExp(Variable exp) '''this.«exp.name.name»'''
+	def dispatch CharSequence generateMExp(Constant exp) '''«exp.value»'''
+	
 	def generateWorkflowFile(Iterable<Workflow> workflows, String systemName, Iterable<Entity> entities, IFileSystemAccess2 fsa) {
 		fsa.generateFile(systemName.toLowerCase+"/"+ "WorkflowManager"+".java", generateWorkflowManager(workflows, systemName, entities, fsa))
 	}
 	
 	def CharSequence generateWorkflowManager(Iterable<Workflow> workflows, String systemName, Iterable<Entity> entities, IFileSystemAccess2 fsa) { '''
-		package «systemName.toLowerCase»
+		package «systemName.toLowerCase»;
 		import java.util.*;
 		public class WorkflowManager {
 		
@@ -102,13 +120,15 @@ class RegistrationDSLGenerator extends AbstractGenerator {
 			«FOR e: entities»
 				ArrayList<«e.name»> «e.name.toFirstLower»List = new ArrayList<>();
 				
-				public «e.name» choose«e.name.toFirstUpper» () {
+				private «e.name» choose«e.name.toFirstUpper» () {
+					int i = 0;
 					for («e.name» x : «e.name.toFirstLower»List) {
-						System.out.println(indexOf(x) + ": " + x.toString());	
+						System.out.println((i) + ": " + x.toString());	
+						i++;
 					}
 						System.out.println("Please choose from list above, by index: ");
 						String input = scan.nextLine();
-						return «e.name.toFirstLower»List.get(input);
+						return «e.name.toFirstLower»List.get(Integer.parseInt(input));
 				} 
 			«ENDFOR»
 			«FOR w : workflows» 
@@ -118,10 +138,7 @@ class RegistrationDSLGenerator extends AbstractGenerator {
 					«ENDFOR»
 				}
 			«ENDFOR»
-			
-			
-	
-	
+		}
 	'''
 		
 	}
@@ -132,7 +149,7 @@ class RegistrationDSLGenerator extends AbstractGenerator {
 	}	
 	
 	def dispatch handleStatement(Add statement) {'''
-		«statement.toEntity».set«statement.toEntityRelation.toFirstUpper»(«statement.selectedEntityName»)
+		«statement.toEntity».add«statement.toEntityRelation.toFirstUpper»(«statement.selectedEntityName»);
 	'''
 	}	
 	

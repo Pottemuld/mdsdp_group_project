@@ -20,6 +20,7 @@ import org.xtext.registrationDSL.RegistrationDSLPackage;
  * The following features are implemented:
  * </p>
  * <ul>
+ *   <li>{@link org.xtext.registrationDSL.impl.AttributeImpl#getName <em>Name</em>}</li>
  *   <li>{@link org.xtext.registrationDSL.impl.AttributeImpl#getType <em>Type</em>}</li>
  * </ul>
  *
@@ -27,6 +28,26 @@ import org.xtext.registrationDSL.RegistrationDSLPackage;
  */
 public class AttributeImpl extends FieldImpl implements Attribute
 {
+  /**
+   * The default value of the '{@link #getName() <em>Name</em>}' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see #getName()
+   * @generated
+   * @ordered
+   */
+  protected static final String NAME_EDEFAULT = null;
+
+  /**
+   * The cached value of the '{@link #getName() <em>Name</em>}' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see #getName()
+   * @generated
+   * @ordered
+   */
+  protected String name = NAME_EDEFAULT;
+
   /**
    * The default value of the '{@link #getType() <em>Type</em>}' attribute.
    * <!-- begin-user-doc -->
@@ -74,6 +95,31 @@ public class AttributeImpl extends FieldImpl implements Attribute
    * @generated
    */
   @Override
+  public String getName()
+  {
+    return name;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public void setName(String newName)
+  {
+    String oldName = name;
+    name = newName;
+    if (eNotificationRequired())
+      eNotify(new ENotificationImpl(this, Notification.SET, RegistrationDSLPackage.ATTRIBUTE__NAME, oldName, name));
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
   public String getType()
   {
     return type;
@@ -103,6 +149,8 @@ public class AttributeImpl extends FieldImpl implements Attribute
   {
     switch (featureID)
     {
+      case RegistrationDSLPackage.ATTRIBUTE__NAME:
+        return getName();
       case RegistrationDSLPackage.ATTRIBUTE__TYPE:
         return getType();
     }
@@ -119,6 +167,9 @@ public class AttributeImpl extends FieldImpl implements Attribute
   {
     switch (featureID)
     {
+      case RegistrationDSLPackage.ATTRIBUTE__NAME:
+        setName((String)newValue);
+        return;
       case RegistrationDSLPackage.ATTRIBUTE__TYPE:
         setType((String)newValue);
         return;
@@ -136,6 +187,9 @@ public class AttributeImpl extends FieldImpl implements Attribute
   {
     switch (featureID)
     {
+      case RegistrationDSLPackage.ATTRIBUTE__NAME:
+        setName(NAME_EDEFAULT);
+        return;
       case RegistrationDSLPackage.ATTRIBUTE__TYPE:
         setType(TYPE_EDEFAULT);
         return;
@@ -153,6 +207,8 @@ public class AttributeImpl extends FieldImpl implements Attribute
   {
     switch (featureID)
     {
+      case RegistrationDSLPackage.ATTRIBUTE__NAME:
+        return NAME_EDEFAULT == null ? name != null : !NAME_EDEFAULT.equals(name);
       case RegistrationDSLPackage.ATTRIBUTE__TYPE:
         return TYPE_EDEFAULT == null ? type != null : !TYPE_EDEFAULT.equals(type);
     }
@@ -170,7 +226,9 @@ public class AttributeImpl extends FieldImpl implements Attribute
     if (eIsProxy()) return super.toString();
 
     StringBuilder result = new StringBuilder(super.toString());
-    result.append(" (type: ");
+    result.append(" (name: ");
+    result.append(name);
+    result.append(", type: ");
     result.append(type);
     result.append(')');
     return result.toString();

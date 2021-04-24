@@ -26,9 +26,21 @@ public class RegistrationDSLSyntacticSequencer extends AbstractSyntacticSequence
 	
 	@Override
 	protected String getUnassignedRuleCallToken(EObject semanticObject, RuleCall ruleCall, INode node) {
+		if (ruleCall.getRule() == grammarAccess.getRegisterRule())
+			return getRegisterToken(semanticObject, ruleCall, node);
 		return "";
 	}
 	
+	/**
+	 * Register:
+	 * 	'register' 
+	 * ;
+	 */
+	protected String getRegisterToken(EObject semanticObject, RuleCall ruleCall, INode node) {
+		if (node != null)
+			return getTokenText(node);
+		return "register";
+	}
 	
 	@Override
 	protected void emitUnassignedTokens(EObject semanticObject, ISynTransition transition, INode fromNode, INode toNode) {

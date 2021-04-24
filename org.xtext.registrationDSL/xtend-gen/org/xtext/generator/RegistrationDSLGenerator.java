@@ -20,13 +20,24 @@ import org.eclipse.xtext.generator.IGeneratorContext;
 import org.eclipse.xtext.xbase.lib.Exceptions;
 import org.eclipse.xtext.xbase.lib.StringExtensions;
 import org.xtext.registrationDSL.Add;
+import org.xtext.registrationDSL.And;
 import org.xtext.registrationDSL.Attribute;
+import org.xtext.registrationDSL.Comparison;
+import org.xtext.registrationDSL.Constant;
+import org.xtext.registrationDSL.Div;
 import org.xtext.registrationDSL.Entity;
-import org.xtext.registrationDSL.Field;
+import org.xtext.registrationDSL.Expression;
+import org.xtext.registrationDSL.LogicExp;
+import org.xtext.registrationDSL.Minus;
+import org.xtext.registrationDSL.Mult;
+import org.xtext.registrationDSL.Or;
+import org.xtext.registrationDSL.Plus;
 import org.xtext.registrationDSL.Registationsystem;
 import org.xtext.registrationDSL.Relation;
+import org.xtext.registrationDSL.Require;
 import org.xtext.registrationDSL.Select;
 import org.xtext.registrationDSL.Statement;
+import org.xtext.registrationDSL.Variable;
 import org.xtext.registrationDSL.Workflow;
 
 /**
@@ -156,21 +167,27 @@ public class RegistrationDSLGenerator extends AbstractGenerator {
         _builder.append("private ArrayList<");
         String _name_5 = r.getTarget().getName();
         _builder.append(_name_5, "\t");
-        _builder.append("> r.name = new ArrayList<>();");
+        _builder.append("> ");
+        String _name_6 = r.getName();
+        _builder.append(_name_6, "\t");
+        _builder.append(" = new ArrayList<>();");
         _builder.newLineIfNotEmpty();
         _builder.append("\t");
         _builder.newLine();
         _builder.append("\t");
-        _builder.append("public get");
-        String _firstUpper_2 = StringExtensions.toFirstUpper(r.getName());
+        _builder.append("public ArrayList<");
+        String _firstUpper_2 = StringExtensions.toFirstUpper(r.getTarget().getName());
         _builder.append(_firstUpper_2, "\t");
+        _builder.append("> get");
+        String _firstUpper_3 = StringExtensions.toFirstUpper(r.getName());
+        _builder.append(_firstUpper_3, "\t");
         _builder.append("(){");
         _builder.newLineIfNotEmpty();
         _builder.append("\t");
         _builder.append("\t");
         _builder.append("return ");
-        String _name_6 = r.getName();
-        _builder.append(_name_6, "\t\t");
+        String _name_7 = r.getName();
+        _builder.append(_name_7, "\t\t");
         _builder.append(";");
         _builder.newLineIfNotEmpty();
         _builder.append("\t");
@@ -180,19 +197,19 @@ public class RegistrationDSLGenerator extends AbstractGenerator {
         _builder.append("\t");
         _builder.newLine();
         _builder.append("\t");
-        _builder.append("public add");
-        String _firstUpper_3 = StringExtensions.toFirstUpper(r.getName());
-        _builder.append(_firstUpper_3, "\t");
-        _builder.append("(");
-        String _firstUpper_4 = StringExtensions.toFirstUpper(r.getTarget().getName());
+        _builder.append("public void add");
+        String _firstUpper_4 = StringExtensions.toFirstUpper(r.getName());
         _builder.append(_firstUpper_4, "\t");
+        _builder.append("(");
+        String _firstUpper_5 = StringExtensions.toFirstUpper(r.getTarget().getName());
+        _builder.append(_firstUpper_5, "\t");
         _builder.append(" target){");
         _builder.newLineIfNotEmpty();
         _builder.append("\t");
         _builder.append("\t");
         _builder.append("this.");
-        String _name_7 = r.getName();
-        _builder.append(_name_7, "\t\t");
+        String _name_8 = r.getName();
+        _builder.append(_name_8, "\t\t");
         _builder.append(".add(target);");
         _builder.newLineIfNotEmpty();
         _builder.append("\t");
@@ -204,6 +221,21 @@ public class RegistrationDSLGenerator extends AbstractGenerator {
       }
     }
     _builder.append("\t");
+    _builder.append("private void checkRequirements() {");
+    _builder.newLine();
+    {
+      Iterable<Require> _filter_2 = Iterables.<Require>filter(entity.getFields(), Require.class);
+      for(final Require r_1 : _filter_2) {
+        _builder.append("\t\t\t");
+        _builder.append("if(!(");
+        CharSequence _generateRequire = this.generateRequire(r_1);
+        _builder.append(_generateRequire, "\t\t\t");
+        _builder.append(")) throw new Error(\"Requirement not satisfied\");");
+        _builder.newLineIfNotEmpty();
+      }
+    }
+    _builder.append("\t\t\t");
+    _builder.append("}");
     _builder.newLine();
     _builder.append("}");
     _builder.newLine();
@@ -258,8 +290,8 @@ public class RegistrationDSLGenerator extends AbstractGenerator {
       }
     }
     {
-      EList<Field> _fields = entity.getFields();
-      for(final Field a_2 : _fields) {
+      Iterable<Attribute> _filter = Iterables.<Attribute>filter(entity.getFields(), Attribute.class);
+      for(final Attribute a_2 : _filter) {
         _builder.append("\t");
         _builder.append("this.");
         String _name_3 = a_2.getName();
@@ -271,6 +303,9 @@ public class RegistrationDSLGenerator extends AbstractGenerator {
         _builder.newLineIfNotEmpty();
       }
     }
+    _builder.append("\t");
+    _builder.append("checkRequirements();");
+    _builder.newLine();
     _builder.append("}");
     _builder.newLine();
     return _builder;
@@ -292,6 +327,75 @@ public class RegistrationDSLGenerator extends AbstractGenerator {
     return _xblockexpression;
   }
   
+  public CharSequence generateRequire(final Require require) {
+    return this.generateLogicExp(require.getLogic());
+  }
+  
+  protected CharSequence _generateLogicExp(final And exp) {
+    CharSequence _generateLogicExp = this.generateLogicExp(exp.getLeft());
+    String _plus = (_generateLogicExp + "&&");
+    CharSequence _generateLogicExp_1 = this.generateLogicExp(exp.getRight());
+    return (_plus + _generateLogicExp_1);
+  }
+  
+  protected CharSequence _generateLogicExp(final Or exp) {
+    CharSequence _generateLogicExp = this.generateLogicExp(exp.getLeft());
+    String _plus = (_generateLogicExp + "||");
+    CharSequence _generateLogicExp_1 = this.generateLogicExp(exp.getRight());
+    return (_plus + _generateLogicExp_1);
+  }
+  
+  protected CharSequence _generateLogicExp(final Comparison exp) {
+    CharSequence _generateMExp = this.generateMExp(exp.getLeft());
+    String _op = exp.getOp();
+    String _plus = (_generateMExp + _op);
+    CharSequence _generateMExp_1 = this.generateMExp(exp.getRight());
+    return (_plus + _generateMExp_1);
+  }
+  
+  protected CharSequence _generateMExp(final Plus exp) {
+    CharSequence _generateMExp = this.generateMExp(exp.getLeft());
+    String _plus = (_generateMExp + "+");
+    CharSequence _generateMExp_1 = this.generateMExp(exp.getRight());
+    return (_plus + _generateMExp_1);
+  }
+  
+  protected CharSequence _generateMExp(final Minus exp) {
+    CharSequence _generateMExp = this.generateMExp(exp.getLeft());
+    String _plus = (_generateMExp + "-");
+    CharSequence _generateMExp_1 = this.generateMExp(exp.getRight());
+    return (_plus + _generateMExp_1);
+  }
+  
+  protected CharSequence _generateMExp(final Mult exp) {
+    CharSequence _generateMExp = this.generateMExp(exp.getLeft());
+    String _plus = (_generateMExp + "*");
+    CharSequence _generateMExp_1 = this.generateMExp(exp.getRight());
+    return (_plus + _generateMExp_1);
+  }
+  
+  protected CharSequence _generateMExp(final Div exp) {
+    CharSequence _generateMExp = this.generateMExp(exp.getLeft());
+    String _plus = (_generateMExp + "/");
+    CharSequence _generateMExp_1 = this.generateMExp(exp.getRight());
+    return (_plus + _generateMExp_1);
+  }
+  
+  protected CharSequence _generateMExp(final Variable exp) {
+    StringConcatenation _builder = new StringConcatenation();
+    _builder.append("this.");
+    String _name = exp.getName().getName();
+    _builder.append(_name);
+    return _builder;
+  }
+  
+  protected CharSequence _generateMExp(final Constant exp) {
+    StringConcatenation _builder = new StringConcatenation();
+    int _value = exp.getValue();
+    _builder.append(_value);
+    return _builder;
+  }
+  
   public void generateWorkflowFile(final Iterable<Workflow> workflows, final String systemName, final Iterable<Entity> entities, final IFileSystemAccess2 fsa) {
     String _lowerCase = systemName.toLowerCase();
     String _plus = (_lowerCase + "/");
@@ -305,6 +409,7 @@ public class RegistrationDSLGenerator extends AbstractGenerator {
     _builder.append("package ");
     String _lowerCase = systemName.toLowerCase();
     _builder.append(_lowerCase);
+    _builder.append(";");
     _builder.newLineIfNotEmpty();
     _builder.append("import java.util.*;");
     _builder.newLine();
@@ -328,7 +433,7 @@ public class RegistrationDSLGenerator extends AbstractGenerator {
         _builder.append("\t");
         _builder.newLine();
         _builder.append("\t");
-        _builder.append("public ");
+        _builder.append("private ");
         String _name_1 = e.getName();
         _builder.append(_name_1, "\t");
         _builder.append(" choose");
@@ -336,6 +441,10 @@ public class RegistrationDSLGenerator extends AbstractGenerator {
         _builder.append(_firstUpper, "\t");
         _builder.append(" () {");
         _builder.newLineIfNotEmpty();
+        _builder.append("\t");
+        _builder.append("\t");
+        _builder.append("int i = 0;");
+        _builder.newLine();
         _builder.append("\t");
         _builder.append("\t");
         _builder.append("for (");
@@ -348,7 +457,11 @@ public class RegistrationDSLGenerator extends AbstractGenerator {
         _builder.newLineIfNotEmpty();
         _builder.append("\t");
         _builder.append("\t\t");
-        _builder.append("System.out.println(indexOf(x) + \": \" + x.toString());\t");
+        _builder.append("System.out.println((i) + \": \" + x.toString());\t");
+        _builder.newLine();
+        _builder.append("\t");
+        _builder.append("\t\t");
+        _builder.append("i++;");
         _builder.newLine();
         _builder.append("\t");
         _builder.append("\t");
@@ -367,7 +480,7 @@ public class RegistrationDSLGenerator extends AbstractGenerator {
         _builder.append("return ");
         String _firstLower_2 = StringExtensions.toFirstLower(e.getName());
         _builder.append(_firstLower_2, "\t\t\t");
-        _builder.append("List.get(input);");
+        _builder.append("List.get(Integer.parseInt(input));");
         _builder.newLineIfNotEmpty();
         _builder.append("\t");
         _builder.append("} ");
@@ -398,13 +511,7 @@ public class RegistrationDSLGenerator extends AbstractGenerator {
         _builder.newLine();
       }
     }
-    _builder.append("\t");
-    _builder.newLine();
-    _builder.append("\t");
-    _builder.newLine();
-    _builder.append("\t");
-    _builder.newLine();
-    _builder.append("\t");
+    _builder.append("}");
     _builder.newLine();
     return _builder;
   }
@@ -428,13 +535,13 @@ public class RegistrationDSLGenerator extends AbstractGenerator {
     StringConcatenation _builder = new StringConcatenation();
     String _toEntity = statement.getToEntity();
     _builder.append(_toEntity);
-    _builder.append(".set");
+    _builder.append(".add");
     String _firstUpper = StringExtensions.toFirstUpper(statement.getToEntityRelation());
     _builder.append(_firstUpper);
     _builder.append("(");
     String _selectedEntityName = statement.getSelectedEntityName();
     _builder.append(_selectedEntityName);
-    _builder.append(")");
+    _builder.append(");");
     _builder.newLineIfNotEmpty();
     return _builder;
   }
@@ -447,6 +554,38 @@ public class RegistrationDSLGenerator extends AbstractGenerator {
       res.save(System.out, null);
     } catch (Throwable _e) {
       throw Exceptions.sneakyThrow(_e);
+    }
+  }
+  
+  public CharSequence generateLogicExp(final LogicExp exp) {
+    if (exp instanceof And) {
+      return _generateLogicExp((And)exp);
+    } else if (exp instanceof Comparison) {
+      return _generateLogicExp((Comparison)exp);
+    } else if (exp instanceof Or) {
+      return _generateLogicExp((Or)exp);
+    } else {
+      throw new IllegalArgumentException("Unhandled parameter types: " +
+        Arrays.<Object>asList(exp).toString());
+    }
+  }
+  
+  public CharSequence generateMExp(final Expression exp) {
+    if (exp instanceof Variable) {
+      return _generateMExp((Variable)exp);
+    } else if (exp instanceof Constant) {
+      return _generateMExp((Constant)exp);
+    } else if (exp instanceof Div) {
+      return _generateMExp((Div)exp);
+    } else if (exp instanceof Minus) {
+      return _generateMExp((Minus)exp);
+    } else if (exp instanceof Mult) {
+      return _generateMExp((Mult)exp);
+    } else if (exp instanceof Plus) {
+      return _generateMExp((Plus)exp);
+    } else {
+      throw new IllegalArgumentException("Unhandled parameter types: " +
+        Arrays.<Object>asList(exp).toString());
     }
   }
   

@@ -17,14 +17,17 @@
       <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference RegistrationDSL.ecore#//Entity/base"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference RegistrationDSL.ecore#//Entity/fields"/>
     </genClasses>
-    <genClasses ecoreClass="RegistrationDSL.ecore#//Field">
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute RegistrationDSL.ecore#//Field/name"/>
-    </genClasses>
+    <genClasses ecoreClass="RegistrationDSL.ecore#//Field"/>
     <genClasses ecoreClass="RegistrationDSL.ecore#//Attribute">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute RegistrationDSL.ecore#//Attribute/name"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute RegistrationDSL.ecore#//Attribute/type"/>
     </genClasses>
     <genClasses ecoreClass="RegistrationDSL.ecore#//Relation">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute RegistrationDSL.ecore#//Relation/name"/>
       <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference RegistrationDSL.ecore#//Relation/target"/>
+    </genClasses>
+    <genClasses ecoreClass="RegistrationDSL.ecore#//Require">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference RegistrationDSL.ecore#//Require/logic"/>
     </genClasses>
     <genClasses ecoreClass="RegistrationDSL.ecore#//Workflow">
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference RegistrationDSL.ecore#//Workflow/statements"/>
@@ -38,6 +41,48 @@
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute RegistrationDSL.ecore#//Add/selectedEntityName"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute RegistrationDSL.ecore#//Add/toEntity"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute RegistrationDSL.ecore#//Add/toEntityRelation"/>
+    </genClasses>
+    <genClasses ecoreClass="RegistrationDSL.ecore#//LogicExp">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference RegistrationDSL.ecore#//LogicExp/logic"/>
+    </genClasses>
+    <genClasses ecoreClass="RegistrationDSL.ecore#//Comparison">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference RegistrationDSL.ecore#//Comparison/left"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute RegistrationDSL.ecore#//Comparison/op"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference RegistrationDSL.ecore#//Comparison/right"/>
+    </genClasses>
+    <genClasses ecoreClass="RegistrationDSL.ecore#//Expression">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference RegistrationDSL.ecore#//Expression/exp"/>
+    </genClasses>
+    <genClasses ecoreClass="RegistrationDSL.ecore#//Var"/>
+    <genClasses ecoreClass="RegistrationDSL.ecore#//Constant">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute RegistrationDSL.ecore#//Constant/value"/>
+    </genClasses>
+    <genClasses ecoreClass="RegistrationDSL.ecore#//Or">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference RegistrationDSL.ecore#//Or/left"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference RegistrationDSL.ecore#//Or/right"/>
+    </genClasses>
+    <genClasses ecoreClass="RegistrationDSL.ecore#//And">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference RegistrationDSL.ecore#//And/left"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference RegistrationDSL.ecore#//And/right"/>
+    </genClasses>
+    <genClasses ecoreClass="RegistrationDSL.ecore#//Plus">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference RegistrationDSL.ecore#//Plus/left"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference RegistrationDSL.ecore#//Plus/right"/>
+    </genClasses>
+    <genClasses ecoreClass="RegistrationDSL.ecore#//Minus">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference RegistrationDSL.ecore#//Minus/left"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference RegistrationDSL.ecore#//Minus/right"/>
+    </genClasses>
+    <genClasses ecoreClass="RegistrationDSL.ecore#//Mult">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference RegistrationDSL.ecore#//Mult/left"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference RegistrationDSL.ecore#//Mult/right"/>
+    </genClasses>
+    <genClasses ecoreClass="RegistrationDSL.ecore#//Div">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference RegistrationDSL.ecore#//Div/left"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference RegistrationDSL.ecore#//Div/right"/>
+    </genClasses>
+    <genClasses ecoreClass="RegistrationDSL.ecore#//Variable">
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference RegistrationDSL.ecore#//Variable/name"/>
     </genClasses>
   </genPackages>
 </genmodel:GenModel>
