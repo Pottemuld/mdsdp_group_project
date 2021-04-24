@@ -28,4 +28,4 @@ workflow register_customer {
 workflow register_car{
 	register Vehicle car
 }
-} 
+}

@@ -30,5 +30,5 @@ public class Main {
 				System.out.println("uption not recogniced, type 'quit' to exit");
 			}
 	} 
-	} 
+	}
 }

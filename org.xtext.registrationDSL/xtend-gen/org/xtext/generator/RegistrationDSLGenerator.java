@@ -547,6 +547,14 @@ public class RegistrationDSLGenerator extends AbstractGenerator {
     _builder.append(_selectedEntityName);
     _builder.append(");");
     _builder.newLineIfNotEmpty();
+    _builder.append("System.out.println(\"Added ");
+    String _selectedEntityName_1 = statement.getSelectedEntityName();
+    _builder.append(_selectedEntityName_1);
+    _builder.append(" to ");
+    String _toEntity_1 = statement.getToEntity();
+    _builder.append(_toEntity_1);
+    _builder.append("\");");
+    _builder.newLineIfNotEmpty();
     return _builder;
   }
   
