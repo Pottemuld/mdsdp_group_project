@@ -1,4 +1,4 @@
-system Car_rental{
+system CarRental{
 entity Customer{
     attribute name : String
     attribute age : int
@@ -8,18 +8,24 @@ entity Customer{
 }
 entity Vehicle {
     attribute price : int
-    attribute required_age: int
-    attribute registrations_nr : string
+    attribute required_age: int require required_age<=18
+    attribute registrations_nr : String
     //attribute availability : ?? // who to set up for periods of availability???
     relation rented_to : Customer
 // find a way to check availability 
 }
 workflow book_car {
-    select Customer customer
-    //select desired Perode Rental periode
+	select Customer customer
+	//select desired Perode Rental periode
     select Vehicle vehicle //where {vehicle.availability == periode && customer.age >= vehicle.required_age}
-    add vehicle to customer.rents
-    add customer to vehicle.rented_to
-    //set vehicle.availability = periode
+	add vehicle to customer.rents
+	add customer to vehicle.rented_to
+	//set vehicle.availability = periode
+}
+workflow register_customer {
+	register Customer customer
+}
+workflow register_car{
+	register Vehicle car
 }
 } 
