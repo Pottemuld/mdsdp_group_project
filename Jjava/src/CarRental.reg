@@ -1,14 +1,14 @@
 system CarRental{
 entity Customer{
     attribute name : String
-    attribute age : int
-    attribute drivers_licence : int // require leagalLicenceNr(drivers_licence)
+    attribute age : int require age>=18
+    attribute drivers_licence : int require drivers_licence>0 // require leagalLicenceNr(drivers_licence)
     attribute address : String
     relation rents : Vehicle
 }
 entity Vehicle {
     attribute price : int
-    attribute required_age: int require required_age<=18
+    attribute required_age: int require required_age>=18
     attribute registrations_nr : String
     //attribute availability : ?? // who to set up for periods of availability???
     relation rented_to : Customer
@@ -27,5 +27,5 @@ workflow register_customer {
 }
 workflow register_car{
 	register Vehicle car
-}
-}
+} 
+} 

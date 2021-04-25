@@ -64,15 +64,15 @@ class RegistrationDSLGenerator extends AbstractGenerator {
 		}
 			
 		«ENDFOR»
-		private void checkRequirements() {
+		private void checkRequirements() throws Exception {
 				«FOR r:entity.fields.filter(Require)»
-					if(!(«r.generateRequire»)) throw new Exception("Requirement not satisfied");
+					if(!(«r.generateRequire»)) throw new Exception("Requirement «r.logic.generateLogicExp» not satisfied");
 				«ENDFOR»
-				}
+		}
 	}
 	'''
 	def generateConstructor(Entity entity) '''
-	public «entity.name»(«FOR a:entity.allAtributeFields SEPARATOR ", "»«a.type» «a.name»«ENDFOR») {
+	public «entity.name»(«FOR a:entity.allAtributeFields SEPARATOR ", "»«a.type» «a.name»«ENDFOR») throws Exception {
 		«IF entity.base!==null»
 		super(«FOR a:entity.base.allAtributeFields SEPARATOR ", "»«a.name»«ENDFOR»);
 		«ENDIF»
@@ -174,7 +174,8 @@ class RegistrationDSLGenerator extends AbstractGenerator {
 		try {
 		«s.name» = new «s.type.name»(«FOR a:s.type.allAtributeFields SEPARATOR ", "»«a.name»«ENDFOR»);
 		} catch (Exception e) {
-			break;
+			System.out.println(e.toString());
+			return;
 		}
 		«s.type.name.toFirstLower»List.add(«s.name»);
 	'''
