@@ -66,7 +66,7 @@ class RegistrationDSLGenerator extends AbstractGenerator {
 		«ENDFOR»
 		private void checkRequirements() {
 				«FOR r:entity.fields.filter(Require)»
-					if(!(«r.generateRequire»)) throw new Error("Requirement not satisfied");
+					if(!(«r.generateRequire»)) throw new Exception("Requirement not satisfied");
 				«ENDFOR»
 				}
 	}
@@ -171,7 +171,11 @@ class RegistrationDSLGenerator extends AbstractGenerator {
 			«a.type» «a.name» = input;	
 			«ENDIF»
 		«ENDFOR»
+		try {
 		«s.name» = new «s.type.name»(«FOR a:s.type.allAtributeFields SEPARATOR ", "»«a.name»«ENDFOR»);
+		} catch (Exception e) {
+			break;
+		}
 		«s.type.name.toFirstLower»List.add(«s.name»);
 	'''
 	}

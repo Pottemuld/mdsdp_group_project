@@ -232,7 +232,7 @@ public class RegistrationDSLGenerator extends AbstractGenerator {
         _builder.append("if(!(");
         CharSequence _generateRequire = this.generateRequire(r_1);
         _builder.append(_generateRequire, "\t\t\t");
-        _builder.append(")) throw new Error(\"Requirement not satisfied\");");
+        _builder.append(")) throw new Exception(\"Requirement not satisfied\");");
         _builder.newLineIfNotEmpty();
       }
     }
@@ -618,6 +618,8 @@ public class RegistrationDSLGenerator extends AbstractGenerator {
         }
       }
     }
+    _builder.append("try {");
+    _builder.newLine();
     String _name_5 = s.getName();
     _builder.append(_name_5);
     _builder.append(" = new ");
@@ -639,6 +641,13 @@ public class RegistrationDSLGenerator extends AbstractGenerator {
     }
     _builder.append(");");
     _builder.newLineIfNotEmpty();
+    _builder.append("} catch (Exception e) {");
+    _builder.newLine();
+    _builder.append("\t");
+    _builder.append("break;");
+    _builder.newLine();
+    _builder.append("}");
+    _builder.newLine();
     String _firstLower = StringExtensions.toFirstLower(s.getType().getName());
     _builder.append(_firstLower);
     _builder.append("List.add(");
