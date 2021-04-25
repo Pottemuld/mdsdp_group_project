@@ -223,7 +223,7 @@ public class RegistrationDSLGenerator extends AbstractGenerator {
       }
     }
     _builder.append("\t");
-    _builder.append("private void checkRequirements() {");
+    _builder.append("private void checkRequirements() throws Exception {");
     _builder.newLine();
     {
       Iterable<Require> _filter_2 = Iterables.<Require>filter(entity.getFields(), Require.class);
@@ -232,11 +232,14 @@ public class RegistrationDSLGenerator extends AbstractGenerator {
         _builder.append("if(!(");
         CharSequence _generateRequire = this.generateRequire(r_1);
         _builder.append(_generateRequire, "\t\t\t");
-        _builder.append(")) throw new Exception(\"Requirement not satisfied\");");
+        _builder.append(")) throw new Exception(\"Requirement ");
+        CharSequence _generateLogicExp = this.generateLogicExp(r_1.getLogic());
+        _builder.append(_generateLogicExp, "\t\t\t");
+        _builder.append(" not satisfied\");");
         _builder.newLineIfNotEmpty();
       }
     }
-    _builder.append("\t\t\t");
+    _builder.append("\t");
     _builder.append("}");
     _builder.newLine();
     _builder.append("}");
@@ -266,7 +269,7 @@ public class RegistrationDSLGenerator extends AbstractGenerator {
         _builder.append(_name_1);
       }
     }
-    _builder.append(") {");
+    _builder.append(") throws Exception {");
     _builder.newLineIfNotEmpty();
     {
       Entity _base = entity.getBase();
@@ -644,7 +647,10 @@ public class RegistrationDSLGenerator extends AbstractGenerator {
     _builder.append("} catch (Exception e) {");
     _builder.newLine();
     _builder.append("\t");
-    _builder.append("break;");
+    _builder.append("System.out.println(e.toString());");
+    _builder.newLine();
+    _builder.append("\t");
+    _builder.append("return;");
     _builder.newLine();
     _builder.append("}");
     _builder.newLine();
