@@ -41,7 +41,7 @@ class RegistrationDSLGenerator extends AbstractGenerator {
 		
 		//ad relations and atributes
 		«FOR a:entity.fields.filter(Attribute)»
-		private «a.type» «a.name»;
+		protected «a.type» «a.name»;
 		
 		public «a.type» get«a.name.toFirstUpper»(){
 			return «a.name»;
@@ -53,9 +53,9 @@ class RegistrationDSLGenerator extends AbstractGenerator {
 			
 		«ENDFOR»
 		«FOR r:entity.fields.filter(Relation)»
-		private ArrayList<«r.target.name»> «r.name» = new ArrayList<>();
+		protected ArrayList<«r.target.name»> «r.name» = new ArrayList<>();
 		
-		public ArrayList<«r.target.name.toFirstUpper»> get«r.name.toFirstUpper»(){
+		protected ArrayList<«r.target.name.toFirstUpper»> get«r.name.toFirstUpper»(){
 			return «r.name»;
 		}
 			

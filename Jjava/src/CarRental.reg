@@ -14,6 +14,9 @@ entity Vehicle {
     relation rented_to : Customer
 // find a way to check availability 
 }
+entity FirstClassCustomer : Customer{
+	require age > 25
+}
 workflow book_car {
 	select Customer customer
 	//select desired Perode Rental periode
@@ -28,4 +31,4 @@ workflow register_customer {
 workflow register_car{
 	register Vehicle car
 } 
-} 
+}
