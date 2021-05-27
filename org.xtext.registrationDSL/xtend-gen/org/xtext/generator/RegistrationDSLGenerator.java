@@ -106,7 +106,7 @@ public class RegistrationDSLGenerator extends AbstractGenerator {
       Iterable<Attribute> _filter = Iterables.<Attribute>filter(entity.getFields(), Attribute.class);
       for(final Attribute a : _filter) {
         _builder.append("\t");
-        _builder.append("private ");
+        _builder.append("protected ");
         String _type = a.getType();
         _builder.append(_type, "\t");
         _builder.append(" ");
@@ -166,7 +166,7 @@ public class RegistrationDSLGenerator extends AbstractGenerator {
       Iterable<Relation> _filter_1 = Iterables.<Relation>filter(entity.getFields(), Relation.class);
       for(final Relation r : _filter_1) {
         _builder.append("\t");
-        _builder.append("private ArrayList<");
+        _builder.append("protected ArrayList<");
         String _name_5 = r.getTarget().getName();
         _builder.append(_name_5, "\t");
         _builder.append("> ");
