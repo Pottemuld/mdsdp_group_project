@@ -87,6 +87,14 @@ public class RegistrationDSLSwitch<T> extends Switch<T>
         if (result == null) result = defaultCase(theEObject);
         return result;
       }
+      case RegistrationDSLPackage.EXTERNAL:
+      {
+        External external = (External)theEObject;
+        T result = caseExternal(external);
+        if (result == null) result = caseDeclaration(external);
+        if (result == null) result = defaultCase(theEObject);
+        return result;
+      }
       case RegistrationDSLPackage.ENTITY:
       {
         Entity entity = (Entity)theEObject;
@@ -169,6 +177,14 @@ public class RegistrationDSLSwitch<T> extends Switch<T>
       {
         LogicExp logicExp = (LogicExp)theEObject;
         T result = caseLogicExp(logicExp);
+        if (result == null) result = defaultCase(theEObject);
+        return result;
+      }
+      case RegistrationDSLPackage.EXTERNAL_CALL:
+      {
+        ExternalCall externalCall = (ExternalCall)theEObject;
+        T result = caseExternalCall(externalCall);
+        if (result == null) result = caseLogicExp(externalCall);
         if (result == null) result = defaultCase(theEObject);
         return result;
       }
@@ -292,6 +308,22 @@ public class RegistrationDSLSwitch<T> extends Switch<T>
    * @generated
    */
   public T caseDeclaration(Declaration object)
+  {
+    return null;
+  }
+
+  /**
+   * Returns the result of interpreting the object as an instance of '<em>External</em>'.
+   * <!-- begin-user-doc -->
+   * This implementation returns null;
+   * returning a non-null result will terminate the switch.
+   * <!-- end-user-doc -->
+   * @param object the target of the switch.
+   * @return the result of interpreting the object as an instance of '<em>External</em>'.
+   * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+   * @generated
+   */
+  public T caseExternal(External object)
   {
     return null;
   }
@@ -468,6 +500,22 @@ public class RegistrationDSLSwitch<T> extends Switch<T>
    * @generated
    */
   public T caseLogicExp(LogicExp object)
+  {
+    return null;
+  }
+
+  /**
+   * Returns the result of interpreting the object as an instance of '<em>External Call</em>'.
+   * <!-- begin-user-doc -->
+   * This implementation returns null;
+   * returning a non-null result will terminate the switch.
+   * <!-- end-user-doc -->
+   * @param object the target of the switch.
+   * @return the result of interpreting the object as an instance of '<em>External Call</em>'.
+   * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+   * @generated
+   */
+  public T caseExternalCall(ExternalCall object)
   {
     return null;
   }

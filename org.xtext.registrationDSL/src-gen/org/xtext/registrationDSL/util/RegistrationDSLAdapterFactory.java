@@ -86,6 +86,11 @@ public class RegistrationDSLAdapterFactory extends AdapterFactoryImpl
         return createDeclarationAdapter();
       }
       @Override
+      public Adapter caseExternal(External object)
+      {
+        return createExternalAdapter();
+      }
+      @Override
       public Adapter caseEntity(Entity object)
       {
         return createEntityAdapter();
@@ -139,6 +144,11 @@ public class RegistrationDSLAdapterFactory extends AdapterFactoryImpl
       public Adapter caseLogicExp(LogicExp object)
       {
         return createLogicExpAdapter();
+      }
+      @Override
+      public Adapter caseExternalCall(ExternalCall object)
+      {
+        return createExternalCallAdapter();
       }
       @Override
       public Adapter caseComparison(Comparison object)
@@ -243,6 +253,21 @@ public class RegistrationDSLAdapterFactory extends AdapterFactoryImpl
    * @generated
    */
   public Adapter createDeclarationAdapter()
+  {
+    return null;
+  }
+
+  /**
+   * Creates a new adapter for an object of class '{@link org.xtext.registrationDSL.External <em>External</em>}'.
+   * <!-- begin-user-doc -->
+   * This default implementation returns null so that we can easily ignore cases;
+   * it's useful to ignore a case when inheritance will catch all the cases anyway.
+   * <!-- end-user-doc -->
+   * @return the new adapter.
+   * @see org.xtext.registrationDSL.External
+   * @generated
+   */
+  public Adapter createExternalAdapter()
   {
     return null;
   }
@@ -408,6 +433,21 @@ public class RegistrationDSLAdapterFactory extends AdapterFactoryImpl
    * @generated
    */
   public Adapter createLogicExpAdapter()
+  {
+    return null;
+  }
+
+  /**
+   * Creates a new adapter for an object of class '{@link org.xtext.registrationDSL.ExternalCall <em>External Call</em>}'.
+   * <!-- begin-user-doc -->
+   * This default implementation returns null so that we can easily ignore cases;
+   * it's useful to ignore a case when inheritance will catch all the cases anyway.
+   * <!-- end-user-doc -->
+   * @return the new adapter.
+   * @see org.xtext.registrationDSL.ExternalCall
+   * @generated
+   */
+  public Adapter createExternalCallAdapter()
   {
     return null;
   }

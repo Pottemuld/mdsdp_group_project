@@ -3,6 +3,12 @@
  */
 package org.xtext.validation;
 
+import com.google.common.base.Objects;
+import java.util.HashSet;
+import org.eclipse.xtext.validation.Check;
+import org.xtext.registrationDSL.Entity;
+import org.xtext.registrationDSL.RegistrationDSLPackage;
+
 /**
  * This class contains custom validation rules.
  * 
@@ -10,4 +16,36 @@ package org.xtext.validation;
  */
 @SuppressWarnings("all")
 public class RegistrationDSLValidator extends AbstractRegistrationDSLValidator {
+  @Check
+  public void checkNoCyclicInharitance(final Entity entity) {
+    final HashSet<Entity> seen = new HashSet<Entity>();
+    seen.add(entity);
+    boolean _selfExtends = this.selfExtends(entity.getBase(), seen);
+    if (_selfExtends) {
+      this.error("Cyclic inharitance", RegistrationDSLPackage.Literals.ENTITY__BASE);
+    }
+  }
+  
+  public boolean selfExtends(final Entity entity, final HashSet<Entity> seen) {
+    boolean _xifexpression = false;
+    boolean _equals = Objects.equal(entity, null);
+    if (_equals) {
+      return false;
+    } else {
+      boolean _xifexpression_1 = false;
+      boolean _contains = seen.contains(entity);
+      if (_contains) {
+        return true;
+      } else {
+        boolean _xblockexpression = false;
+        {
+          seen.add(entity);
+          _xblockexpression = this.selfExtends(entity.getBase(), seen);
+        }
+        _xifexpression_1 = _xblockexpression;
+      }
+      _xifexpression = _xifexpression_1;
+    }
+    return _xifexpression;
+  }
 }

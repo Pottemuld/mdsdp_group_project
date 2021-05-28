@@ -123,6 +123,43 @@ public interface RegistrationDSLPackage extends EPackage
   int DECLARATION_FEATURE_COUNT = 1;
 
   /**
+   * The meta object id for the '{@link org.xtext.registrationDSL.impl.ExternalImpl <em>External</em>}' class.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see org.xtext.registrationDSL.impl.ExternalImpl
+   * @see org.xtext.registrationDSL.impl.RegistrationDSLPackageImpl#getExternal()
+   * @generated
+   */
+  int EXTERNAL = 2;
+
+  /**
+   * The feature id for the '<em><b>Name</b></em>' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int EXTERNAL__NAME = DECLARATION__NAME;
+
+  /**
+   * The feature id for the '<em><b>Parameters</b></em>' attribute list.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int EXTERNAL__PARAMETERS = DECLARATION_FEATURE_COUNT + 0;
+
+  /**
+   * The number of structural features of the '<em>External</em>' class.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int EXTERNAL_FEATURE_COUNT = DECLARATION_FEATURE_COUNT + 1;
+
+  /**
    * The meta object id for the '{@link org.xtext.registrationDSL.impl.EntityImpl <em>Entity</em>}' class.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
@@ -130,7 +167,7 @@ public interface RegistrationDSLPackage extends EPackage
    * @see org.xtext.registrationDSL.impl.RegistrationDSLPackageImpl#getEntity()
    * @generated
    */
-  int ENTITY = 2;
+  int ENTITY = 3;
 
   /**
    * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -176,7 +213,7 @@ public interface RegistrationDSLPackage extends EPackage
    * @see org.xtext.registrationDSL.impl.RegistrationDSLPackageImpl#getField()
    * @generated
    */
-  int FIELD = 3;
+  int FIELD = 4;
 
   /**
    * The number of structural features of the '<em>Field</em>' class.
@@ -195,7 +232,7 @@ public interface RegistrationDSLPackage extends EPackage
    * @see org.xtext.registrationDSL.impl.RegistrationDSLPackageImpl#getAttribute()
    * @generated
    */
-  int ATTRIBUTE = 4;
+  int ATTRIBUTE = 5;
 
   /**
    * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -232,7 +269,7 @@ public interface RegistrationDSLPackage extends EPackage
    * @see org.xtext.registrationDSL.impl.RegistrationDSLPackageImpl#getRelation()
    * @generated
    */
-  int RELATION = 5;
+  int RELATION = 6;
 
   /**
    * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -269,7 +306,7 @@ public interface RegistrationDSLPackage extends EPackage
    * @see org.xtext.registrationDSL.impl.RegistrationDSLPackageImpl#getRequire()
    * @generated
    */
-  int REQUIRE = 6;
+  int REQUIRE = 7;
 
   /**
    * The feature id for the '<em><b>Logic</b></em>' containment reference.
@@ -297,7 +334,7 @@ public interface RegistrationDSLPackage extends EPackage
    * @see org.xtext.registrationDSL.impl.RegistrationDSLPackageImpl#getWorkflow()
    * @generated
    */
-  int WORKFLOW = 7;
+  int WORKFLOW = 8;
 
   /**
    * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -334,7 +371,7 @@ public interface RegistrationDSLPackage extends EPackage
    * @see org.xtext.registrationDSL.impl.RegistrationDSLPackageImpl#getStatement()
    * @generated
    */
-  int STATEMENT = 8;
+  int STATEMENT = 9;
 
   /**
    * The number of structural features of the '<em>Statement</em>' class.
@@ -353,7 +390,7 @@ public interface RegistrationDSLPackage extends EPackage
    * @see org.xtext.registrationDSL.impl.RegistrationDSLPackageImpl#getSelect()
    * @generated
    */
-  int SELECT = 9;
+  int SELECT = 10;
 
   /**
    * The feature id for the '<em><b>Select Type</b></em>' reference.
@@ -390,7 +427,7 @@ public interface RegistrationDSLPackage extends EPackage
    * @see org.xtext.registrationDSL.impl.RegistrationDSLPackageImpl#getAdd()
    * @generated
    */
-  int ADD = 10;
+  int ADD = 11;
 
   /**
    * The feature id for the '<em><b>Selected Entity Name</b></em>' attribute.
@@ -436,7 +473,7 @@ public interface RegistrationDSLPackage extends EPackage
    * @see org.xtext.registrationDSL.impl.RegistrationDSLPackageImpl#getRegister()
    * @generated
    */
-  int REGISTER = 11;
+  int REGISTER = 12;
 
   /**
    * The feature id for the '<em><b>Type</b></em>' reference.
@@ -473,7 +510,7 @@ public interface RegistrationDSLPackage extends EPackage
    * @see org.xtext.registrationDSL.impl.RegistrationDSLPackageImpl#getLogicExp()
    * @generated
    */
-  int LOGIC_EXP = 12;
+  int LOGIC_EXP = 13;
 
   /**
    * The feature id for the '<em><b>Logic</b></em>' containment reference.
@@ -494,6 +531,52 @@ public interface RegistrationDSLPackage extends EPackage
   int LOGIC_EXP_FEATURE_COUNT = 1;
 
   /**
+   * The meta object id for the '{@link org.xtext.registrationDSL.impl.ExternalCallImpl <em>External Call</em>}' class.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see org.xtext.registrationDSL.impl.ExternalCallImpl
+   * @see org.xtext.registrationDSL.impl.RegistrationDSLPackageImpl#getExternalCall()
+   * @generated
+   */
+  int EXTERNAL_CALL = 14;
+
+  /**
+   * The feature id for the '<em><b>Logic</b></em>' containment reference.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int EXTERNAL_CALL__LOGIC = LOGIC_EXP__LOGIC;
+
+  /**
+   * The feature id for the '<em><b>Target</b></em>' reference.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int EXTERNAL_CALL__TARGET = LOGIC_EXP_FEATURE_COUNT + 0;
+
+  /**
+   * The feature id for the '<em><b>Arguments</b></em>' containment reference list.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int EXTERNAL_CALL__ARGUMENTS = LOGIC_EXP_FEATURE_COUNT + 1;
+
+  /**
+   * The number of structural features of the '<em>External Call</em>' class.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int EXTERNAL_CALL_FEATURE_COUNT = LOGIC_EXP_FEATURE_COUNT + 2;
+
+  /**
    * The meta object id for the '{@link org.xtext.registrationDSL.impl.ComparisonImpl <em>Comparison</em>}' class.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
@@ -501,7 +584,7 @@ public interface RegistrationDSLPackage extends EPackage
    * @see org.xtext.registrationDSL.impl.RegistrationDSLPackageImpl#getComparison()
    * @generated
    */
-  int COMPARISON = 13;
+  int COMPARISON = 15;
 
   /**
    * The feature id for the '<em><b>Logic</b></em>' containment reference.
@@ -556,7 +639,7 @@ public interface RegistrationDSLPackage extends EPackage
    * @see org.xtext.registrationDSL.impl.RegistrationDSLPackageImpl#getExpression()
    * @generated
    */
-  int EXPRESSION = 14;
+  int EXPRESSION = 16;
 
   /**
    * The feature id for the '<em><b>Exp</b></em>' containment reference.
@@ -584,7 +667,7 @@ public interface RegistrationDSLPackage extends EPackage
    * @see org.xtext.registrationDSL.impl.RegistrationDSLPackageImpl#getVar()
    * @generated
    */
-  int VAR = 15;
+  int VAR = 17;
 
   /**
    * The feature id for the '<em><b>Exp</b></em>' containment reference.
@@ -612,7 +695,7 @@ public interface RegistrationDSLPackage extends EPackage
    * @see org.xtext.registrationDSL.impl.RegistrationDSLPackageImpl#getConstant()
    * @generated
    */
-  int CONSTANT = 16;
+  int CONSTANT = 18;
 
   /**
    * The feature id for the '<em><b>Exp</b></em>' containment reference.
@@ -649,7 +732,7 @@ public interface RegistrationDSLPackage extends EPackage
    * @see org.xtext.registrationDSL.impl.RegistrationDSLPackageImpl#getOr()
    * @generated
    */
-  int OR = 17;
+  int OR = 19;
 
   /**
    * The feature id for the '<em><b>Logic</b></em>' containment reference.
@@ -695,7 +778,7 @@ public interface RegistrationDSLPackage extends EPackage
    * @see org.xtext.registrationDSL.impl.RegistrationDSLPackageImpl#getAnd()
    * @generated
    */
-  int AND = 18;
+  int AND = 20;
 
   /**
    * The feature id for the '<em><b>Logic</b></em>' containment reference.
@@ -741,7 +824,7 @@ public interface RegistrationDSLPackage extends EPackage
    * @see org.xtext.registrationDSL.impl.RegistrationDSLPackageImpl#getPlus()
    * @generated
    */
-  int PLUS = 19;
+  int PLUS = 21;
 
   /**
    * The feature id for the '<em><b>Exp</b></em>' containment reference.
@@ -787,7 +870,7 @@ public interface RegistrationDSLPackage extends EPackage
    * @see org.xtext.registrationDSL.impl.RegistrationDSLPackageImpl#getMinus()
    * @generated
    */
-  int MINUS = 20;
+  int MINUS = 22;
 
   /**
    * The feature id for the '<em><b>Exp</b></em>' containment reference.
@@ -833,7 +916,7 @@ public interface RegistrationDSLPackage extends EPackage
    * @see org.xtext.registrationDSL.impl.RegistrationDSLPackageImpl#getMult()
    * @generated
    */
-  int MULT = 21;
+  int MULT = 23;
 
   /**
    * The feature id for the '<em><b>Exp</b></em>' containment reference.
@@ -879,7 +962,7 @@ public interface RegistrationDSLPackage extends EPackage
    * @see org.xtext.registrationDSL.impl.RegistrationDSLPackageImpl#getDiv()
    * @generated
    */
-  int DIV = 22;
+  int DIV = 24;
 
   /**
    * The feature id for the '<em><b>Exp</b></em>' containment reference.
@@ -925,7 +1008,7 @@ public interface RegistrationDSLPackage extends EPackage
    * @see org.xtext.registrationDSL.impl.RegistrationDSLPackageImpl#getVariable()
    * @generated
    */
-  int VARIABLE = 23;
+  int VARIABLE = 25;
 
   /**
    * The feature id for the '<em><b>Exp</b></em>' containment reference.
@@ -1007,6 +1090,27 @@ public interface RegistrationDSLPackage extends EPackage
    * @generated
    */
   EAttribute getDeclaration_Name();
+
+  /**
+   * Returns the meta object for class '{@link org.xtext.registrationDSL.External <em>External</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for class '<em>External</em>'.
+   * @see org.xtext.registrationDSL.External
+   * @generated
+   */
+  EClass getExternal();
+
+  /**
+   * Returns the meta object for the attribute list '{@link org.xtext.registrationDSL.External#getParameters <em>Parameters</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the attribute list '<em>Parameters</em>'.
+   * @see org.xtext.registrationDSL.External#getParameters()
+   * @see #getExternal()
+   * @generated
+   */
+  EAttribute getExternal_Parameters();
 
   /**
    * Returns the meta object for class '{@link org.xtext.registrationDSL.Entity <em>Entity</em>}'.
@@ -1293,6 +1397,38 @@ public interface RegistrationDSLPackage extends EPackage
    * @generated
    */
   EReference getLogicExp_Logic();
+
+  /**
+   * Returns the meta object for class '{@link org.xtext.registrationDSL.ExternalCall <em>External Call</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for class '<em>External Call</em>'.
+   * @see org.xtext.registrationDSL.ExternalCall
+   * @generated
+   */
+  EClass getExternalCall();
+
+  /**
+   * Returns the meta object for the reference '{@link org.xtext.registrationDSL.ExternalCall#getTarget <em>Target</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the reference '<em>Target</em>'.
+   * @see org.xtext.registrationDSL.ExternalCall#getTarget()
+   * @see #getExternalCall()
+   * @generated
+   */
+  EReference getExternalCall_Target();
+
+  /**
+   * Returns the meta object for the containment reference list '{@link org.xtext.registrationDSL.ExternalCall#getArguments <em>Arguments</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the containment reference list '<em>Arguments</em>'.
+   * @see org.xtext.registrationDSL.ExternalCall#getArguments()
+   * @see #getExternalCall()
+   * @generated
+   */
+  EReference getExternalCall_Arguments();
 
   /**
    * Returns the meta object for class '{@link org.xtext.registrationDSL.Comparison <em>Comparison</em>}'.
@@ -1670,6 +1806,24 @@ public interface RegistrationDSLPackage extends EPackage
     EAttribute DECLARATION__NAME = eINSTANCE.getDeclaration_Name();
 
     /**
+     * The meta object literal for the '{@link org.xtext.registrationDSL.impl.ExternalImpl <em>External</em>}' class.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @see org.xtext.registrationDSL.impl.ExternalImpl
+     * @see org.xtext.registrationDSL.impl.RegistrationDSLPackageImpl#getExternal()
+     * @generated
+     */
+    EClass EXTERNAL = eINSTANCE.getExternal();
+
+    /**
+     * The meta object literal for the '<em><b>Parameters</b></em>' attribute list feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EAttribute EXTERNAL__PARAMETERS = eINSTANCE.getExternal_Parameters();
+
+    /**
      * The meta object literal for the '{@link org.xtext.registrationDSL.impl.EntityImpl <em>Entity</em>}' class.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
@@ -1906,6 +2060,32 @@ public interface RegistrationDSLPackage extends EPackage
      * @generated
      */
     EReference LOGIC_EXP__LOGIC = eINSTANCE.getLogicExp_Logic();
+
+    /**
+     * The meta object literal for the '{@link org.xtext.registrationDSL.impl.ExternalCallImpl <em>External Call</em>}' class.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @see org.xtext.registrationDSL.impl.ExternalCallImpl
+     * @see org.xtext.registrationDSL.impl.RegistrationDSLPackageImpl#getExternalCall()
+     * @generated
+     */
+    EClass EXTERNAL_CALL = eINSTANCE.getExternalCall();
+
+    /**
+     * The meta object literal for the '<em><b>Target</b></em>' reference feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EReference EXTERNAL_CALL__TARGET = eINSTANCE.getExternalCall_Target();
+
+    /**
+     * The meta object literal for the '<em><b>Arguments</b></em>' containment reference list feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EReference EXTERNAL_CALL__ARGUMENTS = eINSTANCE.getExternalCall_Arguments();
 
     /**
      * The meta object literal for the '{@link org.xtext.registrationDSL.impl.ComparisonImpl <em>Comparison</em>}' class.

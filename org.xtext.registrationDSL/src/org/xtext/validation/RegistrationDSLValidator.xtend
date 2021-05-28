@@ -3,6 +3,10 @@
  */
 package org.xtext.validation
 
+import org.eclipse.xtext.validation.Check
+import org.xtext.registrationDSL.Entity
+import java.util.HashSet
+import org.xtext.registrationDSL.RegistrationDSLPackage.Literals
 
 /**
  * This class contains custom validation rules. 
@@ -21,5 +25,29 @@ class RegistrationDSLValidator extends AbstractRegistrationDSLValidator {
 //					INVALID_NAME)
 //		}
 //	}
+
+	@Check
+	def checkNoCyclicInharitance(Entity entity){
+		val seen = new HashSet<Entity>
+		seen.add(entity)
+		if(entity.base.selfExtends(seen)){
+			error("Cyclic inharitance", Literals.ENTITY__BASE)
+		}
+	}
+	
+	def boolean selfExtends(Entity entity, HashSet<Entity> seen){
+		if(entity == null) {
+			return false
+		}
+		else if (seen.contains(entity)){
+			return true
+		}
+		else{
+			seen.add(entity)
+			entity.base.selfExtends(seen)
+		}
+		
+		
+	}
 	
 }

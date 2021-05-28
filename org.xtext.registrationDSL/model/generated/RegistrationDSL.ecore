@@ -10,6 +10,10 @@
   <eClassifiers xsi:type="ecore:EClass" name="Declaration">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
   </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="External" eSuperTypes="#//Declaration">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="parameters" unique="false"
+        upperBound="-1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+  </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="Entity" eSuperTypes="#//Declaration">
     <eStructuralFeatures xsi:type="ecore:EReference" name="base" eType="#//Entity"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="fields" upperBound="-1"
@@ -49,6 +53,11 @@
   <eClassifiers xsi:type="ecore:EClass" name="LogicExp">
     <eStructuralFeatures xsi:type="ecore:EReference" name="logic" eType="#//LogicExp"
         containment="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="ExternalCall" eSuperTypes="#//LogicExp">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="target" eType="#//External"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="arguments" upperBound="-1"
+        eType="#//Expression" containment="true"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="Comparison" eSuperTypes="#//LogicExp">
     <eStructuralFeatures xsi:type="ecore:EReference" name="left" eType="#//Expression"

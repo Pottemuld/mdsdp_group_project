@@ -40,7 +40,9 @@ class RegistrationDSLScopeProvider extends AbstractRegistrationDSLScopeProvider 
 		val seen = new HashSet<Entity>
 		var e = entity
 		while (e!==null){
-			if(seen.contains(e)) return Collections.EMPTY_LIST
+			if(seen.contains(e)){
+				return Collections.EMPTY_LIST
+			} 
 			seen.add(e)
 			candidates.addAll(e.fields.filter(Attribute))
 			e = e.base

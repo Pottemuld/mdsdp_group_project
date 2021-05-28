@@ -6,7 +6,10 @@ Registationsystem: //car rental version
 	'system' name =ID '{' declarations += Declaration* '}'
 ;
 Declaration:
-	Entity | Workflow
+	Entity | Workflow | External
+;
+External:
+	'external' name=ID '(' parameters+=ID (',' parameters+=ID)* ')'
 ;
 
 Entity:
@@ -61,7 +64,11 @@ Conjunction returns LogicExp:
 ;
 
 PrimLogic returns LogicExp:
-	Comparison | '[' logic=Logic ']'
+	Comparison | '[' logic=Logic ']' | ExternalCall
+;
+
+ExternalCall:
+	target=[External] '(' arguments +=Exp ('.' arguments+=Exp)* ')'
 ;
 
 

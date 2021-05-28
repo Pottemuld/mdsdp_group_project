@@ -1,8 +1,9 @@
 system CarRental{
-entity Customer{
+external legalLicence(int) 
+entity Customer {
     attribute name : String
     attribute age : int require age>=18
-    attribute drivers_licence : int require drivers_licence>0 // require leagalLicenceNr(drivers_licence)
+    attribute drivers_licence : int require legalLicence(drivers_licence) // require leagalLicenceNr(drivers_licence)
     attribute address : String
     relation rents : Vehicle
 }
@@ -31,4 +32,4 @@ workflow register_customer {
 workflow register_car{
 	register Vehicle car
 } 
-}
+} 

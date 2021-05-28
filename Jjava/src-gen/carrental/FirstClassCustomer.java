@@ -2,8 +2,10 @@ package carrental;
 import java.util.*;
 
 public class FirstClassCustomer extends Customer {
-	public FirstClassCustomer(String name, int age, int drivers_licence, String address) throws Exception {
-		super(name, age, drivers_licence, address);
+	private ExternalCode code;
+	public FirstClassCustomer(ExternalCode code,String name, int age, int drivers_licence, String address) throws Exception {
+		super(code, name, age, drivers_licence, address);
+		this.code = code;
 		checkRequirements();
 	}
 	

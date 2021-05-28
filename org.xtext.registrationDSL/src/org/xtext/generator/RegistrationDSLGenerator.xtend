@@ -13,6 +13,7 @@ import org.eclipse.emf.ecore.xmi.impl.XMLResourceImpl
 import org.eclipse.emf.ecore.util.EcoreUtil
 import java.util.ArrayList
 import java.util.List
+import org.xtext.registrationDSL.Registationsystem
 
 /**
  * Generates code from your model files on save.
@@ -23,11 +24,13 @@ class RegistrationDSLGenerator extends AbstractGenerator {
 
 	override void doGenerate(Resource resource, IFileSystemAccess2 fsa, IGeneratorContext context) {
 		val Registationsystem modelInstance = resource.allContents.filter(Registationsystem).next
+		modelInstance.generateExternalInterface(fsa)
 		modelInstance.display
 		modelInstance.declarations.filter(Entity).forEach[generateEntityFile(modelInstance.name,fsa)]
 		modelInstance.declarations.filter(Workflow).generateWorkflowFile(modelInstance.name, modelInstance.declarations.filter(Entity),fsa)
 	}
 	
+
 	def generateEntityFile(Entity entity, String systemName, IFileSystemAccess2 fsa) {
 		fsa.generateFile(systemName.toLowerCase+"/"+entity.name+".java", entity.generateEntity(systemName))
 	}
@@ -37,6 +40,7 @@ class RegistrationDSLGenerator extends AbstractGenerator {
 	import java.util.*;
 	
 	public class «entity.name»«IF entity.base !==null» extends «entity.base.name»«ENDIF» {
+		private ExternalCode code;
 		«entity.generateConstructor»
 		
 		//ad relations and atributes
@@ -72,10 +76,11 @@ class RegistrationDSLGenerator extends AbstractGenerator {
 	}
 	'''
 	def generateConstructor(Entity entity) '''
-	public «entity.name»(«FOR a:entity.allAtributeFields SEPARATOR ", "»«a.type» «a.name»«ENDFOR») throws Exception {
+	public «entity.name»(ExternalCode code,«FOR a:entity.allAtributeFields SEPARATOR ", "»«a.type» «a.name»«ENDFOR») throws Exception {
 		«IF entity.base!==null»
-		super(«FOR a:entity.base.allAtributeFields SEPARATOR ", "»«a.name»«ENDFOR»);
+		super(code, «FOR a:entity.base.allAtributeFields SEPARATOR ", "»«a.name»«ENDFOR»);
 		«ENDIF»
+		this.code = code;
 		«FOR a:entity.fields.filter(Attribute)»
 		this.«a.name» = «a.name»;
 		«ENDFOR»
@@ -98,6 +103,9 @@ class RegistrationDSLGenerator extends AbstractGenerator {
 	def dispatch CharSequence generateLogicExp(And exp) { exp.left.generateLogicExp+"&&"+exp.right.generateLogicExp }
 	def dispatch CharSequence generateLogicExp(Or exp) { exp.left.generateLogicExp+"||"+exp.right.generateLogicExp }
 	def dispatch CharSequence generateLogicExp(Comparison exp) { exp.left.generateMExp+exp.op+exp.right.generateMExp }
+	def dispatch CharSequence generateLogicExp(ExternalCall ec){
+		'''this.code.«ec.target.name»(«FOR a:ec.arguments SEPARATOR ','»«a.generateMExp»«ENDFOR»)'''
+	}
 		
 	def dispatch CharSequence generateMExp(Plus exp) { exp.left.generateMExp+"+"+exp.right.generateMExp }
 	def dispatch CharSequence generateMExp(Minus exp) { exp.left.generateMExp+"-"+exp.right.generateMExp }
@@ -117,6 +125,7 @@ class RegistrationDSLGenerator extends AbstractGenerator {
 		
 		Scanner scan = new Scanner(System.in);
 		String input; 
+		ExternalCode code;
 		
 			«FOR e: entities»
 				ArrayList<«e.name»> «e.name.toFirstLower»List = new ArrayList<>();
@@ -172,7 +181,7 @@ class RegistrationDSLGenerator extends AbstractGenerator {
 			«ENDIF»
 		«ENDFOR»
 		try {
-		«s.name» = new «s.type.name»(«FOR a:s.type.allAtributeFields SEPARATOR ", "»«a.name»«ENDFOR»);
+		«s.name» = new «s.type.name»(code, «FOR a:s.type.allAtributeFields SEPARATOR ", "»«a.name»«ENDFOR»);
 		} catch (Exception e) {
 			System.out.println(e.toString());
 			return;
@@ -187,4 +196,21 @@ class RegistrationDSLGenerator extends AbstractGenerator {
   		System::out.println("Dump of model:")
   		res.save(System.out, null);
 	}
+	
+	def void generateExternalInterface(Registationsystem registrationsystem, IFileSystemAccess2 fsa){
+		fsa.generateFile(registrationsystem.name.toLowerCase+"/"+'ExternalCode.java','''
+		package «registrationsystem.name.toLowerCase»;
+		public interface ExternalCode {
+			«FOR x:registrationsystem.declarations.filter(External)»
+				public boolean «x.name.toFirstLower»(«FOR p:x.parameters SEPARATOR ',' »«p» «p.generateParameter» «ENDFOR»);
+			«ENDFOR»
+			}
+		''')
+	}
+	
+	def generateParameter(String typeName) {
+		"p"+(id++)
+	}
+	var int id = 0
+	
 }
