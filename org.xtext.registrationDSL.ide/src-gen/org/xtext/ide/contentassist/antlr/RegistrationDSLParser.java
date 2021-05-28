@@ -45,6 +45,8 @@ public class RegistrationDSLParser extends AbstractContentAssistParser {
 			builder.put(grammarAccess.getAttributeAccess().getGroup(), "rule__Attribute__Group__0");
 			builder.put(grammarAccess.getRelationAccess().getGroup(), "rule__Relation__Group__0");
 			builder.put(grammarAccess.getRequireAccess().getGroup(), "rule__Require__Group__0");
+			builder.put(grammarAccess.getExternalAccess().getGroup(), "rule__External__Group__0");
+			builder.put(grammarAccess.getExternalAccess().getGroup_4(), "rule__External__Group_4__0");
 			builder.put(grammarAccess.getWorkflowAccess().getGroup(), "rule__Workflow__Group__0");
 			builder.put(grammarAccess.getSelectAccess().getGroup(), "rule__Select__Group__0");
 			builder.put(grammarAccess.getAddAccess().getGroup(), "rule__Add__Group__0");
@@ -53,7 +55,9 @@ public class RegistrationDSLParser extends AbstractContentAssistParser {
 			builder.put(grammarAccess.getLogicAccess().getGroup_1(), "rule__Logic__Group_1__0");
 			builder.put(grammarAccess.getConjunctionAccess().getGroup(), "rule__Conjunction__Group__0");
 			builder.put(grammarAccess.getConjunctionAccess().getGroup_1(), "rule__Conjunction__Group_1__0");
-			builder.put(grammarAccess.getPrimLogicAccess().getGroup_1(), "rule__PrimLogic__Group_1__0");
+			builder.put(grammarAccess.getPrimLogicAccess().getGroup_2(), "rule__PrimLogic__Group_2__0");
+			builder.put(grammarAccess.getExternalCallAccess().getGroup(), "rule__ExternalCall__Group__0");
+			builder.put(grammarAccess.getExternalCallAccess().getGroup_3(), "rule__ExternalCall__Group_3__0");
 			builder.put(grammarAccess.getComparisonAccess().getGroup(), "rule__Comparison__Group__0");
 			builder.put(grammarAccess.getExpAccess().getGroup(), "rule__Exp__Group__0");
 			builder.put(grammarAccess.getExpAccess().getGroup_1(), "rule__Exp__Group_1__0");
@@ -75,6 +79,9 @@ public class RegistrationDSLParser extends AbstractContentAssistParser {
 			builder.put(grammarAccess.getRelationAccess().getNameAssignment_1(), "rule__Relation__NameAssignment_1");
 			builder.put(grammarAccess.getRelationAccess().getTargetAssignment_3(), "rule__Relation__TargetAssignment_3");
 			builder.put(grammarAccess.getRequireAccess().getLogicAssignment_1(), "rule__Require__LogicAssignment_1");
+			builder.put(grammarAccess.getExternalAccess().getNameAssignment_1(), "rule__External__NameAssignment_1");
+			builder.put(grammarAccess.getExternalAccess().getParametersAssignment_3(), "rule__External__ParametersAssignment_3");
+			builder.put(grammarAccess.getExternalAccess().getParametersAssignment_4_1(), "rule__External__ParametersAssignment_4_1");
 			builder.put(grammarAccess.getWorkflowAccess().getNameAssignment_1(), "rule__Workflow__NameAssignment_1");
 			builder.put(grammarAccess.getWorkflowAccess().getStatementsAssignment_3(), "rule__Workflow__StatementsAssignment_3");
 			builder.put(grammarAccess.getSelectAccess().getSelectTypeAssignment_1(), "rule__Select__SelectTypeAssignment_1");
@@ -86,7 +93,10 @@ public class RegistrationDSLParser extends AbstractContentAssistParser {
 			builder.put(grammarAccess.getRegisterAccess().getNameAssignment_2(), "rule__Register__NameAssignment_2");
 			builder.put(grammarAccess.getLogicAccess().getRightAssignment_1_2(), "rule__Logic__RightAssignment_1_2");
 			builder.put(grammarAccess.getConjunctionAccess().getRightAssignment_1_2(), "rule__Conjunction__RightAssignment_1_2");
-			builder.put(grammarAccess.getPrimLogicAccess().getLogicAssignment_1_1(), "rule__PrimLogic__LogicAssignment_1_1");
+			builder.put(grammarAccess.getPrimLogicAccess().getLogicAssignment_2_1(), "rule__PrimLogic__LogicAssignment_2_1");
+			builder.put(grammarAccess.getExternalCallAccess().getTargetAssignment_0(), "rule__ExternalCall__TargetAssignment_0");
+			builder.put(grammarAccess.getExternalCallAccess().getArgumentsAssignment_2(), "rule__ExternalCall__ArgumentsAssignment_2");
+			builder.put(grammarAccess.getExternalCallAccess().getArgumentsAssignment_3_1(), "rule__ExternalCall__ArgumentsAssignment_3_1");
 			builder.put(grammarAccess.getComparisonAccess().getLeftAssignment_0(), "rule__Comparison__LeftAssignment_0");
 			builder.put(grammarAccess.getComparisonAccess().getOpAssignment_1(), "rule__Comparison__OpAssignment_1");
 			builder.put(grammarAccess.getComparisonAccess().getRightAssignment_2(), "rule__Comparison__RightAssignment_2");

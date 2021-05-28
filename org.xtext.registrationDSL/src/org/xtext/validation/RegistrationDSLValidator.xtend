@@ -3,6 +3,10 @@
  */
 package org.xtext.validation
 
+import org.eclipse.xtext.validation.Check
+import org.xtext.registrationDSL.Entity
+import java.util.HashSet
+import org.xtext.registrationDSL.RegistrationDSLPackage.Literals
 
 /**
  * This class contains custom validation rules. 
@@ -11,15 +15,25 @@ package org.xtext.validation
  */
 class RegistrationDSLValidator extends AbstractRegistrationDSLValidator {
 	
-//	public static val INVALID_NAME = 'invalidName'
-//
-//	@Check
-//	def checkGreetingStartsWithCapital(Greeting greeting) {
-//		if (!Character.isUpperCase(greeting.name.charAt(0))) {
-//			warning('Name should start with a capital', 
-//					RegistrationDSLPackage.Literals.GREETING__NAME,
-//					INVALID_NAME)
-//		}
-//	}
+	@Check
+	def checkNoCyclicInheritance(Entity entity) {
+		val alreadySeen = new HashSet<Entity>
+		alreadySeen.add(entity)
+		if(entity.base.selfExtends(alreadySeen)) {
+			error('Cyclic inheritance', Literals.ENTITY__BASE)
+		}
+	}
 	
+	def boolean selfExtends(Entity entity, HashSet<Entity> alreadySeen) {
+		if(entity == null) {
+			return false
+		}
+		else if (alreadySeen.contains(entity)) {
+			return true
+		}
+		else {
+			alreadySeen.add(entity)
+			entity.base.selfExtends(alreadySeen)
+		}
+	}	
 }

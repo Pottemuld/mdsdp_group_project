@@ -13,6 +13,7 @@ import org.eclipse.emf.ecore.xmi.impl.XMLResourceImpl
 import org.eclipse.emf.ecore.util.EcoreUtil
 import java.util.ArrayList
 import java.util.List
+import org.xtext.registrationDSL.Registationsystem
 
 /**
  * Generates code from your model files on save.
@@ -26,7 +27,10 @@ class RegistrationDSLGenerator extends AbstractGenerator {
 		modelInstance.display
 		modelInstance.declarations.filter(Entity).forEach[generateEntityFile(modelInstance.name,fsa)]
 		modelInstance.declarations.filter(Workflow).generateWorkflowFile(modelInstance.name, modelInstance.declarations.filter(Entity),fsa)
+		modelInstance.generateExternals(fsa)	
 	}
+	
+	
 	
 	def generateEntityFile(Entity entity, String systemName, IFileSystemAccess2 fsa) {
 		fsa.generateFile(systemName.toLowerCase+"/"+entity.name+".java", entity.generateEntity(systemName))
@@ -35,8 +39,8 @@ class RegistrationDSLGenerator extends AbstractGenerator {
 	def CharSequence generateEntity(Entity entity, String systemName) '''
 	package «systemName.toLowerCase»;
 	import java.util.*;
-	
 	public class «entity.name»«IF entity.base !==null» extends «entity.base.name»«ENDIF» {
+		private External code;
 		«entity.generateConstructor»
 		
 		//ad relations and atributes
@@ -72,10 +76,11 @@ class RegistrationDSLGenerator extends AbstractGenerator {
 	}
 	'''
 	def generateConstructor(Entity entity) '''
-	public «entity.name»(«FOR a:entity.allAtributeFields SEPARATOR ", "»«a.type» «a.name»«ENDFOR») throws Exception {
+	public «entity.name»(External code, «FOR a:entity.allAtributeFields SEPARATOR ", "»«a.type» «a.name»«ENDFOR») throws Exception {
 		«IF entity.base!==null»
-		super(«FOR a:entity.base.allAtributeFields SEPARATOR ", "»«a.name»«ENDFOR»);
+		super(code, «FOR a:entity.base.allAtributeFields SEPARATOR ", "»«a.name»«ENDFOR»);
 		«ENDIF»
+		this.code = code;
 		«FOR a:entity.fields.filter(Attribute)»
 		this.«a.name» = «a.name»;
 		«ENDFOR»
@@ -93,11 +98,14 @@ class RegistrationDSLGenerator extends AbstractGenerator {
 		result
 	}
 	
-		def generateRequire(Require require) { require.logic.generateLogicExp }
+	def generateRequire(Require require) { require.logic.generateLogicExp }
 		
 	def dispatch CharSequence generateLogicExp(And exp) { exp.left.generateLogicExp+"&&"+exp.right.generateLogicExp }
 	def dispatch CharSequence generateLogicExp(Or exp) { exp.left.generateLogicExp+"||"+exp.right.generateLogicExp }
 	def dispatch CharSequence generateLogicExp(Comparison exp) { exp.left.generateMExp+exp.op+exp.right.generateMExp }
+	def dispatch CharSequence generateLogicExp(ExternalCall ec) {
+		'''this.code.«ec.target.name»(«FOR arg:ec.arguments SEPARATOR ','»«arg.generateMExp»«ENDFOR»)'''
+	}
 		
 	def dispatch CharSequence generateMExp(Plus exp) { exp.left.generateMExp+"+"+exp.right.generateMExp }
 	def dispatch CharSequence generateMExp(Minus exp) { exp.left.generateMExp+"-"+exp.right.generateMExp }
@@ -114,6 +122,7 @@ class RegistrationDSLGenerator extends AbstractGenerator {
 		package «systemName.toLowerCase»;
 		import java.util.*;
 		public class WorkflowManager {
+		private External code;
 		
 		Scanner scan = new Scanner(System.in);
 		String input; 
@@ -144,6 +153,22 @@ class RegistrationDSLGenerator extends AbstractGenerator {
 		
 	}
 	
+	def void generateExternals(Registationsystem registationsystem, IFileSystemAccess2 fsa) {
+		fsa.generateFile(registationsystem.name.toLowerCase+"/External.java", '''
+		package «registationsystem.name.toLowerCase»;
+		public interface External {
+			«FOR external:registationsystem.declarations.filter(External)»
+				public boolean «external.name.toFirstLower»(«FOR param:external.parameters SEPARATOR ','»«param» «param.generateParameter»«ENDFOR»);
+			«ENDFOR»
+		}
+		''')
+	}
+	
+	def generateParameter(String type) {
+		"p"+(id++)
+	}
+	var int id = 0
+	
 	def dispatch handleStatement(Select statement) {'''
 		«statement.selectType.name» «statement.entityName» = choose«statement.selectType.name»();
 	'''
@@ -172,7 +197,7 @@ class RegistrationDSLGenerator extends AbstractGenerator {
 			«ENDIF»
 		«ENDFOR»
 		try {
-		«s.name» = new «s.type.name»(«FOR a:s.type.allAtributeFields SEPARATOR ", "»«a.name»«ENDFOR»);
+		«s.name» = new «s.type.name»(code, «FOR a:s.type.allAtributeFields SEPARATOR ", "»«a.name»«ENDFOR»);
 		} catch (Exception e) {
 			System.out.println(e.toString());
 			return;

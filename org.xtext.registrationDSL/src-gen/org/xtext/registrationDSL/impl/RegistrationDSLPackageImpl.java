@@ -19,6 +19,8 @@ import org.xtext.registrationDSL.Declaration;
 import org.xtext.registrationDSL.Div;
 import org.xtext.registrationDSL.Entity;
 import org.xtext.registrationDSL.Expression;
+import org.xtext.registrationDSL.External;
+import org.xtext.registrationDSL.ExternalCall;
 import org.xtext.registrationDSL.Field;
 import org.xtext.registrationDSL.LogicExp;
 import org.xtext.registrationDSL.Minus;
@@ -99,6 +101,13 @@ public class RegistrationDSLPackageImpl extends EPackageImpl implements Registra
    * <!-- end-user-doc -->
    * @generated
    */
+  private EClass externalEClass = null;
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
   private EClass workflowEClass = null;
 
   /**
@@ -135,6 +144,13 @@ public class RegistrationDSLPackageImpl extends EPackageImpl implements Registra
    * @generated
    */
   private EClass logicExpEClass = null;
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  private EClass externalCallEClass = null;
 
   /**
    * <!-- begin-user-doc -->
@@ -469,6 +485,28 @@ public class RegistrationDSLPackageImpl extends EPackageImpl implements Registra
    * @generated
    */
   @Override
+  public EClass getExternal()
+  {
+    return externalEClass;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public EAttribute getExternal_Parameters()
+  {
+    return (EAttribute)externalEClass.getEStructuralFeatures().get(0);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
   public EClass getWorkflow()
   {
     return workflowEClass;
@@ -626,6 +664,39 @@ public class RegistrationDSLPackageImpl extends EPackageImpl implements Registra
   public EReference getLogicExp_Logic()
   {
     return (EReference)logicExpEClass.getEStructuralFeatures().get(0);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public EClass getExternalCall()
+  {
+    return externalCallEClass;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public EReference getExternalCall_Target()
+  {
+    return (EReference)externalCallEClass.getEStructuralFeatures().get(0);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public EReference getExternalCall_Arguments()
+  {
+    return (EReference)externalCallEClass.getEStructuralFeatures().get(1);
   }
 
   /**
@@ -1002,6 +1073,9 @@ public class RegistrationDSLPackageImpl extends EPackageImpl implements Registra
     requireEClass = createEClass(REQUIRE);
     createEReference(requireEClass, REQUIRE__LOGIC);
 
+    externalEClass = createEClass(EXTERNAL);
+    createEAttribute(externalEClass, EXTERNAL__PARAMETERS);
+
     workflowEClass = createEClass(WORKFLOW);
     createEReference(workflowEClass, WORKFLOW__STATEMENTS);
 
@@ -1022,6 +1096,10 @@ public class RegistrationDSLPackageImpl extends EPackageImpl implements Registra
 
     logicExpEClass = createEClass(LOGIC_EXP);
     createEReference(logicExpEClass, LOGIC_EXP__LOGIC);
+
+    externalCallEClass = createEClass(EXTERNAL_CALL);
+    createEReference(externalCallEClass, EXTERNAL_CALL__TARGET);
+    createEReference(externalCallEClass, EXTERNAL_CALL__ARGUMENTS);
 
     comparisonEClass = createEClass(COMPARISON);
     createEReference(comparisonEClass, COMPARISON__LEFT);
@@ -1097,10 +1175,12 @@ public class RegistrationDSLPackageImpl extends EPackageImpl implements Registra
     attributeEClass.getESuperTypes().add(this.getField());
     relationEClass.getESuperTypes().add(this.getField());
     requireEClass.getESuperTypes().add(this.getField());
+    externalEClass.getESuperTypes().add(this.getDeclaration());
     workflowEClass.getESuperTypes().add(this.getDeclaration());
     selectEClass.getESuperTypes().add(this.getStatement());
     addEClass.getESuperTypes().add(this.getStatement());
     registerEClass.getESuperTypes().add(this.getStatement());
+    externalCallEClass.getESuperTypes().add(this.getLogicExp());
     comparisonEClass.getESuperTypes().add(this.getLogicExp());
     varEClass.getESuperTypes().add(this.getExpression());
     constantEClass.getESuperTypes().add(this.getExpression());
@@ -1137,6 +1217,9 @@ public class RegistrationDSLPackageImpl extends EPackageImpl implements Registra
     initEClass(requireEClass, Require.class, "Require", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
     initEReference(getRequire_Logic(), this.getLogicExp(), null, "logic", null, 0, 1, Require.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
+    initEClass(externalEClass, External.class, "External", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+    initEAttribute(getExternal_Parameters(), ecorePackage.getEString(), "parameters", null, 0, -1, External.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
     initEClass(workflowEClass, Workflow.class, "Workflow", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
     initEReference(getWorkflow_Statements(), this.getStatement(), null, "statements", null, 0, -1, Workflow.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
@@ -1157,6 +1240,10 @@ public class RegistrationDSLPackageImpl extends EPackageImpl implements Registra
 
     initEClass(logicExpEClass, LogicExp.class, "LogicExp", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
     initEReference(getLogicExp_Logic(), this.getLogicExp(), null, "logic", null, 0, 1, LogicExp.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+    initEClass(externalCallEClass, ExternalCall.class, "ExternalCall", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+    initEReference(getExternalCall_Target(), this.getExternal(), null, "target", null, 0, 1, ExternalCall.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEReference(getExternalCall_Arguments(), this.getExpression(), null, "arguments", null, 0, -1, ExternalCall.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
     initEClass(comparisonEClass, Comparison.class, "Comparison", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
     initEReference(getComparison_Left(), this.getExpression(), null, "left", null, 0, 1, Comparison.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);

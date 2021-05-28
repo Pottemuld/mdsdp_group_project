@@ -28,6 +28,8 @@ import org.xtext.registrationDSL.Constant;
 import org.xtext.registrationDSL.Div;
 import org.xtext.registrationDSL.Entity;
 import org.xtext.registrationDSL.Expression;
+import org.xtext.registrationDSL.External;
+import org.xtext.registrationDSL.ExternalCall;
 import org.xtext.registrationDSL.LogicExp;
 import org.xtext.registrationDSL.Minus;
 import org.xtext.registrationDSL.Mult;
@@ -58,6 +60,7 @@ public class RegistrationDSLGenerator extends AbstractGenerator {
     };
     Iterables.<Entity>filter(modelInstance.getDeclarations(), Entity.class).forEach(_function);
     this.generateWorkflowFile(Iterables.<Workflow>filter(modelInstance.getDeclarations(), Workflow.class), modelInstance.getName(), Iterables.<Entity>filter(modelInstance.getDeclarations(), Entity.class), fsa);
+    this.generateExternals(modelInstance, fsa);
   }
   
   public void generateEntityFile(final Entity entity, final String systemName, final IFileSystemAccess2 fsa) {
@@ -78,7 +81,6 @@ public class RegistrationDSLGenerator extends AbstractGenerator {
     _builder.newLineIfNotEmpty();
     _builder.append("import java.util.*;");
     _builder.newLine();
-    _builder.newLine();
     _builder.append("public class ");
     String _name = entity.getName();
     _builder.append(_name);
@@ -93,6 +95,9 @@ public class RegistrationDSLGenerator extends AbstractGenerator {
     }
     _builder.append(" {");
     _builder.newLineIfNotEmpty();
+    _builder.append("\t");
+    _builder.append("private External code;");
+    _builder.newLine();
     _builder.append("\t");
     CharSequence _generateConstructor = this.generateConstructor(entity);
     _builder.append(_generateConstructor, "\t");
@@ -252,7 +257,7 @@ public class RegistrationDSLGenerator extends AbstractGenerator {
     _builder.append("public ");
     String _name = entity.getName();
     _builder.append(_name);
-    _builder.append("(");
+    _builder.append("(External code, ");
     {
       ArrayList<Attribute> _allAtributeFields = this.allAtributeFields(entity);
       boolean _hasElements = false;
@@ -276,7 +281,7 @@ public class RegistrationDSLGenerator extends AbstractGenerator {
       boolean _tripleNotEquals = (_base != null);
       if (_tripleNotEquals) {
         _builder.append("\t");
-        _builder.append("super(");
+        _builder.append("super(code, ");
         {
           ArrayList<Attribute> _allAtributeFields_1 = this.allAtributeFields(entity.getBase());
           boolean _hasElements_1 = false;
@@ -294,6 +299,9 @@ public class RegistrationDSLGenerator extends AbstractGenerator {
         _builder.newLineIfNotEmpty();
       }
     }
+    _builder.append("\t");
+    _builder.append("this.code = code;");
+    _builder.newLine();
     {
       Iterable<Attribute> _filter = Iterables.<Attribute>filter(entity.getFields(), Attribute.class);
       for(final Attribute a_2 : _filter) {
@@ -358,6 +366,29 @@ public class RegistrationDSLGenerator extends AbstractGenerator {
     return (_plus + _generateMExp_1);
   }
   
+  protected CharSequence _generateLogicExp(final ExternalCall ec) {
+    StringConcatenation _builder = new StringConcatenation();
+    _builder.append("this.code.");
+    String _name = ec.getTarget().getName();
+    _builder.append(_name);
+    _builder.append("(");
+    {
+      EList<Expression> _arguments = ec.getArguments();
+      boolean _hasElements = false;
+      for(final Expression arg : _arguments) {
+        if (!_hasElements) {
+          _hasElements = true;
+        } else {
+          _builder.appendImmediate(",", "");
+        }
+        CharSequence _generateMExp = this.generateMExp(arg);
+        _builder.append(_generateMExp);
+      }
+    }
+    _builder.append(")");
+    return _builder;
+  }
+  
   protected CharSequence _generateMExp(final Plus exp) {
     CharSequence _generateMExp = this.generateMExp(exp.getLeft());
     String _plus = (_generateMExp + "+");
@@ -419,6 +450,8 @@ public class RegistrationDSLGenerator extends AbstractGenerator {
     _builder.append("import java.util.*;");
     _builder.newLine();
     _builder.append("public class WorkflowManager {");
+    _builder.newLine();
+    _builder.append("private External code;");
     _builder.newLine();
     _builder.newLine();
     _builder.append("Scanner scan = new Scanner(System.in);");
@@ -522,6 +555,56 @@ public class RegistrationDSLGenerator extends AbstractGenerator {
     _builder.newLine();
     return _builder;
   }
+  
+  public void generateExternals(final Registationsystem registationsystem, final IFileSystemAccess2 fsa) {
+    String _lowerCase = registationsystem.getName().toLowerCase();
+    String _plus = (_lowerCase + "/External.java");
+    StringConcatenation _builder = new StringConcatenation();
+    _builder.append("package ");
+    String _lowerCase_1 = registationsystem.getName().toLowerCase();
+    _builder.append(_lowerCase_1);
+    _builder.append(";");
+    _builder.newLineIfNotEmpty();
+    _builder.append("public interface External {");
+    _builder.newLine();
+    {
+      Iterable<External> _filter = Iterables.<External>filter(registationsystem.getDeclarations(), External.class);
+      for(final External external : _filter) {
+        _builder.append("\t");
+        _builder.append("public boolean ");
+        String _firstLower = StringExtensions.toFirstLower(external.getName());
+        _builder.append(_firstLower, "\t");
+        _builder.append("(");
+        {
+          EList<String> _parameters = external.getParameters();
+          boolean _hasElements = false;
+          for(final String param : _parameters) {
+            if (!_hasElements) {
+              _hasElements = true;
+            } else {
+              _builder.appendImmediate(",", "\t");
+            }
+            _builder.append(param, "\t");
+            _builder.append(" ");
+            String _generateParameter = this.generateParameter(param);
+            _builder.append(_generateParameter, "\t");
+          }
+        }
+        _builder.append(");");
+        _builder.newLineIfNotEmpty();
+      }
+    }
+    _builder.append("}");
+    _builder.newLine();
+    fsa.generateFile(_plus, _builder);
+  }
+  
+  public String generateParameter(final String type) {
+    int _plusPlus = this.id++;
+    return ("p" + Integer.valueOf(_plusPlus));
+  }
+  
+  private int id = 0;
   
   protected CharSequence _handleStatement(final Select statement) {
     StringConcatenation _builder = new StringConcatenation();
@@ -628,7 +711,7 @@ public class RegistrationDSLGenerator extends AbstractGenerator {
     _builder.append(" = new ");
     String _name_6 = s.getType().getName();
     _builder.append(_name_6);
-    _builder.append("(");
+    _builder.append("(code, ");
     {
       ArrayList<Attribute> _allAtributeFields = this.allAtributeFields(s.getType());
       boolean _hasElements = false;
@@ -680,6 +763,8 @@ public class RegistrationDSLGenerator extends AbstractGenerator {
       return _generateLogicExp((And)exp);
     } else if (exp instanceof Comparison) {
       return _generateLogicExp((Comparison)exp);
+    } else if (exp instanceof ExternalCall) {
+      return _generateLogicExp((ExternalCall)exp);
     } else if (exp instanceof Or) {
       return _generateLogicExp((Or)exp);
     } else {

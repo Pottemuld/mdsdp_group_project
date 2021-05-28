@@ -72,12 +72,14 @@ public class RegistrationDSLFactoryImpl extends EFactoryImpl implements Registra
       case RegistrationDSLPackage.ATTRIBUTE: return createAttribute();
       case RegistrationDSLPackage.RELATION: return createRelation();
       case RegistrationDSLPackage.REQUIRE: return createRequire();
+      case RegistrationDSLPackage.EXTERNAL: return createExternal();
       case RegistrationDSLPackage.WORKFLOW: return createWorkflow();
       case RegistrationDSLPackage.STATEMENT: return createStatement();
       case RegistrationDSLPackage.SELECT: return createSelect();
       case RegistrationDSLPackage.ADD: return createAdd();
       case RegistrationDSLPackage.REGISTER: return createRegister();
       case RegistrationDSLPackage.LOGIC_EXP: return createLogicExp();
+      case RegistrationDSLPackage.EXTERNAL_CALL: return createExternalCall();
       case RegistrationDSLPackage.COMPARISON: return createComparison();
       case RegistrationDSLPackage.EXPRESSION: return createExpression();
       case RegistrationDSLPackage.VAR: return createVar();
@@ -184,6 +186,18 @@ public class RegistrationDSLFactoryImpl extends EFactoryImpl implements Registra
    * @generated
    */
   @Override
+  public External createExternal()
+  {
+    ExternalImpl external = new ExternalImpl();
+    return external;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
   public Workflow createWorkflow()
   {
     WorkflowImpl workflow = new WorkflowImpl();
@@ -248,6 +262,18 @@ public class RegistrationDSLFactoryImpl extends EFactoryImpl implements Registra
   {
     LogicExpImpl logicExp = new LogicExpImpl();
     return logicExp;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public ExternalCall createExternalCall()
+  {
+    ExternalCallImpl externalCall = new ExternalCallImpl();
+    return externalCall;
   }
 
   /**

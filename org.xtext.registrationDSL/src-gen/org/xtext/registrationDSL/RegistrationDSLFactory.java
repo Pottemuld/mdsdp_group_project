@@ -87,6 +87,15 @@ public interface RegistrationDSLFactory extends EFactory
   Require createRequire();
 
   /**
+   * Returns a new object of class '<em>External</em>'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return a new object of class '<em>External</em>'.
+   * @generated
+   */
+  External createExternal();
+
+  /**
    * Returns a new object of class '<em>Workflow</em>'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
@@ -139,6 +148,15 @@ public interface RegistrationDSLFactory extends EFactory
    * @generated
    */
   LogicExp createLogicExp();
+
+  /**
+   * Returns a new object of class '<em>External Call</em>'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return a new object of class '<em>External Call</em>'.
+   * @generated
+   */
+  ExternalCall createExternalCall();
 
   /**
    * Returns a new object of class '<em>Comparison</em>'.

@@ -22,6 +22,8 @@ import org.xtext.registrationDSL.Constant;
 import org.xtext.registrationDSL.Div;
 import org.xtext.registrationDSL.Entity;
 import org.xtext.registrationDSL.Expression;
+import org.xtext.registrationDSL.External;
+import org.xtext.registrationDSL.ExternalCall;
 import org.xtext.registrationDSL.LogicExp;
 import org.xtext.registrationDSL.Minus;
 import org.xtext.registrationDSL.Mult;
@@ -74,6 +76,12 @@ public class RegistrationDSLSemanticSequencer extends AbstractDelegatingSemantic
 				return; 
 			case RegistrationDSLPackage.EXPRESSION:
 				sequence_PrimExp(context, (Expression) semanticObject); 
+				return; 
+			case RegistrationDSLPackage.EXTERNAL:
+				sequence_External(context, (External) semanticObject); 
+				return; 
+			case RegistrationDSLPackage.EXTERNAL_CALL:
+				sequence_ExternalCall(context, (ExternalCall) semanticObject); 
 				return; 
 			case RegistrationDSLPackage.LOGIC_EXP:
 				sequence_PrimLogic(context, (LogicExp) semanticObject); 
@@ -302,6 +310,36 @@ public class RegistrationDSLSemanticSequencer extends AbstractDelegatingSemantic
 	
 	/**
 	 * Contexts:
+	 *     Logic returns ExternalCall
+	 *     Logic.Or_1_1 returns ExternalCall
+	 *     Conjunction returns ExternalCall
+	 *     Conjunction.And_1_1 returns ExternalCall
+	 *     PrimLogic returns ExternalCall
+	 *     ExternalCall returns ExternalCall
+	 *
+	 * Constraint:
+	 *     (target=[External|ID] arguments+=Exp arguments+=Exp*)
+	 */
+	protected void sequence_ExternalCall(ISerializationContext context, ExternalCall semanticObject) {
+		genericSequencer.createSequence(context, semanticObject);
+	}
+	
+	
+	/**
+	 * Contexts:
+	 *     Declaration returns External
+	 *     External returns External
+	 *
+	 * Constraint:
+	 *     (name=ID parameters+=ID parameters+=ID*)
+	 */
+	protected void sequence_External(ISerializationContext context, External semanticObject) {
+		genericSequencer.createSequence(context, semanticObject);
+	}
+	
+	
+	/**
+	 * Contexts:
 	 *     Exp returns Div
 	 *     Exp.Plus_1_0_0_1 returns Div
 	 *     Exp.Minus_1_0_1_1 returns Div
@@ -415,7 +453,7 @@ public class RegistrationDSLSemanticSequencer extends AbstractDelegatingSemantic
 				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, RegistrationDSLPackage.Literals.LOGIC_EXP__LOGIC));
 		}
 		SequenceFeeder feeder = createSequencerFeeder(context, semanticObject);
-		feeder.accept(grammarAccess.getPrimLogicAccess().getLogicLogicParserRuleCall_1_1_0(), semanticObject.getLogic());
+		feeder.accept(grammarAccess.getPrimLogicAccess().getLogicLogicParserRuleCall_2_1_0(), semanticObject.getLogic());
 		feeder.finish();
 	}
 	

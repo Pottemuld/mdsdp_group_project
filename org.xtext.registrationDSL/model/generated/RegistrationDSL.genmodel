@@ -29,6 +29,9 @@
     <genClasses ecoreClass="RegistrationDSL.ecore#//Require">
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference RegistrationDSL.ecore#//Require/logic"/>
     </genClasses>
+    <genClasses ecoreClass="RegistrationDSL.ecore#//External">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute RegistrationDSL.ecore#//External/parameters"/>
+    </genClasses>
     <genClasses ecoreClass="RegistrationDSL.ecore#//Workflow">
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference RegistrationDSL.ecore#//Workflow/statements"/>
     </genClasses>
@@ -48,6 +51,10 @@
     </genClasses>
     <genClasses ecoreClass="RegistrationDSL.ecore#//LogicExp">
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference RegistrationDSL.ecore#//LogicExp/logic"/>
+    </genClasses>
+    <genClasses ecoreClass="RegistrationDSL.ecore#//ExternalCall">
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference RegistrationDSL.ecore#//ExternalCall/target"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference RegistrationDSL.ecore#//ExternalCall/arguments"/>
     </genClasses>
     <genClasses ecoreClass="RegistrationDSL.ecore#//Comparison">
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference RegistrationDSL.ecore#//Comparison/left"/>

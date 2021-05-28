@@ -1,8 +1,9 @@
 system CarRental{
+external legalLicense(int)
 entity Customer{
     attribute name : String
     attribute age : int require age>=18
-    attribute drivers_licence : int require drivers_licence>0 // require leagalLicenceNr(drivers_licence)
+    attribute drivers_licence : int require legalLicense(drivers_licence) // require leagalLicenceNr(drivers_licence)
     attribute address : String
     relation rents : Vehicle
 }
@@ -17,7 +18,9 @@ entity Vehicle {
 
 entity FirstClassCustomer : Customer {
 	require age >=25
+	require legalLicense(drivers_licence)
 }
+
 workflow book_car {
 	select Customer customer
 	//select desired Perode Rental periode
