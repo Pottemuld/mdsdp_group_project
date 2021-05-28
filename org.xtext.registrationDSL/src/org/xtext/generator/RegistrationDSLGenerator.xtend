@@ -154,6 +154,7 @@ class RegistrationDSLGenerator extends AbstractGenerator {
 	}
 	
 	def void generateExternals(Registationsystem registationsystem, IFileSystemAccess2 fsa) {
+		id = 0
 		fsa.generateFile(registationsystem.name.toLowerCase+"/External.java", '''
 		package «registationsystem.name.toLowerCase»;
 		public interface External {

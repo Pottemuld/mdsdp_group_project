@@ -557,6 +557,7 @@ public class RegistrationDSLGenerator extends AbstractGenerator {
   }
   
   public void generateExternals(final Registationsystem registationsystem, final IFileSystemAccess2 fsa) {
+    this.id = 0;
     String _lowerCase = registationsystem.getName().toLowerCase();
     String _plus = (_lowerCase + "/External.java");
     StringConcatenation _builder = new StringConcatenation();
