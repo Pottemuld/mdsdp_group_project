@@ -710,6 +710,7 @@ public class RegistrationDSLGenerator extends AbstractGenerator {
   }
   
   public void generateExternalInterface(final Registationsystem registrationsystem, final IFileSystemAccess2 fsa) {
+    this.id = 0;
     String _lowerCase = registrationsystem.getName().toLowerCase();
     String _plus = (_lowerCase + "/");
     String _plus_1 = (_plus + "ExternalCode.java");
