@@ -16,4 +16,8 @@ public class ExternalImpl implements External {
 		return (Pattern.matches("^[A-Z]{2}\\d{5}", p1));
 	}
 
+	public ExternalImpl() {
+		
+	}
 }
+

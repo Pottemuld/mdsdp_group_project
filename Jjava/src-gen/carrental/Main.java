@@ -8,9 +8,9 @@ public class Main {
 		String input;
 		boolean run = true;
 		while(run) {
-			System.out.println("Please choose your decired workflow");
+			System.out.println("Please choose your desired workflow");
 			System.out.println("1. create car");
-			System.out.println("2. crete customer");
+			System.out.println("2. create customer");
 			System.out.println("3. rent car");
 			input = scan.nextLine();
 			switch (input) {
@@ -31,7 +31,7 @@ public class Main {
 				break;
 			}
 			default:
-				System.out.println("uption not recogniced, type 'quit' to exit");
+				System.out.println("Option not recognized, type 'quit' to exit");
 			}
 	} 
 	}
