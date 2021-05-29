@@ -1,5 +1,6 @@
 system CarRental{
 external legalLicense(int)
+external legalRegNumber(String)
 entity Customer{
     attribute name : String
     attribute age : int require age>=18
@@ -10,7 +11,7 @@ entity Customer{
 entity Vehicle {
     attribute price : int
     attribute required_age: int require required_age>=18
-    attribute registrations_nr : String
+    attribute registrations_nr : String require legalRegNumber(registrations_nr)
     //attribute availability : ?? // who to set up for periods of availability???
     relation rented_to : Customer
 // find a way to check availability 
