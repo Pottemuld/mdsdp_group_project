@@ -4,7 +4,7 @@ external legalRegNumber(String)
 entity Customer{
     attribute name : String
     attribute age : int require age>=18
-    attribute drivers_licence : int require legalLicense(drivers_licence) // require leagalLicenceNr(drivers_licence)
+    attribute drivers_licence : int require legalLicense(drivers_licence) 
     attribute address : String
     relation rents : Vehicle
 }
@@ -12,9 +12,7 @@ entity Vehicle {
     attribute price : int
     attribute required_age: int require required_age>=18
     attribute registrations_nr : String require legalRegNumber(registrations_nr)
-    //attribute availability : ?? // who to set up for periods of availability???
     relation rented_to : Customer
-// find a way to check availability 
 }
 
 entity FirstClassCustomer : Customer {
@@ -24,11 +22,9 @@ entity FirstClassCustomer : Customer {
 
 workflow book_car {
 	select Customer customer
-	//select desired Perode Rental periode
-    select Vehicle vehicle //where {vehicle.availability == periode && customer.age >= vehicle.required_age}
+    select Vehicle vehicle 
 	add vehicle to customer.rents
 	add customer to vehicle.rented_to
-	//set vehicle.availability = periode
 }
 workflow register_customer {
 	register Customer customer
