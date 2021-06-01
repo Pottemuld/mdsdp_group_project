@@ -1,0 +1,35 @@
+system CarRental{
+external legalLicense(int)
+external legalRegNumber(String)
+entity Customer{
+    attribute name : String
+    attribute age : int require age>=18
+    attribute drivers_licence : int require legalLicense(drivers_licence) 
+    attribute address : String
+    relation rents : Vehicle
+}
+entity Vehicle {
+    attribute price : int
+    attribute required_age: int require required_age>=18
+    attribute registrations_nr : String require legalRegNumber(registrations_nr)
+    relation rented_to : Customer
+}
+
+entity FirstClassCustomer : Customer {
+	require age >=25
+	require legalLicense(drivers_licence)
+}
+
+workflow book_car {
+	select Customer customer
+    select Vehicle vehicle 
+	add vehicle to customer.rents
+	add customer to vehicle.rented_to
+}
+workflow register_customer {
+	register Customer customer
+}
+workflow register_car{
+	register Vehicle car
+} 
+} 
