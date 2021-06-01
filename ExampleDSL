@@ -22,7 +22,7 @@ entity FirstClassCustomer : Customer {
 
 workflow book_car {
 	select Customer customer
-    select Vehicle vehicle 
+        select Vehicle vehicle 
 	add vehicle to customer.rents
 	add customer to vehicle.rented_to
 }
