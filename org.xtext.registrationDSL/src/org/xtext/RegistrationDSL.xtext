@@ -38,23 +38,20 @@ Workflow:
 ;
 
 Statement:
-	Select | Add | Register //| Set
+	Select | Add | Register 
 ;
 
-Select:// this is wrong
-	'select' selectType=[Entity] entityName=ID //('where' '{'  '}' )?
+Select:
+	'select' selectType=[Entity] entityName=ID 
 ;
 
-Add: //this is wrong
-	'add' selectedEntityName=ID 'to' toEntity=ID '.' toEntityRelation=ID // check if it's right later
+Add: 
+	'add' selectedEntityName=ID 'to' toEntity=ID '.' toEntityRelation=ID 
 ;
 
 Register:
 	'register' type=[Entity] name=ID
 ;
-/*Set: // Do we need this?
-	"set" name=ID
-;*/
 
 Logic returns LogicExp:
 	Conjunction ('||' {Or.left=current} right=Conjunction)*
