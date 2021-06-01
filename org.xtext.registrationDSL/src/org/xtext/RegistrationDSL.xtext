@@ -2,7 +2,7 @@ grammar org.xtext.RegistrationDSL with org.eclipse.xtext.common.Terminals
 
 generate registrationDSL "http://www.xtext.org/RegistrationDSL"
 
-Registationsystem: //car rental version
+Registationsystem: 
 	'system' name =ID '{' declarations += Declaration* '}'
 ;
 Declaration:
