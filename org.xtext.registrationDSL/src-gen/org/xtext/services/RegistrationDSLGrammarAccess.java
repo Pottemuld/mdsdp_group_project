@@ -35,17 +35,15 @@ public class RegistrationDSLGrammarAccess extends AbstractElementFinder.Abstract
 		private final RuleCall cDeclarationsDeclarationParserRuleCall_3_0 = (RuleCall)cDeclarationsAssignment_3.eContents().get(0);
 		private final Keyword cRightCurlyBracketKeyword_4 = (Keyword)cGroup.eContents().get(4);
 		
-		//Registationsystem: //car rental version
+		//Registationsystem:
 		//    'system' name =ID '{' declarations += Declaration* '}'
 		//;
 		@Override public ParserRule getRule() { return rule; }
 		
-		////car rental version
-		//   'system' name =ID '{' declarations += Declaration* '}'
+		//'system' name =ID '{' declarations += Declaration* '}'
 		public Group getGroup() { return cGroup; }
 		
-		////car rental version
-		//   'system'
+		//'system'
 		public Keyword getSystemKeyword_0() { return cSystemKeyword_0; }
 		
 		//name =ID
@@ -378,7 +376,7 @@ public class RegistrationDSLGrammarAccess extends AbstractElementFinder.Abstract
 		private final RuleCall cRegisterParserRuleCall_2 = (RuleCall)cAlternatives.eContents().get(2);
 		
 		//Statement:
-		//    Select | Add | Register //| Set
+		//    Select | Add | Register
 		//;
 		@Override public ParserRule getRule() { return rule; }
 		
@@ -404,17 +402,15 @@ public class RegistrationDSLGrammarAccess extends AbstractElementFinder.Abstract
 		private final Assignment cEntityNameAssignment_2 = (Assignment)cGroup.eContents().get(2);
 		private final RuleCall cEntityNameIDTerminalRuleCall_2_0 = (RuleCall)cEntityNameAssignment_2.eContents().get(0);
 		
-		//Select:// this is wrong
-		//    'select' selectType=[Entity] entityName=ID //('where' '{'  '}' )?
+		//Select:
+		//    'select' selectType=[Entity] entityName=ID
 		//;
 		@Override public ParserRule getRule() { return rule; }
 		
-		//// this is wrong
-		//    'select' selectType=[Entity] entityName=ID
+		//'select' selectType=[Entity] entityName=ID
 		public Group getGroup() { return cGroup; }
 		
-		//// this is wrong
-		//    'select'
+		//'select'
 		public Keyword getSelectKeyword_0() { return cSelectKeyword_0; }
 		
 		//selectType=[Entity]
@@ -445,17 +441,15 @@ public class RegistrationDSLGrammarAccess extends AbstractElementFinder.Abstract
 		private final Assignment cToEntityRelationAssignment_5 = (Assignment)cGroup.eContents().get(5);
 		private final RuleCall cToEntityRelationIDTerminalRuleCall_5_0 = (RuleCall)cToEntityRelationAssignment_5.eContents().get(0);
 		
-		//Add: //this is wrong
-		//    'add' selectedEntityName=ID 'to' toEntity=ID '.' toEntityRelation=ID // check if it's right later
+		//Add:
+		//    'add' selectedEntityName=ID 'to' toEntity=ID '.' toEntityRelation=ID
 		//;
 		@Override public ParserRule getRule() { return rule; }
 		
-		////this is wrong
-		//   'add' selectedEntityName=ID 'to' toEntity=ID '.' toEntityRelation=ID
+		//'add' selectedEntityName=ID 'to' toEntity=ID '.' toEntityRelation=ID
 		public Group getGroup() { return cGroup; }
 		
-		////this is wrong
-		//   'add'
+		//'add'
 		public Keyword getAddKeyword_0() { return cAddKeyword_0; }
 		
 		//selectedEntityName=ID
@@ -528,9 +522,6 @@ public class RegistrationDSLGrammarAccess extends AbstractElementFinder.Abstract
 		private final Assignment cRightAssignment_1_2 = (Assignment)cGroup_1.eContents().get(2);
 		private final RuleCall cRightConjunctionParserRuleCall_1_2_0 = (RuleCall)cRightAssignment_1_2.eContents().get(0);
 		
-		///*Set: // Do we need this?
-		//    "set" name=ID
-		//;*/
 		//Logic returns LogicExp:
 		//    Conjunction ('||' {Or.left=current} right=Conjunction)*
 		//;
@@ -1042,7 +1033,7 @@ public class RegistrationDSLGrammarAccess extends AbstractElementFinder.Abstract
 	}
 
 	
-	//Registationsystem: //car rental version
+	//Registationsystem:
 	//    'system' name =ID '{' declarations += Declaration* '}'
 	//;
 	public RegistationsystemElements getRegistationsystemAccess() {
@@ -1142,7 +1133,7 @@ public class RegistrationDSLGrammarAccess extends AbstractElementFinder.Abstract
 	}
 	
 	//Statement:
-	//    Select | Add | Register //| Set
+	//    Select | Add | Register
 	//;
 	public StatementElements getStatementAccess() {
 		return pStatement;
@@ -1152,8 +1143,8 @@ public class RegistrationDSLGrammarAccess extends AbstractElementFinder.Abstract
 		return getStatementAccess().getRule();
 	}
 	
-	//Select:// this is wrong
-	//    'select' selectType=[Entity] entityName=ID //('where' '{'  '}' )?
+	//Select:
+	//    'select' selectType=[Entity] entityName=ID
 	//;
 	public SelectElements getSelectAccess() {
 		return pSelect;
@@ -1163,8 +1154,8 @@ public class RegistrationDSLGrammarAccess extends AbstractElementFinder.Abstract
 		return getSelectAccess().getRule();
 	}
 	
-	//Add: //this is wrong
-	//    'add' selectedEntityName=ID 'to' toEntity=ID '.' toEntityRelation=ID // check if it's right later
+	//Add:
+	//    'add' selectedEntityName=ID 'to' toEntity=ID '.' toEntityRelation=ID
 	//;
 	public AddElements getAddAccess() {
 		return pAdd;
@@ -1185,9 +1176,6 @@ public class RegistrationDSLGrammarAccess extends AbstractElementFinder.Abstract
 		return getRegisterAccess().getRule();
 	}
 	
-	///*Set: // Do we need this?
-	//    "set" name=ID
-	//;*/
 	//Logic returns LogicExp:
 	//    Conjunction ('||' {Or.left=current} right=Conjunction)*
 	//;
